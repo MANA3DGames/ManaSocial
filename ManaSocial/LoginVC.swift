@@ -14,23 +14,20 @@ class LoginVC: UIViewController {
     @IBOutlet weak var passwordTxt: UITextField!
     
     
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
 
     @IBAction func onLoginBtnClicked(_ sender: Any)
     {
-        if emailTxt.text!.isEmpty
+        if UIUtilities.checkIsEmpty( textField: emailTxt )
         {
-            UIUtilities.setTextFieldPlaceHolderColor( textField: emailTxt, color: UIColor.red )
             return
         }
         
-        if passwordTxt.text!.isEmpty
+        if UIUtilities.checkIsEmpty( textField: passwordTxt )
         {
-            UIUtilities.setTextFieldPlaceHolderColor( textField: passwordTxt, color: UIColor.red )
             return
         }
         

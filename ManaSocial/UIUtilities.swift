@@ -16,4 +16,16 @@ class UIUtilities
     {
         textField.attributedPlaceholder = NSAttributedString( string: textField.placeholder!, attributes: [NSAttributedString.Key.foregroundColor: color] )
     }
+    
+    // Checks if the given input field is empty.
+    public static func checkIsEmpty( textField: UITextField ) -> Bool
+    {
+        if textField.text!.isEmpty
+        {
+            setTextFieldPlaceHolderColor( textField: textField, color: UIColor.red )
+            return true
+        }
+        
+        return false
+    }
 }

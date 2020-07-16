@@ -11,25 +11,20 @@ import UIKit
 class RegisterVC: UIViewController
 {
     // UI element objects.
-    @IBOutlet weak var firstNameTxt: UITextField!
-    @IBOutlet weak var lastNameTxt: UITextField!
-    @IBOutlet weak var passwordTxt: UITextField!
-    @IBOutlet weak var repasswordTxt: UITextField!
-    @IBOutlet weak var emailTxt: UITextField!
+    @IBOutlet weak var firstNameTxt: UITextField!       // User's first name ui input field.
+    @IBOutlet weak var lastNameTxt: UITextField!        // User's last name ui input field.
+    @IBOutlet weak var passwordTxt: UITextField!        // User's password ui input field.
+    @IBOutlet weak var repasswordTxt: UITextField!      // User's confirm-password ui input field.
+    @IBOutlet weak var emailTxt: UITextField!           // User's email ui input field.
     
     
+    // Startup function.
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
     }
-
-//    // Changes a placeholder color to red if it is empty.
-//    func markRequiredPlaceholder( textField : UITextField )
-//    {
-//        textField.attributedPlaceholder = NSAttributedString(string: textField.placeholder!, attributes: [NSAttributedString.Key.foregroundColor:UIColor.red])
-//    }
     
+    // Registers a new user with hard-coded parameters - just for testing.
     func quickRegistration()
     {
         let email = "kingodesu@gmail.com"
@@ -37,44 +32,44 @@ class RegisterVC: UIViewController
         let firstName = "Amanda"
         let lastName = "AbuObaid"
 
-        ServerAccess.registerNewUser(email: email, password: password, firstName: firstName, lastName: lastName)
+        ServerAccess.registerUser(email: email, password: password, firstName: firstName, lastName: lastName)
     }
+    
+    
     
     // To be called when register btn is clicked.
     @IBAction func onClickRegisterBtn(_ sender: Any)
     {
         // check first name field.
-        if firstNameTxt.text!.isEmpty
+        if UIUtilities.checkIsEmpty( textField: firstNameTxt )
         {
-            UIUtilities.setTextFieldPlaceHolderColor( textField: firstNameTxt, color: UIColor.red )
             return
         }
+        
         // Check last name field.
-        if lastNameTxt.text!.isEmpty
+        if UIUtilities.checkIsEmpty( textField: lastNameTxt )
         {
-            UIUtilities.setTextFieldPlaceHolderColor( textField: lastNameTxt, color: UIColor.red )
             return
         }
 
         // Check email field.
-        if emailTxt.text!.isEmpty
+        if UIUtilities.checkIsEmpty( textField: emailTxt )
         {
-            UIUtilities.setTextFieldPlaceHolderColor( textField: emailTxt, color: UIColor.red )
             return
         }
 
         // Check password field.
-        if passwordTxt.text!.isEmpty
+        if UIUtilities.checkIsEmpty( textField: passwordTxt )
         {
-            UIUtilities.setTextFieldPlaceHolderColor( textField: passwordTxt, color: UIColor.red )
             return
         }
         // Check re-password field.
-        if repasswordTxt.text!.isEmpty
+        if UIUtilities.checkIsEmpty( textField: repasswordTxt )
         {
-            UIUtilities.setTextFieldPlaceHolderColor( textField: repasswordTxt, color: UIColor.red )
             return
         }
+        
+        // Check if password is confirmed correctly?
         if passwordTxt.text != repasswordTxt.text
         {
             repasswordTxt.text = ""
@@ -82,7 +77,7 @@ class RegisterVC: UIViewController
         }
         
         // All registration fields were filled.
-        ServerAccess.registerNewUser(
+        ServerAccess.registerUser(
             email: emailTxt.text!.lowercased(),
             password: passwordTxt.text!,
             firstName: firstNameTxt.text!,
