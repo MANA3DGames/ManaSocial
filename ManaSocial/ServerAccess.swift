@@ -37,6 +37,7 @@ class ServerAccess
         }.resume()
     }
     
+    
     public static func registerUser( email : String, password : String, firstName : String, lastName : String )
     {
         let onCompleteAction = { ( data: Any ) in
@@ -57,18 +58,27 @@ class ServerAccess
     
     public static func loginUser( email: String, password: String )
     {
-        let onCompleteAction = { ( data: Any ) in
-            print( data )
-        }
+        let onCompleteAction = { ( data: Any ) in print( data ) }
         
-        let onFailedAction = {
-            print( "Session faild" )
-        }
+        let onFailedAction = { print( "Session faild" ) }
         
         executeDataTask(
             url: URL( string: "http://192.168.64.2/manasocial/login.php" )!,
             method: HttpMethod.POST,
             body: "email=\(email)&password=\(password)",
+            onCompleteAction: onCompleteAction,
+            onFailedAction: onFailedAction )
+    }
+    
+    public static func resetUserPassword( email: String )
+    {
+        let onCompleteAction = { ( data: Any ) in print( data ) }
+        let onFailedAction = { print( "Session faild" ) }
+        
+        executeDataTask(
+            url: URL( string: "http://192.168.64.2/manasocial/resetpassword.php" )!,
+            method: HttpMethod.POST,
+            body: "email=\(email)",
             onCompleteAction: onCompleteAction,
             onFailedAction: onFailedAction )
     }

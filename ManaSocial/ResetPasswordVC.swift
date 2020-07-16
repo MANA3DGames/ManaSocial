@@ -26,7 +26,7 @@ class ResetPasswordVC: UIViewController
             return
         }
         
-        print( "Reset password" )
+        ServerAccess.resetUserPassword( email: emailTxt.text! )
     }
     
 }
