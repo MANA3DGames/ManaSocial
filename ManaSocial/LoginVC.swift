@@ -33,4 +33,14 @@ class LoginVC: UIViewController {
         
         ServerAccess.loginUser( email: emailTxt.text!.lowercased(), password: passwordTxt.text! )
     }
+    
+    @IBAction func onForgetPasswordBtnClicked(_ sender: Any)
+    {
+        UIUtilities.moveToViewController( from: self, toID: "resetPasswordVC" )
+    }
+    
+    @IBAction func onRegisterBtnClicked(_ sender: Any)
+    {
+        UIUtilities.moveToViewController( from: self, toID: "registerVC" )
+    }
 }

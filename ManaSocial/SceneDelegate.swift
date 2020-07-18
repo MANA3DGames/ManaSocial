@@ -8,17 +8,139 @@
 
 import UIKit
 
+// Global delegate.
+let sceneDelegate: SceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as! SceneDelegate
+
+// Common used colors
+let redColorError = UIColor( red: 1, green: 50/255, blue: 75/255, alpha: 1 )
+let greenColorDone = UIColor( red: 30/255, green: 255/255, blue: 125/255, alpha: 1 )
+
+// Dynamic font size.
+let fontSize12 = UIScreen.main.bounds.width / 31
+
+
+
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
 
-
-    func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+    // Animated background image.
+    let bgImg = UIImageView()
+    
+    // Initial target x position which will be used to animate background image.
+    var initTargetXBGAnimation : CGFloat = 0.0
+    
+    // Indicates whether Popup view is displayed or not?
+    var isPopupDisplayed = false
+    
+    
+    
+    
+    func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions)
+    {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let _ = (scene as? UIWindowScene) else { return }
+        
+        
+        // Creating imageView to store background image
+        bgImg.frame = CGRect( x: 0, y: 0, width: self.window!.bounds.width * 1.688, height: self.window!.bounds.height )
+        bgImg.image = UIImage( named: "bgImg.jpg" )
+        self.window!.addSubview( bgImg )
+        self.window!.makeKeyAndVisible()
+        
+        // Set initTargetXBGAnimation to the most right end of the image.
+        initTargetXBGAnimation = -self.bgImg.bounds.width + self.window!.bounds.width
+        
+        // Start animating the background.
+        animateBG( targetX: initTargetXBGAnimation )
     }
+    
+    func animateBG( targetX: CGFloat )
+    {
+        UIView.animate( withDuration: 15,
+                        animations: { self.bgImg.frame.origin.x = targetX } )
+                        { ( finished: Bool ) in
+                            if finished
+                            {
+                                // Declare next x target.
+                                var nextTargetX = CGFloat( 0.0 )
+                                
+                                // Check if current x target is equal to 0?
+                                if targetX == 0.0
+                                {
+                                    // Then set nextTargetX to the end of the image. (otherwise it will stay zero).
+                                    nextTargetX = self.initTargetXBGAnimation
+                                }
+                                
+                                // Call animateBG with the new nextTargetX to make PingPong effect.
+                                self.animateBG( targetX: nextTargetX )
+                            }
+                        }
+    }
+    
+    
+    func displayPopup( message: String, bgColor: UIColor )
+    {
+        if isPopupDisplayed
+        {
+            return
+        }
+        
+        isPopupDisplayed = true
+        
+        let popupViewHeight = self.window!.bounds.height / 14.2
+        let popupViewY = 0 - popupViewHeight
+
+        let popupView = UIView( frame: CGRect( x: 0, y: popupViewY, width: self.window!.bounds.width, height: popupViewHeight ) )
+        popupView.backgroundColor = bgColor
+        self.window!.addSubview( popupView )
+        
+        
+        let msgLabelWidth = popupView.bounds.width
+        let appHeight = self.window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0
+        let msgLabelHeight = popupView.bounds.height + appHeight / 2
+        
+        let popupLabel = UILabel()
+        popupLabel.frame.size.width = msgLabelWidth
+        popupLabel.frame.size.height = msgLabelHeight
+        popupLabel.numberOfLines = 0
+        popupLabel.text = message
+        popupLabel.font = UIFont( name: "HelveticaNeue", size: fontSize12 )
+        popupLabel.textColor = UIColor.white
+        popupLabel.textAlignment = NSTextAlignment.center
+        
+        popupView.addSubview( popupLabel )
+        
+        
+        // Animate Popup view:
+        UIView.animate(
+            withDuration: 0.2,
+            animations: { popupView.frame.origin.y = 0 },
+            completion: { ( finished: Bool ) in
+                if finished
+                {
+                    UIView.animate(
+                        withDuration: 0.1,
+                        delay: 3,
+                        options: .curveLinear,
+                        animations: { popupView.frame.origin.y = popupViewY },
+                        completion: { ( finished: Bool ) in
+                            if finished
+                            {
+                                popupView.removeFromSuperview()
+                                popupLabel.removeFromSuperview()
+                                self.isPopupDisplayed = false
+                            }
+                        }
+                    )
+                }
+            } )
+    }
+    
+    
+    
 
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.

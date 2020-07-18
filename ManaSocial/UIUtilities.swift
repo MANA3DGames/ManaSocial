@@ -28,4 +28,31 @@ class UIUtilities
         
         return false
     }
+    
+    // Returns the most top view controller.
+    public static func getTopViewController() -> UIViewController?
+    {
+        let keyWindow = UIApplication.shared.windows.filter {$0.isKeyWindow}.first
+
+        if var topController = keyWindow?.rootViewController {
+            while let presentedViewController = topController.presentedViewController {
+                topController = presentedViewController
+            }
+            
+            return topController
+        }
+        
+        return nil
+    }
+    
+    // Moves from one view controller 'from' to another one 'toID'.
+    public static func moveToViewController( from: UIViewController, toID: String )
+    {
+        from.dismiss( animated: false, completion: {
+            let storyboard = UIStoryboard( name: "Main", bundle: nil )
+            let nextVC = storyboard.instantiateViewController( identifier: toID )
+            nextVC.modalPresentationStyle = UIModalPresentationStyle.fullScreen
+            UIUtilities.getTopViewController()?.present( nextVC, animated: false, completion: nil )
+        } )
+    }
 }

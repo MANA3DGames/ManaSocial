@@ -84,4 +84,9 @@ class RegisterVC: UIViewController
             lastName: lastNameTxt.text! )
     }
     
+    
+    @IBAction func onAlreadyHaveAccountBtnClicked(_ sender: Any)
+    {
+        UIUtilities.moveToViewController( from: self, toID: "loginVC" )
+    }
 }

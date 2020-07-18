@@ -15,8 +15,6 @@ class ResetPasswordVC: UIViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
     
     @IBAction func onResetBtnClicked(_ sender: Any)
@@ -29,4 +27,8 @@ class ResetPasswordVC: UIViewController
         ServerAccess.resetUserPassword( email: emailTxt.text! )
     }
     
+    @IBAction func onGoBackBtnClicked(_ sender: Any)
+    {
+        UIUtilities.moveToViewController( from: self, toID: "loginVC" )
+    }
 }
