@@ -18,6 +18,8 @@ let greenColorDone = UIColor( red: 30/255, green: 255/255, blue: 125/255, alpha:
 // Dynamic font size.
 let fontSize12 = UIScreen.main.bounds.width / 31
 
+// Saved user's data
+var userData : NSDictionary?
 
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
@@ -43,7 +45,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let _ = (scene as? UIWindowScene) else { return }
         
-        
         // Creating imageView to store background image
         bgImg.frame = CGRect( x: 0, y: 0, width: self.window!.bounds.width * 1.688, height: self.window!.bounds.height )
         bgImg.image = UIImage( named: "bgImg.jpg" )
@@ -55,6 +56,32 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         // Start animating the background.
         animateBG( targetX: initTargetXBGAnimation )
+        
+        // Check if we have a logged in user already.
+        tryToLoadUserLoginData()
+    }
+    
+    func saveUserData(_ json: [String: Any] )
+    {
+        UserDefaults.standard.set( json, forKey: "userLoginData" )
+        loadUserLoginData()
+    }
+    
+    func loadUserLoginData()
+    {
+        userData = UserDefaults.standard.value( forKey: "userLoginData" ) as? NSDictionary
+    }
+    
+    func tryToLoadUserLoginData()
+    {
+        self.loadUserLoginData()
+        if userData != nil, let id = userData?["id"] as? String
+        {
+            if !id.isEmpty
+            {
+                DispatchQueue.main.asyncAfter( deadline: .now() + 0.5 ) { self.goToTabBarController() }
+            }
+        }
     }
     
     func animateBG( targetX: CGFloat )
@@ -139,6 +166,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             } )
     }
     
+    
+    func goToTabBarController()
+    {
+        let storyboard = UIStoryboard( name: "Main", bundle: nil )
+        let tabBarC = storyboard.instantiateViewController( identifier: "tabBarC" )
+        window?.rootViewController = tabBarC
+    }
     
     
 

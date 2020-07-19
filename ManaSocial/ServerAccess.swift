@@ -12,7 +12,20 @@ import UIKit
 
 class ServerAccess
 {
-    static let onCompleteAction = { ( jsonData: Any ) in
+    enum HttpMethod: String
+    {
+        case GET = "GET"
+        case POST = "POST"
+    }
+    
+    enum Operation
+    {
+        case LOGIN
+        case REGISTER
+        case RESET_PASSWORD
+    }
+    
+    static let onCompleteAction = { ( jsonData: Any, operation: Operation ) in
         print( jsonData )
         
         let json = jsonData as? [String: Any]
@@ -32,9 +45,25 @@ class ServerAccess
         DispatchQueue.main.async {
             let message = json?["message"] as? String
             sceneDelegate.displayPopup( message: message!, bgColor: bgColor )
+            
+            // Check if successed.
+            if status == "200"
+            {
+                switch operation
+                {
+                case Operation.LOGIN:
+                    sceneDelegate.saveUserData( json! )
+                    sceneDelegate.goToTabBarController()
+                case Operation.REGISTER:
+                    sceneDelegate.saveUserData( json! )
+                    print( "Register" )
+                case Operation.RESET_PASSWORD:
+                    print( "Reset Password" )
+                }
+            }
         }
     }
-    
+
     static let onFailedAction = { ( error : Error ) in
         print( error )
         
@@ -44,15 +73,9 @@ class ServerAccess
         }
     }
     
+
     
-    
-    enum HttpMethod: String
-    {
-        case GET = "GET"
-        case POST = "POST"
-    }
-    
-    private static func executeDataTask( url: URL, method: HttpMethod, body: String, onCompleteAction: ((_ json: Any) -> Void)?, onFailedAction: ( (_ errorData: Error ) -> Void)? )
+    private static func executeDataTask( url: URL, method: HttpMethod, body: String, onCompleteAction: ( (_ json: Any,_ operation: Operation) -> Void )?, onFailedAction: ( (_ errorData: Error ) -> Void )?, operation: Operation )
     {
         var request = URLRequest( url: url )
         request.httpMethod = method.rawValue
@@ -63,7 +86,7 @@ class ServerAccess
             ( data, response, error ) in
             if error == nil, let userObject = ( try? JSONSerialization.jsonObject( with: data!, options: [] ) )
             {
-                onCompleteAction?( userObject )
+                onCompleteAction?( userObject, operation )
             }
             else
             {
@@ -81,7 +104,9 @@ class ServerAccess
             method: HttpMethod.POST,
             body: "email=\(email)&password=\(password)&firstname=\(firstName)&lastname=\(lastName)",
             onCompleteAction: onCompleteAction,
-            onFailedAction: onFailedAction )
+            onFailedAction: onFailedAction,
+            operation: Operation.REGISTER
+        )
     }
     
     public static func loginUser( email: String, password: String )
@@ -91,7 +116,9 @@ class ServerAccess
             method: HttpMethod.POST,
             body: "email=\(email)&password=\(password)",
             onCompleteAction: onCompleteAction,
-            onFailedAction: onFailedAction )
+            onFailedAction: onFailedAction,
+            operation: Operation.LOGIN
+        )
     }
     
     public static func resetUserPassword( email: String )
@@ -101,6 +128,8 @@ class ServerAccess
             method: HttpMethod.POST,
             body: "email=\(email)",
             onCompleteAction: onCompleteAction,
-            onFailedAction: onFailedAction )
+            onFailedAction: onFailedAction,
+            operation: Operation.RESET_PASSWORD
+        )
     }
 }

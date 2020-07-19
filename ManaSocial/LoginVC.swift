@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LoginVC: UIViewController {
+class LoginVC: MVC {
 
     @IBOutlet weak var emailTxt: UITextField!
     @IBOutlet weak var passwordTxt: UITextField!
@@ -21,12 +21,12 @@ class LoginVC: UIViewController {
 
     @IBAction func onLoginBtnClicked(_ sender: Any)
     {
-        if UIUtilities.checkIsEmpty( textField: emailTxt )
+        if checkIsEmpty( textField: emailTxt )
         {
             return
         }
         
-        if UIUtilities.checkIsEmpty( textField: passwordTxt )
+        if checkIsEmpty( textField: passwordTxt )
         {
             return
         }
@@ -36,11 +36,11 @@ class LoginVC: UIViewController {
     
     @IBAction func onForgetPasswordBtnClicked(_ sender: Any)
     {
-        UIUtilities.moveToViewController( from: self, toID: "resetPasswordVC" )
+        moveToViewController( from: self, toID: "resetPasswordVC" )
     }
     
     @IBAction func onRegisterBtnClicked(_ sender: Any)
     {
-        UIUtilities.moveToViewController( from: self, toID: "registerVC" )
+        moveToViewController( from: self, toID: "registerVC" )
     }
 }

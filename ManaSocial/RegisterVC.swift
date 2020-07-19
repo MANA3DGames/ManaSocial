@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RegisterVC: UIViewController
+class RegisterVC: MVC
 {
     // UI element objects.
     @IBOutlet weak var firstNameTxt: UITextField!       // User's first name ui input field.
@@ -41,30 +41,30 @@ class RegisterVC: UIViewController
     @IBAction func onClickRegisterBtn(_ sender: Any)
     {
         // check first name field.
-        if UIUtilities.checkIsEmpty( textField: firstNameTxt )
+        if checkIsEmpty( textField: firstNameTxt )
         {
             return
         }
         
         // Check last name field.
-        if UIUtilities.checkIsEmpty( textField: lastNameTxt )
+        if checkIsEmpty( textField: lastNameTxt )
         {
             return
         }
 
         // Check email field.
-        if UIUtilities.checkIsEmpty( textField: emailTxt )
+        if checkIsEmpty( textField: emailTxt )
         {
             return
         }
 
         // Check password field.
-        if UIUtilities.checkIsEmpty( textField: passwordTxt )
+        if checkIsEmpty( textField: passwordTxt )
         {
             return
         }
         // Check re-password field.
-        if UIUtilities.checkIsEmpty( textField: repasswordTxt )
+        if checkIsEmpty( textField: repasswordTxt )
         {
             return
         }
@@ -87,6 +87,6 @@ class RegisterVC: UIViewController
     
     @IBAction func onAlreadyHaveAccountBtnClicked(_ sender: Any)
     {
-        UIUtilities.moveToViewController( from: self, toID: "loginVC" )
+        moveToViewController( from: self, toID: "loginVC" )
     }
 }

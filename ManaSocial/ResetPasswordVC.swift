@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ResetPasswordVC: UIViewController
+class ResetPasswordVC: MVC
 {
     @IBOutlet weak var emailTxt: UITextField!
     
@@ -19,7 +19,7 @@ class ResetPasswordVC: UIViewController
     
     @IBAction func onResetBtnClicked(_ sender: Any)
     {
-        if UIUtilities.checkIsEmpty( textField: emailTxt )
+        if checkIsEmpty( textField: emailTxt )
         {
             return
         }
@@ -29,6 +29,6 @@ class ResetPasswordVC: UIViewController
     
     @IBAction func onGoBackBtnClicked(_ sender: Any)
     {
-        UIUtilities.moveToViewController( from: self, toID: "loginVC" )
+        moveToViewController( from: self, toID: "loginVC" )
     }
 }
