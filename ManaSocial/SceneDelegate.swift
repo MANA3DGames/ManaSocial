@@ -14,6 +14,8 @@ let sceneDelegate: SceneDelegate = UIApplication.shared.connectedScenes.first?.d
 // Common used colors
 let redColorError = UIColor( red: 1, green: 50/255, blue: 75/255, alpha: 1 )
 let greenColorDone = UIColor( red: 30/255, green: 255/255, blue: 125/255, alpha: 1 )
+let blueColorBG = UIColor( red: 45/255, green: 213/255, blue: 255/255, alpha: 1 )
+let grayColorLight = UIColor( red: 180/255, green: 180/255, blue: 180/255, alpha: 1 );
 
 // Dynamic font size.
 let fontSize12 = UIScreen.main.bounds.width / 31

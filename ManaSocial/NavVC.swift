@@ -21,7 +21,7 @@ class NavVC: UINavigationController
         self.navigationBar.tintColor = UIColor.white
         
         // Background color of the navigation bar.
-        self.navigationBar.barTintColor = UIColor.black
+        self.navigationBar.barTintColor = blueColorBG
         
         // Display translucent.
         self.navigationBar.isTranslucent = false

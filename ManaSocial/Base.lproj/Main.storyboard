@@ -306,10 +306,10 @@
             </objects>
             <point key="canvasLocation" x="-23" y="-373"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Tab BarVC-->
         <scene sceneID="Lid-92-D3W">
             <objects>
-                <tabBarController storyboardIdentifier="tabBarC" id="MWi-Qw-9qv" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="tabBarC" id="MWi-Qw-9qv" customClass="TabBarVC" customModule="ManaSocial" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Nbx-2w-5VL">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -317,6 +317,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="4Z1-ff-EZL" kind="relationship" relationship="viewControllers" id="gJz-ZC-KUp"/>
+                        <segue destination="rGQ-u4-QaQ" kind="relationship" relationship="viewControllers" id="waE-Qk-yJQ"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xbs-fM-Pgp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -342,8 +343,75 @@
             </objects>
             <point key="canvasLocation" x="-639" y="-373"/>
         </scene>
+        <!--Item-->
+        <scene sceneID="E0P-s5-KFm">
+            <objects>
+                <navigationController id="rGQ-u4-QaQ" customClass="NavVC" customModule="ManaSocial" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" image="home.png" id="CBb-2a-yfb"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="C0a-SN-KEC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="b51-Cr-e5M" kind="relationship" relationship="rootViewController" id="reJ-cB-Foa"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JhJ-iC-jap" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-639" y="347"/>
+        </scene>
+        <!--HomeVC-->
+        <scene sceneID="RyP-fS-ZNA">
+            <objects>
+                <viewController id="b51-Cr-e5M" customClass="HomeVC" customModule="ManaSocial" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="VL8-UP-Rmw">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="profileIcon.png" translatesAutoresizingMaskIntoConstraints="NO" id="XHE-Um-wqq">
+                                <rect key="frame" x="20" y="77" width="100" height="100"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Full Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gmV-4M-pFO">
+                                <rect key="frame" x="128" y="77" width="231" height="27"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MtW-i1-QaF">
+                                <rect key="frame" x="128" y="141" width="74" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Edit profile"/>
+                                <connections>
+                                    <action selector="onEditProfileBtnClicked:" destination="b51-Cr-e5M" eventType="touchUpInside" id="qbI-Dq-Shc"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="user@email.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Kt-Bl-f4A">
+                                <rect key="frame" x="128" y="112" width="231" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="vsW-kU-53R"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="55U-Mc-kxz"/>
+                    <connections>
+                        <outlet property="avaImg" destination="XHE-Um-wqq" id="yEl-0m-ZWx"/>
+                        <outlet property="emailLabel" destination="2Kt-Bl-f4A" id="Y96-oq-tyX"/>
+                        <outlet property="fullNameLabel" destination="gmV-4M-pFO" id="unM-vp-iQM"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KYx-eT-VEv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="80.799999999999997" y="346.77661169415296"/>
+        </scene>
     </scenes>
     <resources>
         <image name="home.png" width="25" height="25"/>
+        <image name="profileIcon.png" width="90" height="90"/>
     </resources>
 </document>
