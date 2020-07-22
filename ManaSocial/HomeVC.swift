@@ -8,7 +8,7 @@
 
 import UIKit
 
-class HomeVC: UIViewController
+class HomeVC: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate
 {
     @IBOutlet weak var avaImg: UIImageView!
     @IBOutlet weak var fullNameLabel: UILabel!
@@ -23,10 +23,28 @@ class HomeVC: UIViewController
         fullNameLabel.text = userData?["firstname"] as? String
         fullNameLabel.text?.append( " " + (userData?["lastname"] as? String)! )
         emailLabel.text = userData?["email"] as? String
+        
+        // Download profile image using 'ava' link from saved userData.
+        ServerAccess.downloadImg( link: ( userData?["ava"] as? String )!, view: avaImg )
     }
     
     
     @IBAction func onEditProfileBtnClicked(_ sender: Any)
     {
+        let picker = UIImagePickerController()
+        picker.delegate = self
+        picker.sourceType = UIImagePickerController.SourceType.photoLibrary
+        picker.allowsEditing = true
+        self.present( picker, animated: true, completion: nil )
+    }
+    
+    // Triggered when user picked up an image.
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any])
+    {
+        avaImg.image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage
+        self.dismiss( animated: true, completion: nil )
+        
+        // Upload selected image to our database server.
+        ServerAccess.uploadAvaImage( id: userData!["id"] as! String, image: avaImg.image! )
     }
 }

@@ -20,9 +20,11 @@ class ServerAccess
     
     enum Operation
     {
+        case NONE
         case LOGIN
         case REGISTER
         case RESET_PASSWORD
+        case UPLOAD_AVA_IMG
     }
     
     static let onCompleteAction = { ( jsonData: Any, operation: Operation ) in
@@ -51,6 +53,8 @@ class ServerAccess
             {
                 switch operation
                 {
+                case .NONE:
+                    print( "NONE" )
                 case Operation.LOGIN:
                     sceneDelegate.saveUserData( json! )
                     sceneDelegate.goToTabBarController()
@@ -59,6 +63,9 @@ class ServerAccess
                     print( "Register" )
                 case Operation.RESET_PASSWORD:
                     print( "Reset Password" )
+                case .UPLOAD_AVA_IMG:
+                    sceneDelegate.saveUserData( json! )
+                    print( "UPLOAD_AVA_IMG" )
                 }
             }
         }
@@ -74,35 +81,67 @@ class ServerAccess
     }
     
 
-    
-    private static func executeDataTask( url: URL, method: HttpMethod, body: String, onCompleteAction: ( (_ json: Any,_ operation: Operation) -> Void )?, onFailedAction: ( (_ errorData: Error ) -> Void )?, operation: Operation )
+    // Creates a URLRequest using string 'body'
+    private static func createURLRequest( url: URL, method: HttpMethod, body: String ) -> URLRequest
     {
         var request = URLRequest( url: url )
         request.httpMethod = method.rawValue
         request.httpBody = body.data( using: String.Encoding.utf8 )
-        
-        URLSession.shared.dataTask( with: request )
+        return request
+    }
+    
+    // Creates a URLRequest using data 'body'
+    private static func createURLRequest( url: URL, method: HttpMethod, body: Data ) -> URLRequest
+    {
+        var request = URLRequest( url: url )
+        request.httpMethod = method.rawValue
+        request.httpBody = body
+        return request
+    }
+    
+    // Executes a datatask session with URLRequest.
+    private static func executeDataTask( request: URLRequest, onCompleteAction: ( (_ json: Any,_ operation: Operation) -> Void )?, onFailedAction: ( (_ errorData: Error ) -> Void )?, operation: Operation )
+    {
+        let task = URLSession.shared.dataTask( with: request )
         {
             ( data, response, error ) in
-            if error == nil, let userObject = ( try? JSONSerialization.jsonObject( with: data!, options: [] ) )
+
+            if let data = data
             {
-                onCompleteAction?( userObject, operation )
+                do {
+                    // Convert the data to JSON
+                    let jsonSerialized = try JSONSerialization.jsonObject( with: data, options: [] ) as? [String : Any]
+
+                    if let json = jsonSerialized
+                    {
+                        onCompleteAction?( json, operation )
+                    }
+                }
+                catch let error as NSError
+                {
+                    onFailedAction?( error )
+                }
             }
-            else
+            else if let error = error
             {
-                onFailedAction?( error! )
+                onFailedAction?( error )
             }
-        }.resume()
+        }
+
+        task.resume()
     }
     
     
     
     public static func registerUser( email : String, password : String, firstName : String, lastName : String )
     {
-        executeDataTask(
+        let request = createURLRequest(
             url: URL( string: "http://192.168.64.2/manasocial/register.php" )!,
             method: HttpMethod.POST,
-            body: "email=\(email)&password=\(password)&firstname=\(firstName)&lastname=\(lastName)",
+            body: "email=\(email)&password=\(password)&firstname=\(firstName)&lastname=\(lastName)" )
+        
+        executeDataTask(
+            request: request,
             onCompleteAction: onCompleteAction,
             onFailedAction: onFailedAction,
             operation: Operation.REGISTER
@@ -111,10 +150,13 @@ class ServerAccess
     
     public static func loginUser( email: String, password: String )
     {
-        executeDataTask(
+        let request = createURLRequest(
             url: URL( string: "http://192.168.64.2/manasocial/login.php" )!,
             method: HttpMethod.POST,
-            body: "email=\(email)&password=\(password)",
+            body: "email=\(email)&password=\(password)" )
+        
+        executeDataTask(
+            request: request,
             onCompleteAction: onCompleteAction,
             onFailedAction: onFailedAction,
             operation: Operation.LOGIN
@@ -123,13 +165,110 @@ class ServerAccess
     
     public static func resetUserPassword( email: String )
     {
-        executeDataTask(
+        let request = createURLRequest(
             url: URL( string: "http://192.168.64.2/manasocial/resetpassword.php" )!,
             method: HttpMethod.POST,
-            body: "email=\(email)",
+            body: "email=\(email)" )
+        
+        executeDataTask(
+            request: request,
             onCompleteAction: onCompleteAction,
             onFailedAction: onFailedAction,
             operation: Operation.RESET_PASSWORD
         )
+    }
+    
+    public static func uploadAvaImage( id: String, image: UIImage )
+    {
+        let param = ["id": id]
+        let boundary = "Boundary-\(NSUUID().uuidString)"
+        let imageData = image.jpegData( compressionQuality: 0.5 )
+        if imageData == nil
+        {
+            return
+        }
+        let body = createUploadAvaHttpBodyWithParams(
+            parameters: param,
+            filePathKey: "file",
+            imageDataKey: imageData! as NSData,
+            boundary: boundary ) as Data
+        
+        var request = createURLRequest(
+            url: URL( string: "http://192.168.64.2/manasocial/uploadAva.php" )!,
+            method: HttpMethod.POST,
+            body: body )
+        request.setValue( "multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type" )
+        
+        executeDataTask(
+            request: request,
+            onCompleteAction: onCompleteAction,
+            onFailedAction: onFailedAction,
+            operation: Operation.UPLOAD_AVA_IMG
+        )
+    }
+    
+    // Generate a custom body for HTTP request o upload image file.
+    private static func createUploadAvaHttpBodyWithParams( parameters: [String: String]?, filePathKey: String?, imageDataKey: NSData, boundary: String ) ->NSData
+    {
+        let body = NSMutableData()
+        
+        if parameters != nil
+        {
+            for ( key, value ) in parameters!
+            {
+                body.appendString( "--\(boundary)\r\n" )
+                body.appendString( "Content-Disposition: from-data; name=\"\(key)\"\r\n\r\n" )
+                body.appendString( "\(value)\r\n" )
+            }
+        }
+        
+        let filename = "ava.jpg"
+        let mimetype = "image/jpg"
+        
+        body.appendString( "--\(boundary)\r\n" )
+        body.appendString( "Content-Disposition: form-data; name=\"\(filePathKey!)\"; filename=\"\(filename)\"\r\n" )
+        body.appendString( "Content-Type: \(mimetype)\r\n\r\n" )
+        body.append( imageDataKey as Data )
+        body.appendString( "\r\n" )
+        body.appendString( "--\(boundary)--\r\n" )
+        
+        return body
+    }
+    
+    // Downloads image data from given 'link' and place in the given 'view'.
+    public static func downloadImg( link: String, view: UIImageView )
+    {
+        // Make sure we don't have empty link?
+        if !link.isEmpty
+        {
+            // Create URL to image data.
+            let imgURL = URL( string: link )
+            
+            // Get main queue.
+            DispatchQueue.main.async {
+                // Get image data from the given url.
+                let imgData = try? Data( contentsOf: imgURL! )
+                
+                // Make sure we have some data.
+                if imgData != nil
+                {
+                    DispatchQueue.main.async {
+                        // Create a UIImage from the downloaded image data and set it as image for the given 'view'
+                        view.image = UIImage( data: imgData! )
+                    }
+                }
+            }
+        }
+    }
+}
+
+// An extesion o NSMutableData class to append string to out http body.
+extension NSMutableData
+{
+    // Appends given 'string' to current instance.
+    func appendString(_ string: String )
+    {
+        let data = string.data( using: String.Encoding.utf8, allowLossyConversion: true )
+        append( data! )
     }
 }
