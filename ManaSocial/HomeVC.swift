@@ -8,7 +8,7 @@
 
 import UIKit
 
-class HomeVC: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate
+class HomeVC: MVC, UINavigationControllerDelegate, UIImagePickerControllerDelegate
 {
     @IBOutlet weak var avaImg: UIImageView!
     @IBOutlet weak var fullNameLabel: UILabel!
@@ -46,5 +46,15 @@ class HomeVC: UIViewController, UINavigationControllerDelegate, UIImagePickerCon
         
         // Upload selected image to our database server.
         ServerAccess.uploadAvaImage( id: userData!["id"] as! String, image: avaImg.image! )
+    }
+    
+    
+    @IBAction func onSignoutBtnClicked(_ sender: Any)
+    {
+        // Clear user saved data.
+        sceneDelegate.clearUserData()
+        
+        // Go back to login menu.
+        moveToViewController( from: self, toID: ID_LOGIN_VC )
     }
 }

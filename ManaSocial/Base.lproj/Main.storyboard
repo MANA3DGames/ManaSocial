@@ -398,7 +398,17 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="vsW-kU-53R"/>
                     </view>
-                    <navigationItem key="navigationItem" id="55U-Mc-kxz"/>
+                    <toolbarItems>
+                        <barButtonItem title="Sign out" id="vMe-N5-w1e"/>
+                    </toolbarItems>
+                    <navigationItem key="navigationItem" id="55U-Mc-kxz">
+                        <barButtonItem key="leftBarButtonItem" title="Sign out" id="IqZ-9w-tjz">
+                            <connections>
+                                <action selector="onSignoutBtnClicked:" destination="b51-Cr-e5M" id="BzE-Tg-qQ2"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="avaImg" destination="XHE-Um-wqq" id="yEl-0m-ZWx"/>
                         <outlet property="emailLabel" destination="2Kt-Bl-f4A" id="Y96-oq-tyX"/>

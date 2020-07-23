@@ -29,6 +29,6 @@ class ResetPasswordVC: MVC
     
     @IBAction func onGoBackBtnClicked(_ sender: Any)
     {
-        moveToViewController( from: self, toID: "loginVC" )
+        moveToViewController( from: self, toID: ID_LOGIN_VC )
     }
 }

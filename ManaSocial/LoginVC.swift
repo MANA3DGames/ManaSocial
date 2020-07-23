@@ -36,11 +36,11 @@ class LoginVC: MVC {
     
     @IBAction func onForgetPasswordBtnClicked(_ sender: Any)
     {
-        moveToViewController( from: self, toID: "resetPasswordVC" )
+        moveToViewController( from: self, toID: ID_RESET_PASSWORD_VC )
     }
     
     @IBAction func onRegisterBtnClicked(_ sender: Any)
     {
-        moveToViewController( from: self, toID: "registerVC" )
+        moveToViewController( from: self, toID: ID_REGISTER_VC )
     }
 }

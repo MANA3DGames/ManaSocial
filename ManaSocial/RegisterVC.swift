@@ -87,6 +87,6 @@ class RegisterVC: MVC
     
     @IBAction func onAlreadyHaveAccountBtnClicked(_ sender: Any)
     {
-        moveToViewController( from: self, toID: "loginVC" )
+        moveToViewController( from: self, toID: ID_LOGIN_VC )
     }
 }

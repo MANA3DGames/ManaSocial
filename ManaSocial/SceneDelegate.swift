@@ -23,6 +23,10 @@ let fontSize12 = UIScreen.main.bounds.width / 31
 // Saved user's data
 var userData : NSDictionary?
 
+let ID_LOGIN_VC = "loginVC"
+let ID_REGISTER_VC = "registerVC"
+let ID_RESET_PASSWORD_VC = "resetPasswordVC"
+
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -37,6 +41,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     // Indicates whether Popup view is displayed or not?
     var isPopupDisplayed = false
     
+    // Key for user saved data.
+    let USER_SAVED_DATA_KEY = "userLoginData"
     
     
     
@@ -65,13 +71,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     func saveUserData(_ json: [String: Any] )
     {
-        UserDefaults.standard.set( json, forKey: "userLoginData" )
+        UserDefaults.standard.set( json, forKey: USER_SAVED_DATA_KEY )
         loadUserLoginData()
     }
     
     func loadUserLoginData()
     {
-        userData = UserDefaults.standard.value( forKey: "userLoginData" ) as? NSDictionary
+        userData = UserDefaults.standard.value( forKey: USER_SAVED_DATA_KEY ) as? NSDictionary
     }
     
     func tryToLoadUserLoginData()
@@ -84,6 +90,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 DispatchQueue.main.asyncAfter( deadline: .now() + 0.5 ) { self.goToTabBarController() }
             }
         }
+    }
+    
+    func clearUserData()
+    {
+        UserDefaults.standard.removeObject( forKey: USER_SAVED_DATA_KEY )
+        UserDefaults.standard.synchronize()
     }
     
     func animateBG( targetX: CGFloat )
