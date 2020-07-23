@@ -23,6 +23,12 @@ class MVC: UIViewController
         return UIStatusBarStyle.lightContent
     }
     
+    // On touch screen.
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?)
+    {
+        // Hide keyboard.
+        self.view.endEditing( false )
+    }
     
     // Changes placeholder text color.
     func setTextFieldPlaceHolderColor( textField: UITextField, color: UIColor )

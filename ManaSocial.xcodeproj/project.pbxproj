@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3809047D24C9750B0078A017 /* PostVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3809047C24C9750B0078A017 /* PostVC.swift */; };
 		381C861B24C0390E00828712 /* ResetPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 381C861A24C0390E00828712 /* ResetPasswordVC.swift */; };
 		383AB09C24B842EB00E4AEE6 /* ServerAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383AB09B24B842EB00E4AEE6 /* ServerAccess.swift */; };
 		3847D3A124BD843E00A45C4A /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3847D3A024BD843E00A45C4A /* LoginVC.swift */; };
@@ -28,6 +29,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3809047C24C9750B0078A017 /* PostVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostVC.swift; sourceTree = "<group>"; };
 		381C861A24C0390E00828712 /* ResetPasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordVC.swift; sourceTree = "<group>"; };
 		383AB09B24B842EB00E4AEE6 /* ServerAccess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerAccess.swift; sourceTree = "<group>"; };
 		3847D3A024BD843E00A45C4A /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
@@ -71,6 +73,7 @@
 				38A3D6DD24C409A9007BC539 /* NavVC.swift */,
 				38DBED9824C49D7F007014E7 /* TabBarVC.swift */,
 				38DBED9C24C4ADF0007014E7 /* HomeVC.swift */,
+				3809047C24C9750B0078A017 /* PostVC.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -229,6 +232,7 @@
 				384DA3D524B7029600B07B2F /* SceneDelegate.swift in Sources */,
 				381C861B24C0390E00828712 /* ResetPasswordVC.swift in Sources */,
 				3847D3A124BD843E00A45C4A /* LoginVC.swift in Sources */,
+				3809047D24C9750B0078A017 /* PostVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

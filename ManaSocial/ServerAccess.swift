@@ -25,6 +25,7 @@ class ServerAccess
         case REGISTER
         case RESET_PASSWORD
         case UPLOAD_AVA_IMG
+        case UPLOAD_POST
     }
     
     static let onCompleteAction = { ( jsonData: Any, operation: Operation ) in
@@ -63,9 +64,11 @@ class ServerAccess
                     print( "Register" )
                 case Operation.RESET_PASSWORD:
                     print( "Reset Password" )
-                case .UPLOAD_AVA_IMG:
+                case Operation.UPLOAD_AVA_IMG:
                     sceneDelegate.saveUserData( json! )
                     print( "UPLOAD_AVA_IMG" )
+                case Operation.UPLOAD_POST:
+                    print( "UPLOAD_POST" )
                 }
             }
         }
@@ -178,6 +181,8 @@ class ServerAccess
         )
     }
     
+    
+    
     public static func uploadAvaImage( id: String, image: UIImage )
     {
         let param = ["id": id]
@@ -187,11 +192,12 @@ class ServerAccess
         {
             return
         }
-        let body = createUploadAvaHttpBodyWithParams(
+        let body = createHttpBodyWithParamsToUploadImg(
             parameters: param,
             filePathKey: "file",
             imageDataKey: imageData! as NSData,
-            boundary: boundary ) as Data
+            boundary: boundary,
+            filename: "ava.jpg" ) as Data
         
         var request = createURLRequest(
             url: URL( string: "http://192.168.64.2/manasocial/uploadAva.php" )!,
@@ -207,8 +213,8 @@ class ServerAccess
         )
     }
     
-    // Generate a custom body for HTTP request o upload image file.
-    private static func createUploadAvaHttpBodyWithParams( parameters: [String: String]?, filePathKey: String?, imageDataKey: NSData, boundary: String ) ->NSData
+    // Generate a custom body for HTTP request to upload image file.
+    private static func createHttpBodyWithParamsToUploadImg( parameters: [String: String]?, filePathKey: String?, imageDataKey: NSData, boundary: String, filename: String ) -> NSData
     {
         let body = NSMutableData()
         
@@ -222,7 +228,6 @@ class ServerAccess
             }
         }
         
-        let filename = "ava.jpg"
         let mimetype = "image/jpg"
         
         body.appendString( "--\(boundary)\r\n" )
@@ -260,6 +265,59 @@ class ServerAccess
             }
         }
     }
+    
+    
+    
+    public static func uploadPost( id: String, text: String, didPickupImage: Bool, imageView: UIImageView, onComplete: (()-> Void)? )
+    {
+        // Create a new custom action to combine given 'onComplete' action with generic 'onCompleteAction'
+        let customOnCompleteAction = { (_ json: Any, operation: Operation  ) in
+            onComplete!()
+            onCompleteAction( json, operation )
+        }
+        
+        //text = text.trunc( length: 140 )
+        
+        // Generate unique id.
+        let uuid = NSUUID().uuidString
+        
+        // If file is not selected then it will not upload any image to the server since we will not declare any filename.
+        var imageData = NSData()
+        var filename = ""
+        if didPickupImage
+        {
+            filename = "post-\(uuid).jpg"
+            imageData = imageView.image!.jpegData( compressionQuality: 0.5 )! as NSData
+        }
+        
+        let param = [
+            "id": id,
+            "uuid": uuid,
+            "text": text
+        ]
+        let boundary = "Boundary-\(NSUUID().uuidString)"
+        
+        let body = createHttpBodyWithParamsToUploadImg(
+            parameters: param,
+            filePathKey: "file",
+            imageDataKey: imageData,
+            boundary: boundary,
+            filename: filename ) as Data
+        
+        var request = createURLRequest(
+            url: URL( string: "http://192.168.64.2/manasocial/post.php" )!,
+            method: HttpMethod.POST,
+            body: body )
+        request.setValue( "multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type" )
+        
+        executeDataTask(
+            request: request,
+            onCompleteAction: customOnCompleteAction,
+            onFailedAction: onFailedAction,
+            operation: Operation.UPLOAD_POST
+        )
+    }
+    
 }
 
 // An extesion o NSMutableData class to append string to out http body.
@@ -272,3 +330,18 @@ extension NSMutableData
         append( data! )
     }
 }
+
+//extension String
+//{
+//    func trunc( length: Int, trailing: String? = "..." ) -> String
+//    {
+//        if self.count > length
+//        {
+//            return self.substring( to: self.startIndex.advancedBy( length ) ) + ( trailing ?? "" )
+//        }
+//        else
+//        {
+//            return self
+//        }
+//    }
+//}

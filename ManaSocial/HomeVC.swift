@@ -26,6 +26,11 @@ class HomeVC: MVC, UINavigationControllerDelegate, UIImagePickerControllerDelega
         
         // Download profile image using 'ava' link from saved userData.
         ServerAccess.downloadImg( link: ( userData?["ava"] as? String )!, view: avaImg )
+        
+        // Rounded Corners.
+        avaImg.layer.cornerRadius = avaImg.bounds.width / 20
+        avaImg.clipsToBounds = true
+        self.navigationItem.title = fullNameLabel.text
     }
     
     
