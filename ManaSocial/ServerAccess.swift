@@ -29,7 +29,7 @@ class ServerAccess
     }
     
     static let onCompleteAction = { ( jsonData: Any, operation: Operation ) in
-        //print( jsonData )
+        print( jsonData )
         
         let json = jsonData as? [String: Any]
         let status = json?["status"] as? String
@@ -332,6 +332,33 @@ class ServerAccess
             url: URL( string: "http://192.168.64.2/manasocial/post.php" )!,
             method: HttpMethod.POST,
             body: "id=\(id)&text=&uuid=" )
+        
+        executeDataTask(
+            request: request,
+            onCompleteAction: customOnComplete,
+            onFailedAction: onFailedAction,
+            operation: Operation.NONE
+        )
+    }
+    
+    public static func deletePost( uuid: String, path: String, onComplete: ( ()-> Void )? )
+    {
+        let customOnComplete = { (_ json: Any, operation: Operation ) in
+            let jsonData = json as? [String: Any]
+            
+            // Check if we have any row was affected by the sql delete.
+            if jsonData?["result"] != nil
+            {
+                onComplete!()
+            }
+            
+            onCompleteAction( json, operation )
+        }
+        
+        let request = createURLRequest(
+            url: URL( string: "http://192.168.64.2/manasocial/post.php" )!,
+            method: HttpMethod.POST,
+            body: "uuid=\(uuid)&path=\(path)" )
         
         executeDataTask(
             request: request,

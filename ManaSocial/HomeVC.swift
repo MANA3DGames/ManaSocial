@@ -114,10 +114,13 @@ class HomeVC: MVC, UINavigationControllerDelegate, UIImagePickerControllerDelega
     }
     
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    {
         return postsArray.count
     }
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
+    {
 
         // Get post.
         let post = self.postsArray[indexPath.row]
@@ -182,5 +185,31 @@ class HomeVC: MVC, UINavigationControllerDelegate, UIImagePickerControllerDelega
         return cell
     }
     
+    // Allows cells in table view to be edited.
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool
+    {
+        return true
+    }
+    // When cell swiped.
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath)
+    {
+        // Check if we pressed on delete button of swiped cell?
+        if editingStyle == .delete
+        {
+            let post = postsArray[indexPath.row]
+            
+            // Send php delete request.
+            ServerAccess.deletePost( uuid: post["uuid"] as! String, path: post["path"] as! String, onComplete: {
+                
+                DispatchQueue.main.async {
+                    print( "We got some data!" )
+                    
+                    self.postsArray.remove( at: indexPath.row )
+                    self.postImagesArray.remove( at: indexPath.row )
+                    self.tableView.deleteRows( at: [indexPath], with: UITableView.RowAnimation.automatic )
+                }
+            } )
+        }
+    }
     
 }

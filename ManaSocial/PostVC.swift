@@ -90,10 +90,10 @@ class PostVC: MVC, UITextViewDelegate, UINavigationControllerDelegate, UIImagePi
     // Triggered when user picked up an image.
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any] )
     {
+        didPickupImage = true
+        
         uploadedImgView.image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage
         self.dismiss( animated: true, completion: nil )
-        
-        didPickupImage = true
     }
     
     // To be triggered after post request completed successfully.
@@ -102,9 +102,10 @@ class PostVC: MVC, UITextViewDelegate, UINavigationControllerDelegate, UIImagePi
         // Get back to main queue.
         DispatchQueue.main.sync {
             // Reset everything to start brand new post.
+            self.didPickupImage = false
             self.textTxt.text = ""
             self.countLabel.text = String( MAX_CHARS )
-            self.uploadedImgView.image = UIImage()
+            self.uploadedImgView.image = nil
             
             disablePostBtn()
             
