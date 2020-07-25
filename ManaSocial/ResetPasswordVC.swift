@@ -24,7 +24,7 @@ class ResetPasswordVC: MVC
             return
         }
         
-        ServerAccess.resetUserPassword( email: emailTxt.text! )
+        ServerAccess.resetPassword( email: emailTxt.text! )
     }
     
     @IBAction func onGoBackBtnClicked(_ sender: Any)

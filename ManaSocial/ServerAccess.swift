@@ -29,7 +29,7 @@ class ServerAccess
     }
     
     static let onCompleteAction = { ( jsonData: Any, operation: Operation ) in
-        print( jsonData )
+        //print( jsonData )
         
         let json = jsonData as? [String: Any]
         let status = json?["status"] as? String
@@ -47,8 +47,7 @@ class ServerAccess
         // Get main queue to communicate back to user.
         DispatchQueue.main.async {
             let message = json?["message"] as? String
-            sceneDelegate.displayPopup( message: message!, bgColor: bgColor )
-            
+
             // Check if successed.
             if status == "200"
             {
@@ -57,12 +56,15 @@ class ServerAccess
                 case .NONE:
                     print( "NONE" )
                 case Operation.LOGIN:
+                    sceneDelegate.displayPopup( message: message!, bgColor: bgColor )
                     sceneDelegate.saveUserData( json! )
                     sceneDelegate.goToTabBarController()
                 case Operation.REGISTER:
+                    sceneDelegate.displayPopup( message: message!, bgColor: bgColor )
                     sceneDelegate.saveUserData( json! )
                     print( "Register" )
                 case Operation.RESET_PASSWORD:
+                    sceneDelegate.displayPopup( message: message!, bgColor: bgColor )
                     print( "Reset Password" )
                 case Operation.UPLOAD_AVA_IMG:
                     sceneDelegate.saveUserData( json! )
@@ -136,7 +138,7 @@ class ServerAccess
     
     
     
-    public static func registerUser( email : String, password : String, firstName : String, lastName : String )
+    public static func register( email : String, password : String, firstName : String, lastName : String )
     {
         let request = createURLRequest(
             url: URL( string: "http://192.168.64.2/manasocial/register.php" )!,
@@ -151,7 +153,7 @@ class ServerAccess
         )
     }
     
-    public static func loginUser( email: String, password: String )
+    public static func login( email: String, password: String )
     {
         let request = createURLRequest(
             url: URL( string: "http://192.168.64.2/manasocial/login.php" )!,
@@ -166,7 +168,7 @@ class ServerAccess
         )
     }
     
-    public static func resetUserPassword( email: String )
+    public static func resetPassword( email: String )
     {
         let request = createURLRequest(
             url: URL( string: "http://192.168.64.2/manasocial/resetpassword.php" )!,
@@ -315,6 +317,27 @@ class ServerAccess
             onCompleteAction: customOnCompleteAction,
             onFailedAction: onFailedAction,
             operation: Operation.UPLOAD_POST
+        )
+    }
+    
+    public static func downloadPosts( id: String, onComplete: ( ( [AnyObject] )-> Void )? )
+    {
+        let customOnComplete = { (_ json: Any, operation: Operation ) in
+            let jsonData = json as? [String: Any]
+            onComplete!( jsonData?["posts"] as! [AnyObject] )
+            onCompleteAction( json, operation )
+        }
+        
+        let request = createURLRequest(
+            url: URL( string: "http://192.168.64.2/manasocial/post.php" )!,
+            method: HttpMethod.POST,
+            body: "id=\(id)&text=&uuid=" )
+        
+        executeDataTask(
+            request: request,
+            onCompleteAction: customOnComplete,
+            onFailedAction: onFailedAction,
+            operation: Operation.NONE
         )
     }
     

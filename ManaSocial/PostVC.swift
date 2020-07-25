@@ -19,6 +19,8 @@ class PostVC: MVC, UITextViewDelegate, UINavigationControllerDelegate, UIImagePi
     // Indicates whether the user did really pick up an image to be uploaded with the post or did not.
     var didPickupImage = false
     
+    let MAX_CHARS = 140
+    
     
     override func viewDidLoad()
     {
@@ -55,25 +57,22 @@ class PostVC: MVC, UITextViewDelegate, UINavigationControllerDelegate, UIImagePi
     // Delegate triggered when textView changed.
     func textViewDidChange(_ textView: UITextView )
     {
-        // Max character count.
-        let maxChars = 140
-        
         // Get the number of characters
         let charsCount = textView.text.count
         
         // Set remining characters count in the 'countLabel'
-        countLabel.text = String( maxChars - charsCount )
+        countLabel.text = String( MAX_CHARS - charsCount )
         
         // define white spacing.
         let spacing = NSCharacterSet.whitespacesAndNewlines
         
         // Check if we don't have valid input?
-        if charsCount > maxChars || textView.text.trimmingCharacters( in: spacing ).isEmpty
+        if charsCount > MAX_CHARS || textView.text.trimmingCharacters( in: spacing ).isEmpty
         {
             // Disable post button as we have invaild input.
             disablePostBtn()
             
-            if charsCount > maxChars
+            if charsCount > MAX_CHARS
             {
                 countLabel.textColor = redColorError;
             }
@@ -104,6 +103,7 @@ class PostVC: MVC, UITextViewDelegate, UINavigationControllerDelegate, UIImagePi
         DispatchQueue.main.sync {
             // Reset everything to start brand new post.
             self.textTxt.text = ""
+            self.countLabel.text = String( MAX_CHARS )
             self.uploadedImgView.image = UIImage()
             
             disablePostBtn()
@@ -129,7 +129,7 @@ class PostVC: MVC, UITextViewDelegate, UINavigationControllerDelegate, UIImagePi
     
     @IBAction func onPostBtnClicked(_ sender: Any)
     {
-        if !textTxt.text.isEmpty && textTxt.text.count <= 140
+        if !textTxt.text.isEmpty && textTxt.text.count <= MAX_CHARS
         {
             ServerAccess.uploadPost(
                 id: userData?["id"] as! String,

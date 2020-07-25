@@ -32,7 +32,7 @@ class RegisterVC: MVC
         let firstName = "Amanda"
         let lastName = "AbuObaid"
 
-        ServerAccess.registerUser(email: email, password: password, firstName: firstName, lastName: lastName)
+        ServerAccess.register(email: email, password: password, firstName: firstName, lastName: lastName)
     }
     
     
@@ -77,7 +77,7 @@ class RegisterVC: MVC
         }
         
         // All registration fields were filled.
-        ServerAccess.registerUser(
+        ServerAccess.register(
             email: emailTxt.text!.lowercased(),
             password: passwordTxt.text!,
             firstName: firstNameTxt.text!,

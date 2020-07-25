@@ -31,7 +31,7 @@ class LoginVC: MVC {
             return
         }
         
-        ServerAccess.loginUser( email: emailTxt.text!.lowercased(), password: passwordTxt.text! )
+        ServerAccess.login( email: emailTxt.text!.lowercased(), password: passwordTxt.text! )
     }
     
     @IBAction func onForgetPasswordBtnClicked(_ sender: Any)

@@ -23,6 +23,7 @@
 		38A3D6E924C4110B007BC539 /* home@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38A3D6E624C4110B007BC539 /* home@2x.png */; };
 		38A3D6ED24C411F3007BC539 /* home@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38A3D6EC24C411F3007BC539 /* home@3x.png */; };
 		38B8E39124C1DA2100934212 /* bgImg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 38B8E39024C1DA2100934212 /* bgImg.jpg */; };
+		38D505EB24CBE44900038C10 /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D505EA24CBE44900038C10 /* PostCell.swift */; };
 		38DBED9924C49D7F007014E7 /* TabBarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38DBED9824C49D7F007014E7 /* TabBarVC.swift */; };
 		38DBED9B24C4AC66007014E7 /* profileIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 38DBED9A24C4AC66007014E7 /* profileIcon.png */; };
 		38DBED9D24C4ADF0007014E7 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38DBED9C24C4ADF0007014E7 /* HomeVC.swift */; };
@@ -47,6 +48,7 @@
 		38A3D6E624C4110B007BC539 /* home@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home@2x.png"; sourceTree = "<group>"; };
 		38A3D6EC24C411F3007BC539 /* home@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home@3x.png"; sourceTree = "<group>"; };
 		38B8E39024C1DA2100934212 /* bgImg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bgImg.jpg; sourceTree = "<group>"; };
+		38D505EA24CBE44900038C10 /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
 		38DBED9824C49D7F007014E7 /* TabBarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarVC.swift; sourceTree = "<group>"; };
 		38DBED9A24C4AC66007014E7 /* profileIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profileIcon.png; sourceTree = "<group>"; };
 		38DBED9C24C4ADF0007014E7 /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
@@ -74,6 +76,7 @@
 				38DBED9824C49D7F007014E7 /* TabBarVC.swift */,
 				38DBED9C24C4ADF0007014E7 /* HomeVC.swift */,
 				3809047C24C9750B0078A017 /* PostVC.swift */,
+				38D505EA24CBE44900038C10 /* PostCell.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -233,6 +236,7 @@
 				381C861B24C0390E00828712 /* ResetPasswordVC.swift in Sources */,
 				3847D3A124BD843E00A45C4A /* LoginVC.swift in Sources */,
 				3809047D24C9750B0078A017 /* PostVC.swift in Sources */,
+				38D505EB24CBE44900038C10 /* PostCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
