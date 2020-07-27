@@ -29,7 +29,7 @@ class ServerAccess
     }
     
     static let onCompleteAction = { ( jsonData: Any, operation: Operation ) in
-        print( jsonData )
+        //print( jsonData )
         
         let json = jsonData as? [String: Any]
         let status = json?["status"] as? String
