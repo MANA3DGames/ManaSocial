@@ -85,6 +85,9 @@ class ServerAccess
         }
     }
     
+    static let baseURL = "http://192.168.64.2/manasocial/"
+    
+    
 
     // Creates a URLRequest using string 'body'
     private static func createURLRequest( url: URL, method: HttpMethod, body: String ) -> URLRequest
@@ -141,7 +144,7 @@ class ServerAccess
     public static func register( email : String, password : String, firstName : String, lastName : String )
     {
         let request = createURLRequest(
-            url: URL( string: "http://192.168.64.2/manasocial/register.php" )!,
+            url: URL( string: baseURL + "register.php" )!,
             method: HttpMethod.POST,
             body: "email=\(email)&password=\(password)&firstname=\(firstName)&lastname=\(lastName)" )
         
@@ -156,7 +159,7 @@ class ServerAccess
     public static func login( email: String, password: String )
     {
         let request = createURLRequest(
-            url: URL( string: "http://192.168.64.2/manasocial/login.php" )!,
+            url: URL( string: baseURL + "login.php" )!,
             method: HttpMethod.POST,
             body: "email=\(email)&password=\(password)" )
         
@@ -171,7 +174,7 @@ class ServerAccess
     public static func resetPassword( email: String )
     {
         let request = createURLRequest(
-            url: URL( string: "http://192.168.64.2/manasocial/resetpassword.php" )!,
+            url: URL( string: baseURL + "resetpassword.php" )!,
             method: HttpMethod.POST,
             body: "email=\(email)" )
         
@@ -202,7 +205,7 @@ class ServerAccess
             filename: "ava.jpg" ) as Data
         
         var request = createURLRequest(
-            url: URL( string: "http://192.168.64.2/manasocial/uploadAva.php" )!,
+            url: URL( string: baseURL + "uploadAva.php" )!,
             method: HttpMethod.POST,
             body: body )
         request.setValue( "multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type" )
@@ -307,7 +310,7 @@ class ServerAccess
             filename: filename ) as Data
         
         var request = createURLRequest(
-            url: URL( string: "http://192.168.64.2/manasocial/post.php" )!,
+            url: URL( string: baseURL + "post.php" )!,
             method: HttpMethod.POST,
             body: body )
         request.setValue( "multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type" )
@@ -329,7 +332,7 @@ class ServerAccess
         }
         
         let request = createURLRequest(
-            url: URL( string: "http://192.168.64.2/manasocial/post.php" )!,
+            url: URL( string: baseURL + "post.php" )!,
             method: HttpMethod.POST,
             body: "id=\(id)&text=&uuid=" )
         
@@ -356,7 +359,7 @@ class ServerAccess
         }
         
         let request = createURLRequest(
-            url: URL( string: "http://192.168.64.2/manasocial/post.php" )!,
+            url: URL( string: baseURL + "post.php" )!,
             method: HttpMethod.POST,
             body: "uuid=\(uuid)&path=\(path)" )
         
@@ -368,6 +371,31 @@ class ServerAccess
         )
     }
     
+    
+    
+    public static func searchUsers( keyword: String, id: String, onComplete: ( ( [AnyObject] ) -> Void )? )
+    {
+        let customOnComplete = { (_ json: Any, operation: Operation ) in
+            let jsonData = json as? [String: Any]
+            if jsonData?["status"] as! String == "200"
+            {
+                onComplete!( jsonData?["users"] as! [AnyObject] )
+            }
+            onCompleteAction( json, operation )
+        }
+        
+        let request = createURLRequest(
+            url: URL( string: baseURL + "searchUsers.php" )!,
+            method: HttpMethod.POST,
+            body: "keyword=\(keyword)&id=\(id)" )
+        
+        executeDataTask(
+            request: request,
+            onCompleteAction: customOnComplete,
+            onFailedAction: onFailedAction,
+            operation: Operation.NONE
+        )
+    }
 }
 
 // An extesion o NSMutableData class to append string to out http body.
