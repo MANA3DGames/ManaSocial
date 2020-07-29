@@ -29,7 +29,7 @@ class ServerAccess
     }
     
     static let onCompleteAction = { ( jsonData: Any, operation: Operation ) in
-        //print( jsonData )
+        print( jsonData )
         
         let json = jsonData as? [String: Any]
         let status = json?["status"] as? String
@@ -62,7 +62,7 @@ class ServerAccess
                 case Operation.REGISTER:
                     sceneDelegate.displayPopup( message: message!, bgColor: bgColor )
                     sceneDelegate.saveUserData( json! )
-                    print( "Register" )
+                    sceneDelegate.goToTabBarController()
                 case Operation.RESET_PASSWORD:
                     sceneDelegate.displayPopup( message: message!, bgColor: bgColor )
                     print( "Reset Password" )

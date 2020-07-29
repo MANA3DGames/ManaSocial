@@ -141,4 +141,31 @@ class UsersVC: UITableViewController, UISearchBarDelegate
         
         return cell
     }
+    
+    
+    // Proceeding segues that have been made in main.storyboard to another view.
+    override func prepare( for segue: UIStoryboardSegue, sender: Any? )
+    {
+        // Check if there is a selected cell?
+        if let cell = sender as? UITableViewCell
+        {
+            // Get index of the selected cell.
+            let index = tableView.indexPath( for: cell )!.row   // = indexPath.row
+            
+            // Check if segue is a guest?
+            if segue.identifier == "guest"
+            {
+                // Get GuestVC instance.
+                let guestVC = segue.destination as! GuestVC
+                
+                // Set guest info.
+                guestVC.guest = usersArray[index] as! NSDictionary
+                
+                // Craete a new back button.
+                let backBtn = UIBarButtonItem()
+                backBtn.title = ""
+                navigationItem.backBarButtonItem = backBtn
+            }
+        }
+    }
 }

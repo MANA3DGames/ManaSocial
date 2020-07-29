@@ -76,6 +76,9 @@ class RegisterVC: MVC
             return;
         }
         
+        // Hide keyboard.
+        self.view.endEditing( true )
+        
         // All registration fields were filled.
         ServerAccess.register(
             email: emailTxt.text!.lowercased(),

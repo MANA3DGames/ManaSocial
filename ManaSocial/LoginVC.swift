@@ -31,6 +31,10 @@ class LoginVC: MVC {
             return
         }
         
+        // Hide keyboard.
+        self.view.endEditing( true )
+        
+        // Send login request.
         ServerAccess.login( email: emailTxt.text!.lowercased(), password: passwordTxt.text! )
     }
     

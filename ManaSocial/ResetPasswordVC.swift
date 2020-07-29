@@ -24,6 +24,10 @@ class ResetPasswordVC: MVC
             return
         }
         
+        // Hide keyboard.
+        self.view.endEditing( true )
+        
+        // Send reset password request.
         ServerAccess.resetPassword( email: emailTxt.text! )
     }
     

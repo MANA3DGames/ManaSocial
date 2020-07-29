@@ -29,6 +29,7 @@
 		38DBED9924C49D7F007014E7 /* TabBarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38DBED9824C49D7F007014E7 /* TabBarVC.swift */; };
 		38DBED9B24C4AC66007014E7 /* profileIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 38DBED9A24C4AC66007014E7 /* profileIcon.png */; };
 		38DBED9D24C4ADF0007014E7 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38DBED9C24C4ADF0007014E7 /* HomeVC.swift */; };
+		38EE483624D168EC00C4FB60 /* GuestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EE483524D168EC00C4FB60 /* GuestVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +57,7 @@
 		38DBED9824C49D7F007014E7 /* TabBarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarVC.swift; sourceTree = "<group>"; };
 		38DBED9A24C4AC66007014E7 /* profileIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profileIcon.png; sourceTree = "<group>"; };
 		38DBED9C24C4ADF0007014E7 /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
+		38EE483524D168EC00C4FB60 /* GuestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +81,7 @@
 				38A3D6DD24C409A9007BC539 /* NavVC.swift */,
 				38DBED9824C49D7F007014E7 /* TabBarVC.swift */,
 				38DBED9C24C4ADF0007014E7 /* HomeVC.swift */,
+				38EE483524D168EC00C4FB60 /* GuestVC.swift */,
 				3809047C24C9750B0078A017 /* PostVC.swift */,
 				38D505EA24CBE44900038C10 /* PostCell.swift */,
 				38C742D824CEAE1100234369 /* UserCell.swift */,
@@ -235,6 +238,7 @@
 				38C742D924CEAE1100234369 /* UserCell.swift in Sources */,
 				38DBED9D24C4ADF0007014E7 /* HomeVC.swift in Sources */,
 				38C742DB24CEAE2800234369 /* UsersVC.swift in Sources */,
+				38EE483624D168EC00C4FB60 /* GuestVC.swift in Sources */,
 				384DA3D724B7029600B07B2F /* RegisterVC.swift in Sources */,
 				384DA3D324B7029600B07B2F /* AppDelegate.swift in Sources */,
 				38A3D6DC24C4079C007BC539 /* MVC.swift in Sources */,
