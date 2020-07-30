@@ -26,6 +26,8 @@ var userData : NSDictionary?
 let ID_LOGIN_VC = "loginVC"
 let ID_REGISTER_VC = "registerVC"
 let ID_RESET_PASSWORD_VC = "resetPasswordVC"
+let ID_HOME_VC = "homeVC"
+let ID_EDIT_PROFILE_VC = "editProfileVC"
 
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {

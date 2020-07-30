@@ -35,6 +35,51 @@ class TabBarVC: UITabBarController {
                 item.image = image.setImageColor( color: grayColorLight ).withRenderingMode( .alwaysOriginal )
             }
         }
+        
+        // Play MANA Logo animation.
+        manaAnimation()
+    }
+    
+    
+    func manaAnimation()
+    {
+        // Blue layer
+        let layer = UIView()
+        layer.frame = self.view.frame
+        layer.backgroundColor = blueColorBG
+        self.view.addSubview( layer )
+        
+        // Brand icon.
+        let icon = UIImageView()
+        icon.image = UIImage( named: "manaIcon.png" )
+        icon.frame.size.width = 100
+        icon.frame.size.height = 100
+        icon.center = view.center
+        self.view.addSubview( icon )
+        
+        // Start animation
+        UIView.animate( withDuration: 0.5, delay: 1, options: .curveLinear, animations: {
+            icon.transform = CGAffineTransform( scaleX: 0.9, y: 0.9 )
+        } ) { ( finished: Bool ) in
+            
+            if finished
+            {
+                // second transformation.
+                UIView.animate( withDuration: 0.5, animations: {
+                    
+                    // Make the icon bigger.
+                    icon.transform = CGAffineTransform( scaleX: 20, y: 20 )
+                    
+                    // 3rd transformation.
+                    UIView.animate( withDuration: 0.1, delay: 0.3, options: .curveLinear, animations: {
+                        // Hide layer
+                        icon.alpha = 0
+                        layer.alpha = 0
+                    }, completion: nil )
+                    
+                } )
+            }
+        }
     }
 }
 

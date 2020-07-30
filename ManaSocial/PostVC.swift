@@ -19,7 +19,7 @@ class PostVC: MVC, UITextViewDelegate, UINavigationControllerDelegate, UIImagePi
     // Indicates whether the user did really pick up an image to be uploaded with the post or did not.
     var didPickupImage = false
     
-    let MAX_CHARS = 140
+    let MAX_CHARS = 240
     
     
     override func viewDidLoad()

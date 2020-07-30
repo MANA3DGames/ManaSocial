@@ -24,12 +24,13 @@ class ServerAccess
         case LOGIN
         case REGISTER
         case RESET_PASSWORD
+        case UPDATE_PROFILE_INFO
         case UPLOAD_AVA_IMG
         case UPLOAD_POST
     }
     
     static let onCompleteAction = { ( jsonData: Any, operation: Operation ) in
-        print( jsonData )
+        //print( jsonData )
         
         let json = jsonData as? [String: Any]
         let status = json?["status"] as? String
@@ -55,11 +56,7 @@ class ServerAccess
                 {
                 case .NONE:
                     print( "NONE" )
-                case Operation.LOGIN:
-                    sceneDelegate.displayPopup( message: message!, bgColor: bgColor )
-                    sceneDelegate.saveUserData( json! )
-                    sceneDelegate.goToTabBarController()
-                case Operation.REGISTER:
+                case .LOGIN, .REGISTER, .UPDATE_PROFILE_INFO:
                     sceneDelegate.displayPopup( message: message!, bgColor: bgColor )
                     sceneDelegate.saveUserData( json! )
                     sceneDelegate.goToTabBarController()
@@ -394,6 +391,21 @@ class ServerAccess
             onCompleteAction: customOnComplete,
             onFailedAction: onFailedAction,
             operation: Operation.NONE
+        )
+    }
+    
+    public static func updateUserProfile( firstName: String, lastName: String, email: String, id: String )
+    {
+        let request = createURLRequest(
+            url: URL( string: baseURL + "updateUser.php" )!,
+            method: HttpMethod.POST,
+            body: "firstname=\(firstName)&lastname=\(lastName)&email=\(email)&id=\(id)" )
+        
+        executeDataTask(
+            request: request,
+            onCompleteAction: onCompleteAction,
+            onFailedAction: onFailedAction,
+            operation: Operation.UPDATE_PROFILE_INFO
         )
     }
 }

@@ -26,12 +26,15 @@ class HomeVC: MVC, UINavigationControllerDelegate, UIImagePickerControllerDelega
         super.viewDidLoad()
         
         // Fill user's details.
-        fullNameLabel.text = userData?["firstname"] as? String
-        fullNameLabel.text?.append( " " + (userData?["lastname"] as? String)! )
+        fullNameLabel.text = "\(String(describing: userData?["firstname"] as! String) ) \( String(describing: userData?["lastname"] as! String) )"
         emailLabel.text = userData?["email"] as? String
         
         // Download profile image using 'ava' link from saved userData.
-        ServerAccess.downloadImg( link: ( userData?["ava"] as? String )!, view: avaImg )
+        let avaUrl = ( userData?["ava"] as? String ) ?? ""
+        if !( avaUrl.isEmpty )
+        {
+            ServerAccess.downloadImg( link: avaUrl, view: avaImg )
+        }
         
         // Rounded Corners.
         avaImg.layer.cornerRadius = avaImg.bounds.width / 20
@@ -86,6 +89,41 @@ class HomeVC: MVC, UINavigationControllerDelegate, UIImagePickerControllerDelega
     
     @IBAction func onEditProfileBtnClicked(_ sender: Any)
     {
+        // Create a new action sheet.
+        let sheet = UIAlertController( title: "Edit Profile", message: nil, preferredStyle: UIAlertController.Style.actionSheet )
+        
+        // Create cancel btn.
+        let cancelBtn = UIAlertAction( title: "Cancel", style: .cancel, handler: nil )
+        
+        // Create pickup picture btn.
+        let pickImgBtn = UIAlertAction( title: "Change Profile Picture", style: .default, handler: { ( action: UIAlertAction ) in
+            self.pickUpImage()
+        } )
+        
+        // Create edit btn.
+        let updateBtn = UIAlertAction( title: "Update Profile", style: .default, handler: { ( action: UIAlertAction ) in
+            
+            // Go to EditProfileVC
+            let editVC = self.storyboard!.instantiateViewController( identifier: ID_EDIT_PROFILE_VC ) as! EditProfileVC
+            self.navigationController?.pushViewController( editVC, animated: true )
+            
+            // Remove title from back button.
+            let backItem = UIBarButtonItem()
+            backItem.title = ""
+            self.navigationItem.backBarButtonItem = backItem
+        } )
+        
+        // Add all actions/btns to the sheet.
+        sheet.addAction( cancelBtn )
+        sheet.addAction( pickImgBtn )
+        sheet.addAction( updateBtn )
+        
+        // Display action sheet.
+        self.present( sheet, animated: true, completion: nil )
+    }
+    
+    func pickUpImage()
+    {
         let picker = UIImagePickerController()
         picker.delegate = self
         picker.sourceType = UIImagePickerController.SourceType.photoLibrary
@@ -126,7 +164,7 @@ class HomeVC: MVC, UINavigationControllerDelegate, UIImagePickerControllerDelega
         
         // Create a new cell.
         let cell = tableView.dequeueReusableCell( withIdentifier: "cell", for: indexPath ) as! PostCell
-        cell.postFullnameLabel.text = ( post["firstname"] as? String )! + " " + ( post["lastname"] as? String )!
+        cell.postFullnameLabel.text = "\(String(describing: post["firstname"] as! String)) \(String(describing: post["lastname"] as! String))"
         cell.postTextLabel.text = post["text"] as? String
         
         // Set post image.
@@ -135,15 +173,16 @@ class HomeVC: MVC, UINavigationControllerDelegate, UIImagePickerControllerDelega
         
         // Convert date string to date.
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd-HH:mm:ss"
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        dateFormatter.locale = Locale.init( identifier: "en_US" )
+        dateFormatter.timeZone = TimeZone.init( abbreviation: "UTC" )
         let newDate = dateFormatter.date( from: post["date"] as! String )
         
         // Date settings:
         let now = Date()
         let components = Set<Calendar.Component>( [.second, .minute, .hour, .day, .weekOfMonth] )
-        var calendar = Calendar.current
-        calendar.timeZone = TimeZone( abbreviation: "GMT" )!// TimeZone.current
-        let difference = calendar.dateComponents( components, from: newDate!, to: now )
+        let difference = Calendar.current.dateComponents( components, from: newDate!, to: now )
+        
         
         // Calculate date:
         if difference.weekOfMonth ?? 0 > 0
@@ -175,9 +214,9 @@ class HomeVC: MVC, UINavigationControllerDelegate, UIImagePickerControllerDelega
         DispatchQueue.main.async {
             if image.size.width == 0 && image.size.height == 0
             {
-                cell.postTextLabel.frame.origin.x = self.view.frame.size.width / 16
-                cell.postTextLabel.frame.size.width = self.view.frame.size.width - self.view.frame.size.width / 8
-                cell.postTextLabel.sizeToFit()
+                cell.postTextLabel.frame.origin.x = 20
+                //cell.postTextLabel.frame.size.width = cell.postTextLabel.frame.size.width + cell.postImgView.frame.width
+                //cell.postTextLabel.sizeToFit()
             }
         }
         
@@ -201,8 +240,6 @@ class HomeVC: MVC, UINavigationControllerDelegate, UIImagePickerControllerDelega
             ServerAccess.deletePost( uuid: post["uuid"] as! String, path: post["path"] as! String, onComplete: {
                 
                 DispatchQueue.main.async {
-                    print( "We got some data!" )
-                    
                     self.postsArray.remove( at: indexPath.row )
                     self.postImagesArray.remove( at: indexPath.row )
                     self.tableView.deleteRows( at: [indexPath], with: UITableView.RowAnimation.automatic )
