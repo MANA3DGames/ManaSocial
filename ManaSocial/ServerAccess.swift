@@ -55,13 +55,14 @@ class ServerAccess
                 switch operation
                 {
                 case .NONE:
-                    print( "NONE" )
+                    print( "" )
                 case .LOGIN, .REGISTER, .UPDATE_PROFILE_INFO:
-                    sceneDelegate.displayPopup( message: message!, bgColor: bgColor )
+                    sceneDelegate.displayPopup( message: message!, bgColor: bgColor, onComplete: {
+                        sceneDelegate.goToTabBarController()
+                    } )
                     sceneDelegate.saveUserData( json! )
-                    sceneDelegate.goToTabBarController()
                 case Operation.RESET_PASSWORD:
-                    sceneDelegate.displayPopup( message: message!, bgColor: bgColor )
+                    sceneDelegate.displayPopup( message: message!, bgColor: bgColor, onComplete: nil )
                     print( "Reset Password" )
                 case Operation.UPLOAD_AVA_IMG:
                     sceneDelegate.saveUserData( json! )
@@ -78,7 +79,7 @@ class ServerAccess
         
         // Get main queue to communicate back to user.
         DispatchQueue.main.async {
-            sceneDelegate.displayPopup( message: error.localizedDescription, bgColor: redColorError )
+            sceneDelegate.displayPopup( message: error.localizedDescription, bgColor: redColorError, onComplete: nil )
         }
     }
     
