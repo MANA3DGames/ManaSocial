@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RegisterVC: MVC
+class RegisterVC: MyBaseViewController
 {
     // UI element objects.
     @IBOutlet weak var firstNameTxt: UITextField!       // User's first name ui input field.
@@ -16,6 +16,8 @@ class RegisterVC: MVC
     @IBOutlet weak var passwordTxt: UITextField!        // User's password ui input field.
     @IBOutlet weak var repasswordTxt: UITextField!      // User's confirm-password ui input field.
     @IBOutlet weak var emailTxt: UITextField!           // User's email ui input field.
+    
+    let registerModel = RegisterModel()
     
     
     // Startup function.
@@ -32,7 +34,7 @@ class RegisterVC: MVC
         let firstName = "Amanda"
         let lastName = "AbuObaid"
 
-        ServerAccess.register(email: email, password: password, firstName: firstName, lastName: lastName)
+        registerModel.register(email: email, password: password, firstName: firstName, lastName: lastName)
     }
     
     
@@ -80,7 +82,7 @@ class RegisterVC: MVC
         self.view.endEditing( true )
         
         // All registration fields were filled.
-        ServerAccess.register(
+        registerModel.register(
             email: emailTxt.text!.lowercased(),
             password: passwordTxt.text!,
             firstName: firstNameTxt.text!,

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class HomeVC: MVC, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITableViewDelegate, UITableViewDataSource
+class HomeVC: MyBaseViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITableViewDelegate, UITableViewDataSource
 {
     @IBOutlet weak var avaImg: UIImageView!
     @IBOutlet weak var fullNameLabel: UILabel!
@@ -19,6 +19,8 @@ class HomeVC: MVC, UINavigationControllerDelegate, UIImagePickerControllerDelega
     @IBOutlet weak var tableView: UITableView!
     var postsArray = [AnyObject]()
     var postImagesArray = [UIImage]()
+    
+    let homeModel = HomeModel()
     
     
     override func viewDidLoad()
@@ -33,7 +35,7 @@ class HomeVC: MVC, UINavigationControllerDelegate, UIImagePickerControllerDelega
         let avaUrl = ( userData?["ava"] as? String ) ?? ""
         if !( avaUrl.isEmpty )
         {
-            ServerAccess.downloadImg( link: avaUrl, view: avaImg )
+            homeModel.downloadImg( link: avaUrl, view: avaImg )
         }
         
         // Rounded Corners.
@@ -56,7 +58,7 @@ class HomeVC: MVC, UINavigationControllerDelegate, UIImagePickerControllerDelega
         postImagesArray.removeAll( keepingCapacity: false )
         
         // Load all user's post.
-        ServerAccess.downloadPosts( id: userData!["id"]! as! String, onComplete: { (_ posts : [AnyObject] ) in
+        homeModel.downloadPosts( id: userData!["id"]! as! String, onComplete: { (_ posts : [AnyObject] ) in
             DispatchQueue.main.async {
                 // Set global postsArray to the posts value that we've just got.
                 self.postsArray = posts;
@@ -138,7 +140,7 @@ class HomeVC: MVC, UINavigationControllerDelegate, UIImagePickerControllerDelega
         self.dismiss( animated: true, completion: nil )
         
         // Upload selected image to our database server.
-        ServerAccess.uploadAvaImage( id: userData!["id"] as! String, image: avaImg.image! )
+        homeModel.uploadAvaImage( id: userData!["id"] as! String, image: avaImg.image! )
     }
     
     
@@ -237,7 +239,7 @@ class HomeVC: MVC, UINavigationControllerDelegate, UIImagePickerControllerDelega
             let post = postsArray[indexPath.row]
             
             // Send php delete request.
-            ServerAccess.deletePost( uuid: post["uuid"] as! String, path: post["path"] as! String, onComplete: {
+            homeModel.deletePost( uuid: post["uuid"] as! String, path: post["path"] as! String, onComplete: {
                 
                 DispatchQueue.main.async {
                     self.postsArray.remove( at: indexPath.row )

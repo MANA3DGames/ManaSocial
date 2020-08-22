@@ -9,12 +9,6 @@
 /* Begin PBXBuildFile section */
 		3809047D24C9750B0078A017 /* PostVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3809047C24C9750B0078A017 /* PostVC.swift */; };
 		381C861B24C0390E00828712 /* ResetPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 381C861A24C0390E00828712 /* ResetPasswordVC.swift */; };
-		38292A4824D1EA2900A6CC8D /* post@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38292A4524D1EA2900A6CC8D /* post@3x.png */; };
-		38292A4924D1EA2900A6CC8D /* post.png in Resources */ = {isa = PBXBuildFile; fileRef = 38292A4624D1EA2900A6CC8D /* post.png */; };
-		38292A4A24D1EA2900A6CC8D /* post@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38292A4724D1EA2900A6CC8D /* post@2x.png */; };
-		38292A4E24D1EAE600A6CC8D /* users.png in Resources */ = {isa = PBXBuildFile; fileRef = 38292A4B24D1EAE500A6CC8D /* users.png */; };
-		38292A4F24D1EAE600A6CC8D /* users@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38292A4C24D1EAE500A6CC8D /* users@2x.png */; };
-		38292A5024D1EAE600A6CC8D /* users@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38292A4D24D1EAE500A6CC8D /* users@3x.png */; };
 		383AB09C24B842EB00E4AEE6 /* ServerAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383AB09B24B842EB00E4AEE6 /* ServerAccess.swift */; };
 		3847D3A124BD843E00A45C4A /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3847D3A024BD843E00A45C4A /* LoginVC.swift */; };
 		384DA3D324B7029600B07B2F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 384DA3D224B7029600B07B2F /* AppDelegate.swift */; };
@@ -23,32 +17,31 @@
 		384DA3DA24B7029600B07B2F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 384DA3D824B7029600B07B2F /* Main.storyboard */; };
 		384DA3DC24B7029700B07B2F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 384DA3DB24B7029700B07B2F /* Assets.xcassets */; };
 		384DA3DF24B7029700B07B2F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 384DA3DD24B7029700B07B2F /* LaunchScreen.storyboard */; };
-		38A3D6DC24C4079C007BC539 /* MVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A3D6DB24C4079C007BC539 /* MVC.swift */; };
+		38A3D6DC24C4079C007BC539 /* MyBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A3D6DB24C4079C007BC539 /* MyBaseViewController.swift */; };
 		38A3D6DE24C409A9007BC539 /* NavVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A3D6DD24C409A9007BC539 /* NavVC.swift */; };
-		38A3D6E824C4110B007BC539 /* home.png in Resources */ = {isa = PBXBuildFile; fileRef = 38A3D6E524C4110B007BC539 /* home.png */; };
-		38A3D6E924C4110B007BC539 /* home@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38A3D6E624C4110B007BC539 /* home@2x.png */; };
-		38A3D6ED24C411F3007BC539 /* home@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 38A3D6EC24C411F3007BC539 /* home@3x.png */; };
-		38B8E39124C1DA2100934212 /* bgImg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 38B8E39024C1DA2100934212 /* bgImg.jpg */; };
+		38B4AF6424F1004700ABDAA5 /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B4AF6324F1004700ABDAA5 /* LoginModel.swift */; };
+		38B4AF6624F12A3100ABDAA5 /* EditProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B4AF6524F12A3100ABDAA5 /* EditProfileModel.swift */; };
+		38B4AF6824F133C800ABDAA5 /* PostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B4AF6724F133C800ABDAA5 /* PostModel.swift */; };
+		38B4AF6A24F136E400ABDAA5 /* GuestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B4AF6924F136E400ABDAA5 /* GuestModel.swift */; };
+		38B4AF6C24F13EF000ABDAA5 /* HomeBaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B4AF6B24F13EF000ABDAA5 /* HomeBaseModel.swift */; };
+		38B4AF6E24F13FDE00ABDAA5 /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B4AF6D24F13FDE00ABDAA5 /* HomeModel.swift */; };
+		38B4AF7024F1424D00ABDAA5 /* ResetPasswordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B4AF6F24F1424D00ABDAA5 /* ResetPasswordModel.swift */; };
+		38B4AF7224F142E000ABDAA5 /* RegisterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B4AF7124F142E000ABDAA5 /* RegisterModel.swift */; };
+		38B4AF7424F1439000ABDAA5 /* UsersModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B4AF7324F1439000ABDAA5 /* UsersModel.swift */; };
+		38B4AF7624F144AB00ABDAA5 /* ServerData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B4AF7524F144AB00ABDAA5 /* ServerData.swift */; };
+		38B4AF7824F147EC00ABDAA5 /* ServerResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B4AF7724F147EC00ABDAA5 /* ServerResponseHandler.swift */; };
 		38C742D924CEAE1100234369 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C742D824CEAE1100234369 /* UserCell.swift */; };
 		38C742DB24CEAE2800234369 /* UsersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C742DA24CEAE2800234369 /* UsersVC.swift */; };
 		38D505EB24CBE44900038C10 /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D505EA24CBE44900038C10 /* PostCell.swift */; };
 		38DBED9924C49D7F007014E7 /* TabBarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38DBED9824C49D7F007014E7 /* TabBarVC.swift */; };
-		38DBED9B24C4AC66007014E7 /* profileIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 38DBED9A24C4AC66007014E7 /* profileIcon.png */; };
 		38DBED9D24C4ADF0007014E7 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38DBED9C24C4ADF0007014E7 /* HomeVC.swift */; };
 		38EE483624D168EC00C4FB60 /* GuestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EE483524D168EC00C4FB60 /* GuestVC.swift */; };
 		38F8FED124D2AFD50042C326 /* EditProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F8FED024D2AFD50042C326 /* EditProfileVC.swift */; };
-		38F8FED324D2FD1A0042C326 /* manaIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 38F8FED224D2FD1A0042C326 /* manaIcon.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		3809047C24C9750B0078A017 /* PostVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostVC.swift; sourceTree = "<group>"; };
 		381C861A24C0390E00828712 /* ResetPasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordVC.swift; sourceTree = "<group>"; };
-		38292A4524D1EA2900A6CC8D /* post@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "post@3x.png"; sourceTree = "<group>"; };
-		38292A4624D1EA2900A6CC8D /* post.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = post.png; sourceTree = "<group>"; };
-		38292A4724D1EA2900A6CC8D /* post@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "post@2x.png"; sourceTree = "<group>"; };
-		38292A4B24D1EAE500A6CC8D /* users.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = users.png; sourceTree = "<group>"; };
-		38292A4C24D1EAE500A6CC8D /* users@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "users@2x.png"; sourceTree = "<group>"; };
-		38292A4D24D1EAE500A6CC8D /* users@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "users@3x.png"; sourceTree = "<group>"; };
 		383AB09B24B842EB00E4AEE6 /* ServerAccess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerAccess.swift; sourceTree = "<group>"; };
 		3847D3A024BD843E00A45C4A /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		384DA3CF24B7029600B07B2F /* ManaSocial.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ManaSocial.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -59,21 +52,26 @@
 		384DA3DB24B7029700B07B2F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		384DA3DE24B7029700B07B2F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		384DA3E024B7029700B07B2F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		38A3D6DB24C4079C007BC539 /* MVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MVC.swift; sourceTree = "<group>"; };
+		38A3D6DB24C4079C007BC539 /* MyBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyBaseViewController.swift; sourceTree = "<group>"; };
 		38A3D6DD24C409A9007BC539 /* NavVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavVC.swift; sourceTree = "<group>"; };
-		38A3D6E524C4110B007BC539 /* home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home.png; sourceTree = "<group>"; };
-		38A3D6E624C4110B007BC539 /* home@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home@2x.png"; sourceTree = "<group>"; };
-		38A3D6EC24C411F3007BC539 /* home@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home@3x.png"; sourceTree = "<group>"; };
-		38B8E39024C1DA2100934212 /* bgImg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bgImg.jpg; sourceTree = "<group>"; };
+		38B4AF6324F1004700ABDAA5 /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
+		38B4AF6524F12A3100ABDAA5 /* EditProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileModel.swift; sourceTree = "<group>"; };
+		38B4AF6724F133C800ABDAA5 /* PostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostModel.swift; sourceTree = "<group>"; };
+		38B4AF6924F136E400ABDAA5 /* GuestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestModel.swift; sourceTree = "<group>"; };
+		38B4AF6B24F13EF000ABDAA5 /* HomeBaseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeBaseModel.swift; sourceTree = "<group>"; };
+		38B4AF6D24F13FDE00ABDAA5 /* HomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModel.swift; sourceTree = "<group>"; };
+		38B4AF6F24F1424D00ABDAA5 /* ResetPasswordModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordModel.swift; sourceTree = "<group>"; };
+		38B4AF7124F142E000ABDAA5 /* RegisterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterModel.swift; sourceTree = "<group>"; };
+		38B4AF7324F1439000ABDAA5 /* UsersModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersModel.swift; sourceTree = "<group>"; };
+		38B4AF7524F144AB00ABDAA5 /* ServerData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerData.swift; sourceTree = "<group>"; };
+		38B4AF7724F147EC00ABDAA5 /* ServerResponseHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerResponseHandler.swift; sourceTree = "<group>"; };
 		38C742D824CEAE1100234369 /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
 		38C742DA24CEAE2800234369 /* UsersVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersVC.swift; sourceTree = "<group>"; };
 		38D505EA24CBE44900038C10 /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
 		38DBED9824C49D7F007014E7 /* TabBarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarVC.swift; sourceTree = "<group>"; };
-		38DBED9A24C4AC66007014E7 /* profileIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profileIcon.png; sourceTree = "<group>"; };
 		38DBED9C24C4ADF0007014E7 /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
 		38EE483524D168EC00C4FB60 /* GuestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestVC.swift; sourceTree = "<group>"; };
 		38F8FED024D2AFD50042C326 /* EditProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileVC.swift; sourceTree = "<group>"; };
-		38F8FED224D2FD1A0042C326 /* manaIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = manaIcon.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,30 +85,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		3842A30124BEE498001A3088 /* ViewControllers */ = {
+		3842A30124BEE498001A3088 /* Users */ = {
 			isa = PBXGroup;
 			children = (
-				38A3D6DB24C4079C007BC539 /* MVC.swift */,
-				3847D3A024BD843E00A45C4A /* LoginVC.swift */,
-				384DA3D624B7029600B07B2F /* RegisterVC.swift */,
-				381C861A24C0390E00828712 /* ResetPasswordVC.swift */,
-				38A3D6DD24C409A9007BC539 /* NavVC.swift */,
-				38DBED9824C49D7F007014E7 /* TabBarVC.swift */,
-				38DBED9C24C4ADF0007014E7 /* HomeVC.swift */,
-				38EE483524D168EC00C4FB60 /* GuestVC.swift */,
-				3809047C24C9750B0078A017 /* PostVC.swift */,
-				38D505EA24CBE44900038C10 /* PostCell.swift */,
 				38C742D824CEAE1100234369 /* UserCell.swift */,
 				38C742DA24CEAE2800234369 /* UsersVC.swift */,
-				38F8FED024D2AFD50042C326 /* EditProfileVC.swift */,
+				38B4AF7324F1439000ABDAA5 /* UsersModel.swift */,
 			);
-			name = ViewControllers;
+			name = Users;
 			sourceTree = "<group>";
 		};
 		3842A30324BEE4D8001A3088 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
 				383AB09B24B842EB00E4AEE6 /* ServerAccess.swift */,
+				38B4AF7524F144AB00ABDAA5 /* ServerData.swift */,
+				38B4AF7724F147EC00ABDAA5 /* ServerResponseHandler.swift */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -134,8 +124,15 @@
 		384DA3D124B7029600B07B2F /* ManaSocial */ = {
 			isa = PBXGroup;
 			children = (
-				38B8E38E24C1D93700934212 /* Resources */,
-				3842A30124BEE498001A3088 /* ViewControllers */,
+				38B4AF5B24F0FEB200ABDAA5 /* BaseClasses */,
+				38B4AF5C24F0FEE100ABDAA5 /* Login */,
+				38B4AF6224F0FF4700ABDAA5 /* EditProfile */,
+				38B4AF6124F0FF3700ABDAA5 /* Post */,
+				38B4AF6024F0FF2C00ABDAA5 /* Guest */,
+				38B4AF5F24F0FF2000ABDAA5 /* Home */,
+				38B4AF5E24F0FF0300ABDAA5 /* ResetPassword */,
+				38B4AF5D24F0FEF800ABDAA5 /* Register */,
+				3842A30124BEE498001A3088 /* Users */,
 				3842A30324BEE4D8001A3088 /* Utilities */,
 				384DA3D224B7029600B07B2F /* AppDelegate.swift */,
 				384DA3D424B7029600B07B2F /* SceneDelegate.swift */,
@@ -147,39 +144,79 @@
 			path = ManaSocial;
 			sourceTree = "<group>";
 		};
-		38A3D6DF24C40FBB007BC539 /* Icons */ = {
+		38B4AF5B24F0FEB200ABDAA5 /* BaseClasses */ = {
 			isa = PBXGroup;
 			children = (
-				38292A4624D1EA2900A6CC8D /* post.png */,
-				38292A4724D1EA2900A6CC8D /* post@2x.png */,
-				38292A4524D1EA2900A6CC8D /* post@3x.png */,
-				38292A4B24D1EAE500A6CC8D /* users.png */,
-				38292A4C24D1EAE500A6CC8D /* users@2x.png */,
-				38292A4D24D1EAE500A6CC8D /* users@3x.png */,
-				38A3D6E524C4110B007BC539 /* home.png */,
-				38A3D6E624C4110B007BC539 /* home@2x.png */,
-				38F8FED224D2FD1A0042C326 /* manaIcon.png */,
-				38A3D6EC24C411F3007BC539 /* home@3x.png */,
-				38DBED9A24C4AC66007014E7 /* profileIcon.png */,
+				38A3D6DB24C4079C007BC539 /* MyBaseViewController.swift */,
+				38A3D6DD24C409A9007BC539 /* NavVC.swift */,
+				38DBED9824C49D7F007014E7 /* TabBarVC.swift */,
+				38B4AF6B24F13EF000ABDAA5 /* HomeBaseModel.swift */,
 			);
-			path = Icons;
+			name = BaseClasses;
 			sourceTree = "<group>";
 		};
-		38B8E38E24C1D93700934212 /* Resources */ = {
+		38B4AF5C24F0FEE100ABDAA5 /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				38A3D6DF24C40FBB007BC539 /* Icons */,
-				38B8E38F24C1D95600934212 /* Images */,
+				3847D3A024BD843E00A45C4A /* LoginVC.swift */,
+				38B4AF6324F1004700ABDAA5 /* LoginModel.swift */,
 			);
-			path = Resources;
+			name = Login;
 			sourceTree = "<group>";
 		};
-		38B8E38F24C1D95600934212 /* Images */ = {
+		38B4AF5D24F0FEF800ABDAA5 /* Register */ = {
 			isa = PBXGroup;
 			children = (
-				38B8E39024C1DA2100934212 /* bgImg.jpg */,
+				384DA3D624B7029600B07B2F /* RegisterVC.swift */,
+				38B4AF7124F142E000ABDAA5 /* RegisterModel.swift */,
 			);
-			path = Images;
+			name = Register;
+			sourceTree = "<group>";
+		};
+		38B4AF5E24F0FF0300ABDAA5 /* ResetPassword */ = {
+			isa = PBXGroup;
+			children = (
+				381C861A24C0390E00828712 /* ResetPasswordVC.swift */,
+				38B4AF6F24F1424D00ABDAA5 /* ResetPasswordModel.swift */,
+			);
+			name = ResetPassword;
+			sourceTree = "<group>";
+		};
+		38B4AF5F24F0FF2000ABDAA5 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				38DBED9C24C4ADF0007014E7 /* HomeVC.swift */,
+				38B4AF6D24F13FDE00ABDAA5 /* HomeModel.swift */,
+			);
+			name = Home;
+			sourceTree = "<group>";
+		};
+		38B4AF6024F0FF2C00ABDAA5 /* Guest */ = {
+			isa = PBXGroup;
+			children = (
+				38EE483524D168EC00C4FB60 /* GuestVC.swift */,
+				38B4AF6924F136E400ABDAA5 /* GuestModel.swift */,
+			);
+			name = Guest;
+			sourceTree = "<group>";
+		};
+		38B4AF6124F0FF3700ABDAA5 /* Post */ = {
+			isa = PBXGroup;
+			children = (
+				3809047C24C9750B0078A017 /* PostVC.swift */,
+				38D505EA24CBE44900038C10 /* PostCell.swift */,
+				38B4AF6724F133C800ABDAA5 /* PostModel.swift */,
+			);
+			name = Post;
+			sourceTree = "<group>";
+		};
+		38B4AF6224F0FF4700ABDAA5 /* EditProfile */ = {
+			isa = PBXGroup;
+			children = (
+				38F8FED024D2AFD50042C326 /* EditProfileVC.swift */,
+				38B4AF6524F12A3100ABDAA5 /* EditProfileModel.swift */,
+			);
+			name = EditProfile;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -241,20 +278,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				384DA3DF24B7029700B07B2F /* LaunchScreen.storyboard in Resources */,
-				38292A4924D1EA2900A6CC8D /* post.png in Resources */,
 				384DA3DC24B7029700B07B2F /* Assets.xcassets in Resources */,
-				38A3D6E824C4110B007BC539 /* home.png in Resources */,
-				38292A4F24D1EAE600A6CC8D /* users@2x.png in Resources */,
-				38B8E39124C1DA2100934212 /* bgImg.jpg in Resources */,
-				38DBED9B24C4AC66007014E7 /* profileIcon.png in Resources */,
-				38292A4E24D1EAE600A6CC8D /* users.png in Resources */,
-				38292A4A24D1EA2900A6CC8D /* post@2x.png in Resources */,
-				38A3D6E924C4110B007BC539 /* home@2x.png in Resources */,
-				38292A4824D1EA2900A6CC8D /* post@3x.png in Resources */,
 				384DA3DA24B7029600B07B2F /* Main.storyboard in Resources */,
-				38F8FED324D2FD1A0042C326 /* manaIcon.png in Resources */,
-				38292A5024D1EAE600A6CC8D /* users@3x.png in Resources */,
-				38A3D6ED24C411F3007BC539 /* home@3x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -265,20 +290,31 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				38B4AF6C24F13EF000ABDAA5 /* HomeBaseModel.swift in Sources */,
 				38A3D6DE24C409A9007BC539 /* NavVC.swift in Sources */,
+				38B4AF6E24F13FDE00ABDAA5 /* HomeModel.swift in Sources */,
 				38C742D924CEAE1100234369 /* UserCell.swift in Sources */,
 				38DBED9D24C4ADF0007014E7 /* HomeVC.swift in Sources */,
 				38C742DB24CEAE2800234369 /* UsersVC.swift in Sources */,
 				38EE483624D168EC00C4FB60 /* GuestVC.swift in Sources */,
 				384DA3D724B7029600B07B2F /* RegisterVC.swift in Sources */,
 				384DA3D324B7029600B07B2F /* AppDelegate.swift in Sources */,
-				38A3D6DC24C4079C007BC539 /* MVC.swift in Sources */,
+				38A3D6DC24C4079C007BC539 /* MyBaseViewController.swift in Sources */,
+				38B4AF6A24F136E400ABDAA5 /* GuestModel.swift in Sources */,
+				38B4AF7824F147EC00ABDAA5 /* ServerResponseHandler.swift in Sources */,
+				38B4AF6424F1004700ABDAA5 /* LoginModel.swift in Sources */,
 				38DBED9924C49D7F007014E7 /* TabBarVC.swift in Sources */,
+				38B4AF7624F144AB00ABDAA5 /* ServerData.swift in Sources */,
+				38B4AF7424F1439000ABDAA5 /* UsersModel.swift in Sources */,
 				383AB09C24B842EB00E4AEE6 /* ServerAccess.swift in Sources */,
 				384DA3D524B7029600B07B2F /* SceneDelegate.swift in Sources */,
 				381C861B24C0390E00828712 /* ResetPasswordVC.swift in Sources */,
+				38B4AF6624F12A3100ABDAA5 /* EditProfileModel.swift in Sources */,
+				38B4AF6824F133C800ABDAA5 /* PostModel.swift in Sources */,
 				3847D3A124BD843E00A45C4A /* LoginVC.swift in Sources */,
 				3809047D24C9750B0078A017 /* PostVC.swift in Sources */,
+				38B4AF7224F142E000ABDAA5 /* RegisterModel.swift in Sources */,
+				38B4AF7024F1424D00ABDAA5 /* ResetPasswordModel.swift in Sources */,
 				38F8FED124D2AFD50042C326 /* EditProfileVC.swift in Sources */,
 				38D505EB24CBE44900038C10 /* PostCell.swift in Sources */,
 			);

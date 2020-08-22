@@ -18,6 +18,8 @@ class UsersVC: UITableViewController, UISearchBarDelegate
     var canSearch = true
     var lastSearchedKeyword = ""
     
+    let usersModel = UsersModel()
+    
     
     override func viewDidLoad()
     {
@@ -57,7 +59,7 @@ class UsersVC: UITableViewController, UISearchBarDelegate
         lastSearchedKeyword = keyword
         
         //let keyword = searchBar.text?.stringByTrimmingCharactersInSet
-        ServerAccess.searchUsers( keyword: keyword, id: userData!["id"] as! String, onComplete: { (_ users: [AnyObject] ) in
+        usersModel.searchUsers( keyword: keyword, id: userData!["id"] as! String, onComplete: { (_ users: [AnyObject] ) in
             
             DispatchQueue.main.async {
                 // Clear current data.
@@ -159,7 +161,7 @@ class UsersVC: UITableViewController, UISearchBarDelegate
                 let guestVC = segue.destination as! GuestVC
                 
                 // Set guest info.
-                guestVC.guest = usersArray[index] as! NSDictionary
+                guestVC.guest = usersArray[index] as? NSDictionary
                 
                 // Craete a new back button.
                 let backBtn = UIBarButtonItem()

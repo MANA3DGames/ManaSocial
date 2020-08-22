@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PostVC: MVC, UITextViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate
+class PostVC: MyBaseViewController, UITextViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate
 {
     @IBOutlet weak var textTxt: UITextView!
     @IBOutlet weak var countLabel: UILabel!
@@ -20,6 +20,8 @@ class PostVC: MVC, UITextViewDelegate, UINavigationControllerDelegate, UIImagePi
     var didPickupImage = false
     
     let MAX_CHARS = 240
+    
+    let postModel = PostModel()
     
     
     override func viewDidLoad()
@@ -132,7 +134,7 @@ class PostVC: MVC, UITextViewDelegate, UINavigationControllerDelegate, UIImagePi
     {
         if !textTxt.text.isEmpty && textTxt.text.count <= MAX_CHARS
         {
-            ServerAccess.uploadPost(
+            postModel.uploadPost(
                 id: userData?["id"] as! String,
                 text: textTxt.text,
                 didPickupImage: didPickupImage,

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class EditProfileVC: MVC, UITextFieldDelegate
+class EditProfileVC: MyBaseViewController, UITextFieldDelegate
 {
     @IBOutlet weak var emailTxt: UITextField!
     @IBOutlet weak var firstNameTxt: UITextField!
@@ -16,6 +16,9 @@ class EditProfileVC: MVC, UITextFieldDelegate
     @IBOutlet weak var avaImg: UIImageView!
     @IBOutlet weak var saveBtn: UIButton!
     @IBOutlet weak var fullnameLabel: UILabel!
+    
+    let editProfileModel = EditProfileModel()
+    
     
     override func viewDidLoad()
     {
@@ -28,19 +31,9 @@ class EditProfileVC: MVC, UITextFieldDelegate
         lastNameTxt.text = userData!["lastname"] as? String
         fullnameLabel.text = "\(firstNameTxt.text!) \(lastNameTxt.text!)"
         
+        // Download avatar image.
         let avaUrl = ( userData!["ava"] as? String ) ?? ""
-        // Check if we have an avatar image.
-        if !( avaUrl ).isEmpty
-        {
-            let imageData = try? Data( contentsOf: URL( string: avaUrl )! )
-            
-            DispatchQueue.main.async {
-                if imageData != nil
-                {
-                    self.avaImg.image = UIImage( data: imageData! )
-                }
-            }
-        }
+        editProfileModel.downloadAvaImg( avaUrl: avaUrl, avaPlaceHolder: self.avaImg )
         
         // Make avaImg round corners.
         avaImg.layer.cornerRadius = avaImg.bounds.width / 2
@@ -125,7 +118,7 @@ class EditProfileVC: MVC, UITextFieldDelegate
         self.view.endEditing( true )
         
         // Send update request.
-        ServerAccess.updateUserProfile(
+        editProfileModel.updateUserProfile(
             firstName: firstNameTxt.text!,
             lastName: lastNameTxt.text!,
             email: emailTxt.text!,

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class GuestVC: MVC, UITableViewDelegate, UITableViewDataSource
+class GuestVC: MyBaseViewController, UITableViewDelegate, UITableViewDataSource
 {
     // Variable to store guest info passed with segue.
     var guest : NSDictionary?
@@ -16,11 +16,12 @@ class GuestVC: MVC, UITableViewDelegate, UITableViewDataSource
     @IBOutlet weak var avaImg: UIImageView!
     @IBOutlet weak var fullNameLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
-    
-    
+
     @IBOutlet weak var tableView: UITableView!
     var postsArray = [AnyObject]()
     var postImagesArray = [UIImage]()
+    
+    let guestModel = GuestModel()
     
     
     override func viewDidLoad()
@@ -33,7 +34,7 @@ class GuestVC: MVC, UITableViewDelegate, UITableViewDataSource
         emailLabel.text = guest?["email"] as? String
         
         // Download profile image using 'ava' link from saved guest.
-        ServerAccess.downloadImg( link: ( guest?["ava"] as? String )!, view: avaImg )
+        guestModel.downloadImg( link: ( guest?["ava"] as? String )!, view: avaImg )
         
         // Rounded Corners.
         avaImg.layer.cornerRadius = avaImg.bounds.width / 20
@@ -55,7 +56,7 @@ class GuestVC: MVC, UITableViewDelegate, UITableViewDataSource
         let id = String( describing: guest!["id"]! )
         
         // Load all user's post.
-        ServerAccess.downloadPosts( id: id, onComplete: { (_ posts : [AnyObject] ) in
+        guestModel.downloadPosts( id: id, onComplete: { (_ posts : [AnyObject] ) in
             DispatchQueue.main.async {
                 // Set global postsArray to the posts value that we've just got.
                 self.postsArray = posts;

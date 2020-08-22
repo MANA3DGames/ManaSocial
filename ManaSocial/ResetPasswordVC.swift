@@ -8,9 +8,12 @@
 
 import UIKit
 
-class ResetPasswordVC: MVC
+class ResetPasswordVC: MyBaseViewController
 {
     @IBOutlet weak var emailTxt: UITextField!
+    
+    let resetpasswordModel = ResetPasswordModel()
+    
     
     override func viewDidLoad()
     {
@@ -28,7 +31,7 @@ class ResetPasswordVC: MVC
         self.view.endEditing( true )
         
         // Send reset password request.
-        ServerAccess.resetPassword( email: emailTxt.text! )
+        resetpasswordModel.resetPassword( email: emailTxt.text! )
     }
     
     @IBAction func onGoBackBtnClicked(_ sender: Any)

@@ -8,11 +8,12 @@
 
 import UIKit
 
-class LoginVC: MVC {
+class LoginVC: MyBaseViewController {
 
     @IBOutlet weak var emailTxt: UITextField!
     @IBOutlet weak var passwordTxt: UITextField!
     
+    let model = LoginModel()
     
     override func viewDidLoad()
     {
@@ -21,11 +22,13 @@ class LoginVC: MVC {
 
     @IBAction func onLoginBtnClicked(_ sender: Any)
     {
+        // Check if email textfield is empty?
         if checkIsEmpty( textField: emailTxt )
         {
             return
         }
         
+        // Check if password textfield is empty?
         if checkIsEmpty( textField: passwordTxt )
         {
             return
@@ -35,7 +38,7 @@ class LoginVC: MVC {
         self.view.endEditing( true )
         
         // Send login request.
-        ServerAccess.login( email: emailTxt.text!.lowercased(), password: passwordTxt.text! )
+        model.login( email: emailTxt.text!.lowercased(), password: passwordTxt.text! )
     }
     
     @IBAction func onForgetPasswordBtnClicked(_ sender: Any)
