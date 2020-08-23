@@ -33,8 +33,8 @@ class PostVC: MyBaseViewController, UITextViewDelegate, UINavigationControllerDe
         postBtn.layer.cornerRadius = postBtn.bounds.width / 20
         
         // Set Colors.
-        uploadImgBtn.setTitleColor( blueColorBG, for: .normal )
-        postBtn.backgroundColor = blueColorBG
+        uploadImgBtn.setTitleColor( blackColorBG, for: .normal )
+        postBtn.backgroundColor = blackColorBG
         countLabel.textColor = grayColorLight
         
         // Disable auto scroll layout.

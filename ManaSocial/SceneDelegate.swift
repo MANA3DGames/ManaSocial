@@ -14,7 +14,7 @@ let sceneDelegate: SceneDelegate = UIApplication.shared.connectedScenes.first?.d
 // Common used colors
 let redColorError = UIColor( red: 1, green: 50/255, blue: 75/255, alpha: 1 )
 let greenColorDone = UIColor( red: 30/255, green: 255/255, blue: 125/255, alpha: 1 )
-let blueColorBG = UIColor( red: 30/255, green: 30/255, blue: 30/255, alpha: 1 )
+let blackColorBG = UIColor( red: 30/255, green: 30/255, blue: 30/255, alpha: 1 )
 let grayColorLight = UIColor( red: 150/255, green: 150/255, blue: 150/255, alpha: 1 );
 
 // Dynamic font size.
@@ -23,11 +23,13 @@ let fontSize12 = UIScreen.main.bounds.width / 31
 // Saved user's data
 var userData : NSDictionary?
 
-let ID_LOGIN_VC = "loginVC"
-let ID_REGISTER_VC = "registerVC"
-let ID_RESET_PASSWORD_VC = "resetPasswordVC"
-let ID_HOME_VC = "homeVC"
-let ID_EDIT_PROFILE_VC = "editProfileVC"
+let ID_HOME_VC = "Home"
+let ID_LOGIN_VC = "Main"
+let ID_TAB_BAR = "TabBar"
+let ID_REGISTER_VC = "Register"
+let ID_EDIT_PROFILE_VC = "EditProfile"
+let ID_RESET_PASSWORD_VC = "ResetPassword"
+
 
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
@@ -187,8 +189,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     func goToTabBarController()
     {
-        let storyboard = UIStoryboard( name: "Main", bundle: nil )
-        let tabBarC = storyboard.instantiateViewController( identifier: "tabBarC" )
+        let storyboard = UIStoryboard( name: ID_TAB_BAR, bundle: nil )
+        let tabBarC = storyboard.instantiateViewController( identifier: ID_TAB_BAR )
         window?.rootViewController = tabBarC
     }
     

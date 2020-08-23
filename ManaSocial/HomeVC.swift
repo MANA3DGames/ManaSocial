@@ -44,7 +44,7 @@ class HomeVC: MyBaseViewController, UINavigationControllerDelegate, UIImagePicke
         
         self.navigationItem.title = fullNameLabel.text
         
-        editProfileBtn.setTitleColor( blueColorBG, for: .normal )
+        editProfileBtn.setTitleColor( blackColorBG, for: .normal )
         
         //tableView.contentInset = UIEdgeInsets( top: 2, left: 0, bottom: 0, right: 0 )
     }
@@ -106,7 +106,8 @@ class HomeVC: MyBaseViewController, UINavigationControllerDelegate, UIImagePicke
         let updateBtn = UIAlertAction( title: "Update Profile", style: .default, handler: { ( action: UIAlertAction ) in
             
             // Go to EditProfileVC
-            let editVC = self.storyboard!.instantiateViewController( identifier: ID_EDIT_PROFILE_VC ) as! EditProfileVC
+            let storyboard = UIStoryboard( name: ID_EDIT_PROFILE_VC, bundle: nil )
+            let editVC = storyboard.instantiateViewController( identifier: ID_EDIT_PROFILE_VC ) as! EditProfileVC
             self.navigationController?.pushViewController( editVC, animated: true )
             
             // Remove title from back button.

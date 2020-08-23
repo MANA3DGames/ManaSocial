@@ -22,7 +22,7 @@ class PostCell: UITableViewCell
         super.awakeFromNib()
         
         // Colors
-        postFullnameLabel.textColor = blueColorBG
+        postFullnameLabel.textColor = blackColorBG
         
         // Rounded Corners.
         postImgView.layer.cornerRadius = postImgView.bounds.width / 20
@@ -35,5 +35,4 @@ class PostCell: UITableViewCell
 
         // Configure the view for the selected state
     }
-
 }

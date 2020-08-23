@@ -31,7 +31,6 @@ class GuestVC: MyBaseViewController, UITableViewDelegate, UITableViewDataSource
         // Fill user's details.
         fullNameLabel.text = guest?["firstname"] as? String
         fullNameLabel.text?.append( " " + (guest?["lastname"] as? String)! )
-        emailLabel.text = guest?["email"] as? String
         
         // Download profile image using 'ava' link from saved guest.
         guestModel.downloadImg( link: ( guest?["ava"] as? String )!, view: avaImg )

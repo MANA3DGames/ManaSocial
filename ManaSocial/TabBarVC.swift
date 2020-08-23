@@ -18,7 +18,7 @@ class TabBarVC: UITabBarController
         self.tabBar.tintColor = .white
         
         // Background color.
-        self.tabBar.barTintColor = blueColorBG
+        self.tabBar.barTintColor = blackColorBG
         
         // Disable translucent.
         self.tabBar.isTranslucent = false
@@ -32,6 +32,7 @@ class TabBarVC: UITabBarController
         {
             if let image = item.image
             {
+                print( image )
                 item.image = image.setImageColor( color: grayColorLight ).withRenderingMode( .alwaysOriginal )
             }
         }
@@ -46,7 +47,7 @@ class TabBarVC: UITabBarController
         // Blue layer
         let layer = UIView()
         layer.frame = self.view.frame
-        layer.backgroundColor = blueColorBG
+        layer.backgroundColor = blackColorBG
         self.view.addSubview( layer )
         
         // Brand icon.

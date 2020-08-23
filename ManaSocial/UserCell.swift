@@ -22,7 +22,7 @@ class UserCell: UITableViewCell
         avaImg.clipsToBounds = true
         
         // Set color.
-        userName.textColor = blueColorBG
+        userName.textColor = blackColorBG
     }
     
     

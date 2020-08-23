@@ -27,7 +27,7 @@ class UsersVC: UITableViewController, UISearchBarDelegate
 
         // Search bar customization.
         searchBar.barTintColor = UIColor.white
-        searchBar.tintColor = blueColorBG
+        searchBar.tintColor = blackColorBG
         searchBar.showsCancelButton = false
         
         searchForUsers( searchBar: searchBar, keyword: "" )
@@ -155,7 +155,7 @@ class UsersVC: UITableViewController, UISearchBarDelegate
             let index = tableView.indexPath( for: cell )!.row   // = indexPath.row
             
             // Check if segue is a guest?
-            if segue.identifier == "guest"
+            if segue.identifier == "Guest"
             {
                 // Get GuestVC instance.
                 let guestVC = segue.destination as! GuestVC

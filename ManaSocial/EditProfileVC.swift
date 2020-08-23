@@ -41,7 +41,7 @@ class EditProfileVC: MyBaseViewController, UITextFieldDelegate
         
         // Customize saveBtn
         saveBtn.layer.cornerRadius = saveBtn.bounds.width / 9
-        saveBtn.backgroundColor = blueColorBG
+        saveBtn.backgroundColor = blackColorBG
         
         // Disable save btn at the beginning.
         disableSaveBtn()

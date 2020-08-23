@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--PostVC-->
+        <scene sceneID="Z6V-bG-ddU">
+            <objects>
+                <viewController title="PostVC" id="3FW-Xd-5yU" customClass="PostVC" customModule="ManaSocial" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="LfU-Z2-cO6">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="BTx-Wb-25F">
+                                <rect key="frame" x="20" y="115" width="374" height="350"/>
+                                <color key="backgroundColor" white="0.66666666669999997" alpha="0.29296875" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <connections>
+                                    <outlet property="delegate" destination="3FW-Xd-5yU" id="nNS-tj-RZN"/>
+                                </connections>
+                            </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="140" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A21-k0-HWg">
+                                <rect key="frame" x="356" y="473" width="29" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kzr-SL-bhh">
+                                <rect key="frame" x="20" y="473" width="95" height="30"/>
+                                <state key="normal" title="Upload Image"/>
+                                <connections>
+                                    <action selector="onUploadImgBtnClicked:" destination="3FW-Xd-5yU" eventType="touchUpInside" id="SQw-ME-G90"/>
+                                </connections>
+                            </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TwW-OX-jlG">
+                                <rect key="frame" x="123" y="473" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="Hc0-7q-w1B"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="Ia0-SS-S4q"/>
+                                    <constraint firstAttribute="height" constant="50" id="fwi-tb-QZW"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s2G-rc-pX0">
+                                <rect key="frame" x="20" y="547" width="365" height="43"/>
+                                <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="43" id="bgq-eQ-DYG"/>
+                                </constraints>
+                                <state key="normal" title="POST">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="onPostBtnClicked:" destination="3FW-Xd-5yU" eventType="touchUpInside" id="9eO-KC-WZW"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="BTx-Wb-25F" firstAttribute="top" secondItem="y9C-Sn-C69" secondAttribute="top" constant="27" id="S2i-Gu-p5I"/>
+                            <constraint firstItem="y9C-Sn-C69" firstAttribute="trailing" secondItem="A21-k0-HWg" secondAttribute="trailing" constant="29" id="VQQ-cy-uKe"/>
+                            <constraint firstItem="BTx-Wb-25F" firstAttribute="leading" secondItem="LfU-Z2-cO6" secondAttribute="leadingMargin" id="XrF-u5-0Jd"/>
+                            <constraint firstItem="y9C-Sn-C69" firstAttribute="bottom" secondItem="s2G-rc-pX0" secondAttribute="bottom" constant="272" id="aTL-bi-ek5"/>
+                            <constraint firstItem="kzr-SL-bhh" firstAttribute="top" secondItem="BTx-Wb-25F" secondAttribute="bottom" constant="8" id="dlu-aa-sOf"/>
+                            <constraint firstItem="A21-k0-HWg" firstAttribute="trailing" secondItem="s2G-rc-pX0" secondAttribute="trailing" id="dm4-tE-Zn0"/>
+                            <constraint firstItem="TwW-OX-jlG" firstAttribute="top" secondItem="A21-k0-HWg" secondAttribute="top" id="gnE-hZ-whE"/>
+                            <constraint firstItem="BTx-Wb-25F" firstAttribute="leading" secondItem="kzr-SL-bhh" secondAttribute="leading" id="j96-by-GbB"/>
+                            <constraint firstItem="kzr-SL-bhh" firstAttribute="leading" secondItem="s2G-rc-pX0" secondAttribute="leading" id="lLR-X5-JrW"/>
+                            <constraint firstItem="kzr-SL-bhh" firstAttribute="top" secondItem="TwW-OX-jlG" secondAttribute="top" id="mDr-N0-pTJ"/>
+                            <constraint firstItem="TwW-OX-jlG" firstAttribute="leading" secondItem="kzr-SL-bhh" secondAttribute="trailing" constant="8" id="qe7-El-32l"/>
+                            <constraint firstItem="BTx-Wb-25F" firstAttribute="trailing" secondItem="LfU-Z2-cO6" secondAttribute="trailingMargin" id="tPF-RB-aWo"/>
+                            <constraint firstItem="s2G-rc-pX0" firstAttribute="top" secondItem="kzr-SL-bhh" secondAttribute="bottom" constant="44" id="vth-lU-yyo"/>
+                            <constraint firstItem="s2G-rc-pX0" firstAttribute="top" secondItem="TwW-OX-jlG" secondAttribute="bottom" constant="24" id="zDg-W2-ufk"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="y9C-Sn-C69"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="NEW POST" id="pSc-RT-W45"/>
+                    <connections>
+                        <outlet property="countLabel" destination="A21-k0-HWg" id="Qc1-Vk-f4Y"/>
+                        <outlet property="postBtn" destination="s2G-rc-pX0" id="ncM-rG-C6R"/>
+                        <outlet property="textTxt" destination="BTx-Wb-25F" id="Trp-AH-H4R"/>
+                        <outlet property="uploadImgBtn" destination="kzr-SL-bhh" id="gM7-Vu-Df8"/>
+                        <outlet property="uploadedImgView" destination="TwW-OX-jlG" id="YZD-JW-L63"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yh8-Te-fM0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="438" y="-374"/>
+        </scene>
+        <!--Post-->
+        <scene sceneID="QI1-Ml-6bh">
+            <objects>
+                <navigationController storyboardIdentifier="Post" title="Post" automaticallyAdjustsScrollViewInsets="NO" id="eyF-uR-mv8" customClass="NavVC" customModule="ManaSocial" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Post" image="post" id="dqW-6g-GdA"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ggS-Gn-3ZJ">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="3FW-Xd-5yU" kind="relationship" relationship="rootViewController" id="Z8s-Ls-F6e"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="upN-LO-DGS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-254" y="-373"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="post" width="25" height="25"/>
+    </resources>
+</document>
