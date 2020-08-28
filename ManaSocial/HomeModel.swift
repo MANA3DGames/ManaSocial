@@ -8,6 +8,8 @@
 
 import Foundation
 import UIKit
+import FirebaseStorage
+
 
 class HomeModel : HomeBaseModel
 {
@@ -43,7 +45,8 @@ class HomeModel : HomeBaseModel
         )
     }
     
-    public func uploadAvaImage( id: String, image: UIImage )
+    /// Deprecated: user Firebase func uploadAvaImage()
+    public func uploadAvaImagePHP( id: String, image: UIImage )
     {
         let param = ["id": id]
         let boundary = "Boundary-\(NSUUID().uuidString)"
@@ -71,5 +74,16 @@ class HomeModel : HomeBaseModel
             onFailedAction: ServerResponseHandler.onFailedAction,
             operation: ServerAccess.Operation.UPLOAD_AVA_IMG
         )
+    }
+    
+    
+    
+    
+    override func fillUserInfo( sender: HomeBaseViewController, name: String, uid: String )
+    {
+        super.fillUserInfo( sender: sender, name: name, uid: uid )
+        
+        sender.emailLabel.text = FirebaseUser.Instance.email
+        sender.editProfileBtn.setTitleColor( MCOLOR_BLACK, for: .normal )
     }
 }

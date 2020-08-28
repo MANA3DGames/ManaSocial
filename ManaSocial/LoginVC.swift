@@ -18,6 +18,11 @@ class LoginVC: MyBaseViewController {
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        
+        createProgressBG()
+        
+        // Prevent autofill
+        passwordTxt.textContentType = .oneTimeCode// .init( rawValue: "" )
     }
 
     @IBAction func onLoginBtnClicked(_ sender: Any)
@@ -38,7 +43,7 @@ class LoginVC: MyBaseViewController {
         self.view.endEditing( true )
         
         // Send login request.
-        model.login( email: emailTxt.text!.lowercased(), password: passwordTxt.text! )
+        model.login( email: emailTxt.text!.lowercased(), password: passwordTxt.text!, sender: self )
     }
     
     @IBAction func onForgetPasswordBtnClicked(_ sender: Any)

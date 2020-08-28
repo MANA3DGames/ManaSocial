@@ -20,11 +20,11 @@ class ServerResponseHandler
         var bgColor : UIColor
         if status != "200"
         {
-            bgColor = redColorError
+            bgColor = MCOLOR_RED
         }
         else
         {
-            bgColor = greenColorDone
+            bgColor = MCOLOR_GREEN
         }
         
         // Get main queue to communicate back to user.
@@ -39,15 +39,15 @@ class ServerResponseHandler
                 case .NONE:
                     print( "" )
                 case .LOGIN, .REGISTER, .UPDATE_PROFILE_INFO:
-                    sceneDelegate.displayPopup( message: message!, bgColor: bgColor, onComplete: {
+                    MPopup.display( message: message!, bgColor: bgColor, onComplete: {
                         sceneDelegate.goToTabBarController()
                     } )
-                    sceneDelegate.saveUserData( json! )
+                    UserLocalData.save( json! )
                 case .RESET_PASSWORD:
-                    sceneDelegate.displayPopup( message: message!, bgColor: bgColor, onComplete: nil )
+                    MPopup.display( message: message!, bgColor: bgColor, onComplete: nil )
                     print( "Reset Password" )
                 case .UPLOAD_AVA_IMG:
-                    sceneDelegate.saveUserData( json! )
+                    UserLocalData.save( json! )
                     print( "UPLOAD_AVA_IMG" )
                 case .UPLOAD_POST:
                     print( "UPLOAD_POST" )
@@ -55,13 +55,13 @@ class ServerResponseHandler
             }
         }
     }
-
+    
     static let onFailedAction = { ( error : Error ) in
         print( error )
         
         // Get main queue to communicate back to user.
         DispatchQueue.main.async {
-            sceneDelegate.displayPopup( message: error.localizedDescription, bgColor: redColorError, onComplete: nil )
+            MPopup.display( message: error.localizedDescription, bgColor: MCOLOR_RED, onComplete: nil )
         }
     }
 }

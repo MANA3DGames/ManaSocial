@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -25,6 +25,16 @@
 		384DA3DC24B7029700B07B2F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 384DA3DB24B7029700B07B2F /* Assets.xcassets */; };
 		384DA3DF24B7029700B07B2F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 384DA3DD24B7029700B07B2F /* LaunchScreen.storyboard */; };
 		38574A7F24F25A6600A7813E /* Guest.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 38574A7E24F25A6600A7813E /* Guest.storyboard */; };
+		38574A8124F2C70C00A7813E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 38574A8024F2C70C00A7813E /* GoogleService-Info.plist */; };
+		3875D3C024F61FD80067ABCF /* FirestoreDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3875D3BF24F61FD80067ABCF /* FirestoreDatabase.swift */; };
+		3875D3C324F655C40067ABCF /* FirebaseFiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3875D3C224F655C40067ABCF /* FirebaseFiles.swift */; };
+		3875E13D24F3630B00482847 /* MPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3875E13C24F3630B00482847 /* MPopup.swift */; };
+		3875E13F24F3656700482847 /* UIInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3875E13E24F3656700482847 /* UIInfo.swift */; };
+		3875E14224F3661C00482847 /* VCIDInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3875E14124F3661C00482847 /* VCIDInfo.swift */; };
+		3875E14524F3674C00482847 /* AnimatedBG.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3875E14424F3674C00482847 /* AnimatedBG.swift */; };
+		3875E14724F36B5100482847 /* UserLocalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3875E14624F36B5100482847 /* UserLocalData.swift */; };
+		3875E14A24F3972200482847 /* FirebaseUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3875E14924F3972200482847 /* FirebaseUser.swift */; };
+		38A2C7D024F8E1DA00EE8AA5 /* HomeBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A2C7CF24F8E1DA00EE8AA5 /* HomeBaseViewController.swift */; };
 		38A3D6DC24C4079C007BC539 /* MyBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A3D6DB24C4079C007BC539 /* MyBaseViewController.swift */; };
 		38A3D6DE24C409A9007BC539 /* NavVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A3D6DD24C409A9007BC539 /* NavVC.swift */; };
 		38B4AF6424F1004700ABDAA5 /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B4AF6324F1004700ABDAA5 /* LoginModel.swift */; };
@@ -45,9 +55,12 @@
 		38DBED9D24C4ADF0007014E7 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38DBED9C24C4ADF0007014E7 /* HomeVC.swift */; };
 		38EE483624D168EC00C4FB60 /* GuestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EE483524D168EC00C4FB60 /* GuestVC.swift */; };
 		38F8FED124D2AFD50042C326 /* EditProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F8FED024D2AFD50042C326 /* EditProfileVC.swift */; };
+		79EBDEB320991B48E1B53F75 /* Pods_ManaSocial.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13D5123FC8513EF7F74FA7A9 /* Pods_ManaSocial.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		13D5123FC8513EF7F74FA7A9 /* Pods_ManaSocial.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ManaSocial.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1B0B19E3B60B315D69EDAFB4 /* Pods-ManaSocial.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ManaSocial.release.xcconfig"; path = "Target Support Files/Pods-ManaSocial/Pods-ManaSocial.release.xcconfig"; sourceTree = "<group>"; };
 		3809047C24C9750B0078A017 /* PostVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostVC.swift; sourceTree = "<group>"; };
 		381C861A24C0390E00828712 /* ResetPasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordVC.swift; sourceTree = "<group>"; };
 		381F0FC424F1853A008674BC /* TabBar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TabBar.storyboard; sourceTree = "<group>"; };
@@ -68,6 +81,16 @@
 		384DA3DE24B7029700B07B2F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		384DA3E024B7029700B07B2F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		38574A7E24F25A6600A7813E /* Guest.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Guest.storyboard; sourceTree = "<group>"; };
+		38574A8024F2C70C00A7813E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		3875D3BF24F61FD80067ABCF /* FirestoreDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreDatabase.swift; sourceTree = "<group>"; };
+		3875D3C224F655C40067ABCF /* FirebaseFiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseFiles.swift; sourceTree = "<group>"; };
+		3875E13C24F3630B00482847 /* MPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MPopup.swift; sourceTree = "<group>"; };
+		3875E13E24F3656700482847 /* UIInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIInfo.swift; sourceTree = "<group>"; };
+		3875E14124F3661C00482847 /* VCIDInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCIDInfo.swift; sourceTree = "<group>"; };
+		3875E14424F3674C00482847 /* AnimatedBG.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedBG.swift; sourceTree = "<group>"; };
+		3875E14624F36B5100482847 /* UserLocalData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLocalData.swift; sourceTree = "<group>"; };
+		3875E14924F3972200482847 /* FirebaseUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseUser.swift; sourceTree = "<group>"; };
+		38A2C7CF24F8E1DA00EE8AA5 /* HomeBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeBaseViewController.swift; sourceTree = "<group>"; };
 		38A3D6DB24C4079C007BC539 /* MyBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyBaseViewController.swift; sourceTree = "<group>"; };
 		38A3D6DD24C409A9007BC539 /* NavVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavVC.swift; sourceTree = "<group>"; };
 		38B4AF6324F1004700ABDAA5 /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
@@ -88,6 +111,7 @@
 		38DBED9C24C4ADF0007014E7 /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
 		38EE483524D168EC00C4FB60 /* GuestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestVC.swift; sourceTree = "<group>"; };
 		38F8FED024D2AFD50042C326 /* EditProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileVC.swift; sourceTree = "<group>"; };
+		ABE4800BD8288A325B96869D /* Pods-ManaSocial.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ManaSocial.debug.xcconfig"; path = "Target Support Files/Pods-ManaSocial/Pods-ManaSocial.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +119,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				79EBDEB320991B48E1B53F75 /* Pods_ManaSocial.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -125,9 +150,10 @@
 		3842A30324BEE4D8001A3088 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				383AB09B24B842EB00E4AEE6 /* ServerAccess.swift */,
-				38B4AF7524F144AB00ABDAA5 /* ServerData.swift */,
-				38B4AF7724F147EC00ABDAA5 /* ServerResponseHandler.swift */,
+				3875E14824F38D6A00482847 /* Firebase */,
+				3875E14324F366BD00482847 /* ServerPHP (Deprecated) */,
+				3875D3C124F654FF0067ABCF /* LocalData (Deprecated) */,
+				3875D3C424F698840067ABCF /* UI */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -137,6 +163,8 @@
 			children = (
 				384DA3D124B7029600B07B2F /* ManaSocial */,
 				384DA3D024B7029600B07B2F /* Products */,
+				897107AC8BAF915820A6B4D7 /* Pods */,
+				EA301F91D0269D8173A4BF3E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -151,6 +179,7 @@
 		384DA3D124B7029600B07B2F /* ManaSocial */ = {
 			isa = PBXGroup;
 			children = (
+				3875E14024F365E900482847 /* Info */,
 				38B4AF5B24F0FEB200ABDAA5 /* BaseClasses */,
 				38B4AF5C24F0FEE100ABDAA5 /* Login */,
 				38B4AF5D24F0FEF800ABDAA5 /* Register */,
@@ -166,15 +195,63 @@
 				384DA3D424B7029600B07B2F /* SceneDelegate.swift */,
 				384DA3DB24B7029700B07B2F /* Assets.xcassets */,
 				384DA3DD24B7029700B07B2F /* LaunchScreen.storyboard */,
+				38574A8024F2C70C00A7813E /* GoogleService-Info.plist */,
 				384DA3E024B7029700B07B2F /* Info.plist */,
 			);
 			path = ManaSocial;
+			sourceTree = "<group>";
+		};
+		3875D3C124F654FF0067ABCF /* LocalData (Deprecated) */ = {
+			isa = PBXGroup;
+			children = (
+				3875E14624F36B5100482847 /* UserLocalData.swift */,
+			);
+			name = "LocalData (Deprecated)";
+			sourceTree = "<group>";
+		};
+		3875D3C424F698840067ABCF /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				3875E13C24F3630B00482847 /* MPopup.swift */,
+				3875E14424F3674C00482847 /* AnimatedBG.swift */,
+			);
+			name = UI;
+			sourceTree = "<group>";
+		};
+		3875E14024F365E900482847 /* Info */ = {
+			isa = PBXGroup;
+			children = (
+				3875E13E24F3656700482847 /* UIInfo.swift */,
+				3875E14124F3661C00482847 /* VCIDInfo.swift */,
+			);
+			name = Info;
+			sourceTree = "<group>";
+		};
+		3875E14324F366BD00482847 /* ServerPHP (Deprecated) */ = {
+			isa = PBXGroup;
+			children = (
+				383AB09B24B842EB00E4AEE6 /* ServerAccess.swift */,
+				38B4AF7524F144AB00ABDAA5 /* ServerData.swift */,
+				38B4AF7724F147EC00ABDAA5 /* ServerResponseHandler.swift */,
+			);
+			name = "ServerPHP (Deprecated)";
+			sourceTree = "<group>";
+		};
+		3875E14824F38D6A00482847 /* Firebase */ = {
+			isa = PBXGroup;
+			children = (
+				3875E14924F3972200482847 /* FirebaseUser.swift */,
+				3875D3BF24F61FD80067ABCF /* FirestoreDatabase.swift */,
+				3875D3C224F655C40067ABCF /* FirebaseFiles.swift */,
+			);
+			name = Firebase;
 			sourceTree = "<group>";
 		};
 		38B4AF5B24F0FEB200ABDAA5 /* BaseClasses */ = {
 			isa = PBXGroup;
 			children = (
 				38A3D6DB24C4079C007BC539 /* MyBaseViewController.swift */,
+				38A2C7CF24F8E1DA00EE8AA5 /* HomeBaseViewController.swift */,
 				38B4AF6B24F13EF000ABDAA5 /* HomeBaseModel.swift */,
 			);
 			name = BaseClasses;
@@ -251,6 +328,23 @@
 			name = EditProfile;
 			sourceTree = "<group>";
 		};
+		897107AC8BAF915820A6B4D7 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				ABE4800BD8288A325B96869D /* Pods-ManaSocial.debug.xcconfig */,
+				1B0B19E3B60B315D69EDAFB4 /* Pods-ManaSocial.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		EA301F91D0269D8173A4BF3E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				13D5123FC8513EF7F74FA7A9 /* Pods_ManaSocial.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -258,9 +352,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 384DA3E324B7029700B07B2F /* Build configuration list for PBXNativeTarget "ManaSocial" */;
 			buildPhases = (
+				BAEABAF01D46AD1DBD5E8DBF /* [CP] Check Pods Manifest.lock */,
 				384DA3CB24B7029600B07B2F /* Sources */,
 				384DA3CC24B7029600B07B2F /* Frameworks */,
 				384DA3CD24B7029600B07B2F /* Resources */,
+				A989966E59E156DA4FE501D0 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -314,6 +410,7 @@
 				384DA3DF24B7029700B07B2F /* LaunchScreen.storyboard in Resources */,
 				381F0FC724F1876E008674BC /* EditProfile.storyboard in Resources */,
 				384DA3DC24B7029700B07B2F /* Assets.xcassets in Resources */,
+				38574A8124F2C70C00A7813E /* GoogleService-Info.plist in Resources */,
 				381F0FCB24F18D4D008674BC /* Home.storyboard in Resources */,
 				384DA3DA24B7029600B07B2F /* Main.storyboard in Resources */,
 				382C6E4924F1747200E5C101 /* Register.storyboard in Resources */,
@@ -325,6 +422,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		A989966E59E156DA4FE501D0 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ManaSocial/Pods-ManaSocial-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ManaSocial/Pods-ManaSocial-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ManaSocial/Pods-ManaSocial-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BAEABAF01D46AD1DBD5E8DBF /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ManaSocial-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		384DA3CB24B7029600B07B2F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -332,11 +471,15 @@
 			files = (
 				38B4AF6C24F13EF000ABDAA5 /* HomeBaseModel.swift in Sources */,
 				38A3D6DE24C409A9007BC539 /* NavVC.swift in Sources */,
+				3875E14724F36B5100482847 /* UserLocalData.swift in Sources */,
 				38B4AF6E24F13FDE00ABDAA5 /* HomeModel.swift in Sources */,
+				3875D3C024F61FD80067ABCF /* FirestoreDatabase.swift in Sources */,
 				38C742D924CEAE1100234369 /* UserCell.swift in Sources */,
 				38DBED9D24C4ADF0007014E7 /* HomeVC.swift in Sources */,
+				3875E14224F3661C00482847 /* VCIDInfo.swift in Sources */,
 				38C742DB24CEAE2800234369 /* UsersVC.swift in Sources */,
 				38EE483624D168EC00C4FB60 /* GuestVC.swift in Sources */,
+				38A2C7D024F8E1DA00EE8AA5 /* HomeBaseViewController.swift in Sources */,
 				384DA3D724B7029600B07B2F /* RegisterVC.swift in Sources */,
 				384DA3D324B7029600B07B2F /* AppDelegate.swift in Sources */,
 				38A3D6DC24C4079C007BC539 /* MyBaseViewController.swift in Sources */,
@@ -350,13 +493,18 @@
 				384DA3D524B7029600B07B2F /* SceneDelegate.swift in Sources */,
 				381C861B24C0390E00828712 /* ResetPasswordVC.swift in Sources */,
 				38B4AF6624F12A3100ABDAA5 /* EditProfileModel.swift in Sources */,
+				3875E13F24F3656700482847 /* UIInfo.swift in Sources */,
+				3875E13D24F3630B00482847 /* MPopup.swift in Sources */,
 				38B4AF6824F133C800ABDAA5 /* PostModel.swift in Sources */,
 				3847D3A124BD843E00A45C4A /* LoginVC.swift in Sources */,
+				3875E14524F3674C00482847 /* AnimatedBG.swift in Sources */,
 				3809047D24C9750B0078A017 /* PostVC.swift in Sources */,
 				38B4AF7224F142E000ABDAA5 /* RegisterModel.swift in Sources */,
+				3875D3C324F655C40067ABCF /* FirebaseFiles.swift in Sources */,
 				38B4AF7024F1424D00ABDAA5 /* ResetPasswordModel.swift in Sources */,
 				38F8FED124D2AFD50042C326 /* EditProfileVC.swift in Sources */,
 				38D505EB24CBE44900038C10 /* PostCell.swift in Sources */,
+				3875E14A24F3972200482847 /* FirebaseUser.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -498,6 +646,7 @@
 		};
 		384DA3E424B7029700B07B2F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = ABE4800BD8288A325B96869D /* Pods-ManaSocial.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -506,7 +655,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = MANA3D.ManaSocial;
+				PRODUCT_BUNDLE_IDENTIFIER = com.MANA3D.ManaSocial;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -515,6 +664,7 @@
 		};
 		384DA3E524B7029700B07B2F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1B0B19E3B60B315D69EDAFB4 /* Pods-ManaSocial.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -523,7 +673,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = MANA3D.ManaSocial;
+				PRODUCT_BUNDLE_IDENTIFIER = com.MANA3D.ManaSocial;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

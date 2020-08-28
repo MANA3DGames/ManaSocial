@@ -9,7 +9,11 @@
 import UIKit
 
 class MyBaseViewController: UIViewController
-{    
+{
+    var progressBGImg: UIImageView?
+    var progressIndicator: UIActivityIndicatorView?
+    
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -71,6 +75,49 @@ class MyBaseViewController: UIViewController
             nextVC.modalPresentationStyle = UIModalPresentationStyle.fullScreen
             self.getTopViewController()?.present( nextVC, animated: false, completion: nil )
         } )
+    }
+    
+    
+    func createProgressBG()
+    {
+        let wind = sceneDelegate.window!
+        let wWidth = wind.bounds.width
+        let wHeight = wind.bounds.height
+        
+        progressBGImg = UIImageView( frame: CGRect( x: 0, y: 0, width: wWidth, height: wHeight ) )
+        progressBGImg!.backgroundColor = .black
+        progressBGImg!.alpha = 0.6
+        progressBGImg!.isUserInteractionEnabled = true
+        // Add progressBG to this view controller.
+        self.view.addSubview( progressBGImg! )
+        
+        progressIndicator = UIActivityIndicatorView( frame: CGRect( x: wWidth/2, y: wHeight/2, width: 20, height: 20 ) )
+        progressIndicator!.style = .large
+        progressIndicator!.color = .white
+        
+        // Add progress indicator to progressBG.
+        progressBGImg!.addSubview( progressIndicator! )
+        
+        // Hide progress background for now.
+        progressBGImg!.isHidden = true
+    }
+    
+    
+    func showProgressBG()
+    {
+        if progressBGImg != nil
+        {
+            progressBGImg!.isHidden = false
+            progressIndicator!.startAnimating()
+        }
+    }
+    func hideProgressBG()
+    {
+        if progressBGImg != nil
+        {
+            progressBGImg!.isHidden = true
+            progressIndicator!.stopAnimating()
+        }
     }
     
 }

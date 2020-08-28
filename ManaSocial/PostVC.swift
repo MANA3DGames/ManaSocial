@@ -33,9 +33,9 @@ class PostVC: MyBaseViewController, UITextViewDelegate, UINavigationControllerDe
         postBtn.layer.cornerRadius = postBtn.bounds.width / 20
         
         // Set Colors.
-        uploadImgBtn.setTitleColor( blackColorBG, for: .normal )
-        postBtn.backgroundColor = blackColorBG
-        countLabel.textColor = grayColorLight
+        uploadImgBtn.setTitleColor( MCOLOR_BLACK, for: .normal )
+        postBtn.backgroundColor = MCOLOR_BLACK
+        countLabel.textColor = MCOLOR_LIGHT_GRAY
         
         // Disable auto scroll layout.
         //self.automaticallyAdjustsScrollViewInsets = false
@@ -76,7 +76,7 @@ class PostVC: MyBaseViewController, UITextViewDelegate, UINavigationControllerDe
             
             if charsCount > MAX_CHARS
             {
-                countLabel.textColor = redColorError;
+                countLabel.textColor = MCOLOR_RED;
             }
         }
         else
@@ -85,7 +85,7 @@ class PostVC: MyBaseViewController, UITextViewDelegate, UINavigationControllerDe
             enablePostBtn()
             
             // Reset count label text color.
-            countLabel.textColor = grayColorLight;
+            countLabel.textColor = MCOLOR_LIGHT_GRAY;
         }
     }
     
@@ -135,7 +135,7 @@ class PostVC: MyBaseViewController, UITextViewDelegate, UINavigationControllerDe
         if !textTxt.text.isEmpty && textTxt.text.count <= MAX_CHARS
         {
             postModel.uploadPost(
-                id: userData?["id"] as! String,
+                id: FirebaseUser.Instance.uid,
                 text: textTxt.text,
                 didPickupImage: didPickupImage,
                 imageView: uploadedImgView,

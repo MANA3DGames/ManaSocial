@@ -7,34 +7,80 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class RegisterVC: MyBaseViewController
 {
-    // UI element objects.
-    @IBOutlet weak var firstNameTxt: UITextField!       // User's first name ui input field.
-    @IBOutlet weak var lastNameTxt: UITextField!        // User's last name ui input field.
+    // Registration UI.
     @IBOutlet weak var passwordTxt: UITextField!        // User's password ui input field.
     @IBOutlet weak var repasswordTxt: UITextField!      // User's confirm-password ui input field.
     @IBOutlet weak var emailTxt: UITextField!           // User's email ui input field.
+    @IBOutlet weak var registerBtn: UIButton!
+    @IBOutlet weak var loginBtn: UIButton!
+    
+    
+    // Verification UI.
+    @IBOutlet weak var verificationView: UIView!
+    @IBOutlet weak var waitingForVerifiationIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var resendEmailBtn: UIButton!
+    
     
     let registerModel = RegisterModel()
+    
+    var firebaseHandle : AuthStateDidChangeListenerHandle?
+    
     
     
     // Startup function.
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        
+        // Create a progress background.
+        createProgressBG()
+        
+        // Rounded Corners
+        verificationView.layer.cornerRadius = verificationView.bounds.width / 20
+        verificationView.clipsToBounds = true
+        
+        // Prevent autofill.
+        passwordTxt.textContentType = .oneTimeCode// .init( rawValue: "" )
+        repasswordTxt.textContentType = .oneTimeCode// .init( rawValue: "" )
+        
+        // Check if we have been re-directed from login-view to verifiy email
+        if FirebaseUser.Instance.isInitialized && !FirebaseUser.Instance.isEmailVerified
+        {
+            registerModel.onCompleteAction( self )
+        }
+        else
+        {
+            showRegistrationUI( true )
+            showVerificationUI( false )
+        }
     }
     
-    // Registers a new user with hard-coded parameters - just for testing.
-    func quickRegistration()
+    
+    func showRegistrationUI(_ show: Bool )
     {
-        let email = "kingodesu@gmail.com"
-        let password = "1234"
-        let firstName = "Amanda"
-        let lastName = "AbuObaid"
-
-        registerModel.register(email: email, password: password, firstName: firstName, lastName: lastName)
+        passwordTxt.isHidden = !show
+        repasswordTxt.isHidden = !show
+        emailTxt.isHidden = !show
+        registerBtn.isHidden = !show
+        loginBtn.isHidden = !show
+    }
+    func showVerificationUI(_ show: Bool )
+    {
+        verificationView.isHidden = !show
+        resendEmailBtn.isHidden = !show
+        
+        if show
+        {
+            waitingForVerifiationIndicator.startAnimating()
+        }
+        else
+        {
+            waitingForVerifiationIndicator.stopAnimating()
+        }
     }
     
     
@@ -42,18 +88,6 @@ class RegisterVC: MyBaseViewController
     // To be called when register btn is clicked.
     @IBAction func onClickRegisterBtn(_ sender: Any)
     {
-        // check first name field.
-        if checkIsEmpty( textField: firstNameTxt )
-        {
-            return
-        }
-        
-        // Check last name field.
-        if checkIsEmpty( textField: lastNameTxt )
-        {
-            return
-        }
-
         // Check email field.
         if checkIsEmpty( textField: emailTxt )
         {
@@ -81,17 +115,19 @@ class RegisterVC: MyBaseViewController
         // Hide keyboard.
         self.view.endEditing( true )
         
-        // All registration fields were filled.
-        registerModel.register(
-            email: emailTxt.text!.lowercased(),
-            password: passwordTxt.text!,
-            firstName: firstNameTxt.text!,
-            lastName: lastNameTxt.text! )
+        // Register a new user with the given crediantals.
+        registerModel.register( email: emailTxt.text!.lowercased(), password: passwordTxt.text!, sender: self )
     }
     
     
     @IBAction func onAlreadyHaveAccountBtnClicked(_ sender: Any)
     {
         moveToViewController( from: self, toID: ID_LOGIN_VC )
+    }
+    
+    
+    @IBAction func onResendEmailVerificationBtnClicked(_ sender: Any)
+    {
+        registerModel.resendEmailVerfication( self )
     }
 }

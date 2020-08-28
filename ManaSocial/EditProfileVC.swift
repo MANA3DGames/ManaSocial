@@ -11,62 +11,67 @@ import UIKit
 class EditProfileVC: MyBaseViewController, UITextFieldDelegate
 {
     @IBOutlet weak var emailTxt: UITextField!
-    @IBOutlet weak var firstNameTxt: UITextField!
-    @IBOutlet weak var lastNameTxt: UITextField!
+    @IBOutlet weak var displayNameTxt: UITextField!
     @IBOutlet weak var avaImg: UIImageView!
     @IBOutlet weak var saveBtn: UIButton!
-    @IBOutlet weak var fullnameLabel: UILabel!
+    @IBOutlet weak var verifiyEmailNotification: UILabel!
     
     let editProfileModel = EditProfileModel()
+    
+    var currentDisplayName = ""
+    var currentEmail = ""
     
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
         
+        // We need a progress indicator here.
+        createProgressBG()
+
+        // Set current navigation title.
         navigationItem.title = "UPDATE PROFILE"
-        
-        emailTxt.text = userData!["email"] as? String
-        firstNameTxt.text = userData!["firstname"] as? String
-        lastNameTxt.text = userData!["lastname"] as? String
-        fullnameLabel.text = "\(firstNameTxt.text!) \(lastNameTxt.text!)"
-        
-        // Download avatar image.
-        let avaUrl = ( userData!["ava"] as? String ) ?? ""
-        editProfileModel.downloadAvaImg( avaUrl: avaUrl, avaPlaceHolder: self.avaImg )
+
+        editProfileModel.fillUserInfo( self )
+
+        saveCurrentInfoTemporarily()
         
         // Make avaImg round corners.
-        avaImg.layer.cornerRadius = avaImg.bounds.width / 2
+        avaImg.layer.cornerRadius = avaImg.bounds.width / 3
         avaImg.clipsToBounds = true
-        
+
         // Customize saveBtn
-        saveBtn.layer.cornerRadius = saveBtn.bounds.width / 9
-        saveBtn.backgroundColor = blackColorBG
-        
+        saveBtn.layer.cornerRadius = saveBtn.bounds.width / 12
+        saveBtn.backgroundColor = MCOLOR_BLACK
+
         // Disable save btn at the beginning.
         disableSaveBtn()
-        
-        
+
+        // Hide email verification note.
+        verifiyEmailNotification.isHidden = true
+
         // Delegating textfields:
         emailTxt.delegate = self
-        firstNameTxt.delegate = self
-        lastNameTxt.delegate = self
-        
+        displayNameTxt.delegate = self
+
         // Add target to textfield to execute texfield func
-        firstNameTxt.addTarget( self, action: #selector( EditProfileVC.textFieldDidChangeSelection(_:) ), for: UIControl.Event.editingChanged )
-        lastNameTxt.addTarget( self, action: #selector( EditProfileVC.textFieldDidChangeSelection(_:) ), for: UIControl.Event.editingChanged )
+        emailTxt.addTarget( self, action: #selector( EditProfileVC.textFieldDidChangeSelection(_:) ), for: UIControl.Event.editingChanged )
+        displayNameTxt.addTarget( self, action: #selector( EditProfileVC.textFieldDidChangeSelection(_:) ), for: UIControl.Event.editingChanged )
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillAppear( animated )
+        
+        if !progressBGImg!.isHidden
+        {
+            saveCurrentInfoTemporarily()
+        }
     }
     
     func textFieldDidChangeSelection(_ textField: UITextField)
     {
-        // Update fullname label.
-        fullnameLabel.text = "\(firstNameTxt.text!) \(lastNameTxt.text!)"
-    }
-    
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String ) -> Bool
-    {
         // Check if there are empty input fields.
-        if emailTxt.text!.isEmpty || firstNameTxt.text!.isEmpty || lastNameTxt.text!.isEmpty
+        if emailTxt.text!.isEmpty || displayNameTxt.text!.isEmpty || ( displayNameTxt.text! == currentDisplayName && emailTxt.text! == currentEmail )
         {
             // Disable save btn.
             disableSaveBtn()
@@ -76,9 +81,24 @@ class EditProfileVC: MyBaseViewController, UITextFieldDelegate
             // There is no empty field. so we can enable save btn.
             enableSaveBtn()
         }
-        
-        return true
     }
+    
+//    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String ) -> Bool
+//    {
+//        // Check if there are empty input fields.
+//        if emailTxt.text!.isEmpty || displayNameTxt.text!.isEmpty || ( displayNameTxt.text! == currentDisplayName && emailTxt.text! == currentEmail )
+//        {
+//            // Disable save btn.
+//            disableSaveBtn()
+//        }
+//        else
+//        {
+//            // There is no empty field. so we can enable save btn.
+//            enableSaveBtn()
+//        }
+//
+//        return true
+//    }
     
     
     func enableSaveBtn()
@@ -92,6 +112,13 @@ class EditProfileVC: MyBaseViewController, UITextFieldDelegate
         saveBtn.alpha = 0.4
     }
     
+    func saveCurrentInfoTemporarily()
+    {
+        // Save temp info.
+        currentDisplayName = displayNameTxt.text!
+        currentEmail = emailTxt.text!
+    }
+    
     
     
     @IBAction func onSaveBtnClicked(_ sender: Any)
@@ -102,14 +129,8 @@ class EditProfileVC: MyBaseViewController, UITextFieldDelegate
             return
         }
         
-        // check first name field.
-        if checkIsEmpty( textField: firstNameTxt )
-        {
-            return
-        }
-        
-        // Check last name field.
-        if checkIsEmpty( textField: lastNameTxt )
+        // Check display name field.
+        if checkIsEmpty( textField: displayNameTxt )
         {
             return
         }
@@ -118,10 +139,6 @@ class EditProfileVC: MyBaseViewController, UITextFieldDelegate
         self.view.endEditing( true )
         
         // Send update request.
-        editProfileModel.updateUserProfile(
-            firstName: firstNameTxt.text!,
-            lastName: lastNameTxt.text!,
-            email: emailTxt.text!,
-            id: userData!["id"] as! String )
+        editProfileModel.updateUserProfile( displayName: displayNameTxt.text!, email: emailTxt.text!, sender: self )
     }
 }
