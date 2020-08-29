@@ -18,6 +18,8 @@ class ResetPasswordVC: MyBaseViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        
+        createProgressBG()
     }
     
     @IBAction func onResetBtnClicked(_ sender: Any)
@@ -31,7 +33,7 @@ class ResetPasswordVC: MyBaseViewController
         self.view.endEditing( true )
         
         // Send reset password request.
-        resetpasswordModel.resetPassword( email: emailTxt.text! )
+        resetpasswordModel.resetPassword( emailTxt.text!, sender: self )
     }
     
     @IBAction func onGoBackBtnClicked(_ sender: Any)

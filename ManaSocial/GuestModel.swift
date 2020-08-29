@@ -10,8 +10,8 @@ import Foundation
 
 class GuestModel : HomeBaseModel
 {
-    public override func downloadPosts( id: String, onComplete: ( ( [AnyObject] )-> Void )? )
-    {
-        super.downloadPosts( id: id, onComplete: onComplete )
-    }
+//    public override func downloadPosts( id: String, onComplete: ( ( [AnyObject] )-> Void )? )
+//    {
+//        super.downloadPosts( id: id, onComplete: onComplete )
+//    }
 }

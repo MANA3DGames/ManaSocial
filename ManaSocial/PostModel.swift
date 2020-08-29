@@ -62,11 +62,10 @@ class PostModel
         )
     }
     
-    func uploadPost( id: String, text: String, didPickupImage: Bool, imageView: UIImageView, onComplete: (()-> Void)? )
+    func uploadPost( text: String, imageView: UIImageView, onComplete: @escaping ()-> Void, onFailed: @escaping ()-> Void )
     {
-        MPopup.display(
-            message: "Firestore UploadPost func has not been implemented yet, please check out uploadPostPHP()",
-            bgColor: MCOLOR_RED,
-            onComplete: nil )
+        FirebaseUser.Instance.uploadPost( text: text, image: imageView.image, onComplete: onComplete, onFailed: { ( error ) in
+            MPopup.display(message: error, bgColor: MCOLOR_RED, onComplete: onFailed )
+        } )
     }
 }

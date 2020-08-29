@@ -28,6 +28,8 @@ class PostVC: MyBaseViewController, UITextViewDelegate, UINavigationControllerDe
     {
         super.viewDidLoad()
         
+        createProgressBG()
+        
         // Rounded cornors.
         textTxt.layer.cornerRadius = textTxt.bounds.width / 50
         postBtn.layer.cornerRadius = postBtn.bounds.width / 20
@@ -101,19 +103,36 @@ class PostVC: MyBaseViewController, UITextViewDelegate, UINavigationControllerDe
     // To be triggered after post request completed successfully.
     func onPostUploaded()
     {
-        // Get back to main queue.
-        DispatchQueue.main.sync {
-            // Reset everything to start brand new post.
-            self.didPickupImage = false
-            self.textTxt.text = ""
-            self.countLabel.text = String( MAX_CHARS )
-            self.uploadedImgView.image = nil
-            
-            disablePostBtn()
-            
-            // Switch to another scene.
-            self.tabBarController?.selectedIndex = 0
-        }
+//        // Get back to main queue.
+//        DispatchQueue.main.sync {
+//            // Reset everything to start brand new post.
+//            self.didPickupImage = false
+//            self.textTxt.text = ""
+//            self.countLabel.text = String( MAX_CHARS )
+//            self.uploadedImgView.image = nil
+//
+//            disablePostBtn()
+//
+//            // Switch to another scene.
+//            self.tabBarController?.selectedIndex = 0
+//        }
+        
+        // Reset everything to start brand new post.
+        self.didPickupImage = false
+        self.textTxt.text = ""
+        self.countLabel.text = String( MAX_CHARS )
+        self.uploadedImgView.image = nil
+        
+        disablePostBtn()
+        
+        // Switch to another scene.
+        self.tabBarController?.selectedIndex = 0
+        
+        hideProgressBG()
+    }
+    func onPostFailed()
+    {
+        hideProgressBG()
     }
     
     
@@ -134,12 +153,8 @@ class PostVC: MyBaseViewController, UITextViewDelegate, UINavigationControllerDe
     {
         if !textTxt.text.isEmpty && textTxt.text.count <= MAX_CHARS
         {
-            postModel.uploadPost(
-                id: FirebaseUser.Instance.uid,
-                text: textTxt.text,
-                didPickupImage: didPickupImage,
-                imageView: uploadedImgView,
-                onComplete: onPostUploaded )
+            showProgressBG()
+            postModel.uploadPost( text: textTxt.text, imageView: uploadedImgView, onComplete: onPostUploaded, onFailed: onPostFailed )
         }
     }
 }

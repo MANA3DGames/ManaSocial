@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import FirebaseFirestore
 
 class HomeBaseModel
 {
@@ -34,7 +35,8 @@ class HomeBaseModel
         sender.navigationItem.title = sender.fullNameLabel.text
     }
     
-    func downloadPosts( id: String, onComplete: ( ( [AnyObject] )-> Void )? )
+    /// Deprecated: please use Firebase func instead of this one
+    func downloadPostsPHP( id: String, onComplete: ( ( [AnyObject] )-> Void )? )
     {
         let customOnComplete = { (_ json: Any, operation: ServerAccess.Operation ) in
             let jsonData = json as? [String: Any]
@@ -53,6 +55,11 @@ class HomeBaseModel
             onFailedAction: ServerResponseHandler.onFailedAction,
             operation: ServerAccess.Operation.NONE
         )
+    }
+    
+    func downloadPosts( userID: String, onComplete: @escaping ( [DocumentSnapshot] )-> Void, onFailed: @escaping (_ error: String )-> Void )
+    {
+        FirebaseUser.Instance.downloadPosts( userID: userID, onComplete: onComplete, onFailed: onFailed )
     }
     
     /// Deprecated:  instead please use Firebase func.

@@ -31,6 +31,6 @@ class GuestVC: HomeBaseViewController //MyBaseViewController, UITableViewDelegat
     {
         super.viewWillAppear( animated )
         
-        //downloadPosts()
+        downloadPosts( userID: document!.documentID, model: guestModel )
     }
 }

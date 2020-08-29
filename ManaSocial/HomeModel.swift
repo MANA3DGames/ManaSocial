@@ -9,16 +9,12 @@
 import Foundation
 import UIKit
 import FirebaseStorage
-
+import FirebaseFirestore
 
 class HomeModel : HomeBaseModel
 {
-    public override func downloadPosts( id: String, onComplete: ( ( [AnyObject] )-> Void )? )
-    {
-        super.downloadPosts( id: id, onComplete: onComplete )
-    }
-    
-    public func deletePost( uuid: String, path: String, onComplete: ( ()-> Void )? )
+    /// Deprecated: Please use Firestore func instead of this one.
+    func deletePostPHP( uuid: String, path: String, onComplete: ( ()-> Void )? )
     {
         let customOnComplete = { (_ json: Any, operation: ServerAccess.Operation ) in
             let jsonData = json as? [String: Any]
@@ -77,7 +73,25 @@ class HomeModel : HomeBaseModel
     }
     
     
-    
+    func deletePost( sender: HomeVC, forRowAt indexPath: IndexPath )
+    {
+        sender.showProgressBG()
+        
+        let post = sender.postsArray[indexPath.row]
+        
+        // Send php delete request.
+        FirebaseUser.Instance.deletePost( postId: post.documentID, imgUrl: post.get( "imgUrl" ) as! String, onComplete: {
+            DispatchQueue.main.async {
+                sender.postsArray.remove( at: indexPath.row )
+                sender.postImagesArray.remove( at: indexPath.row )
+                sender.tableView.deleteRows( at: [indexPath], with: UITableView.RowAnimation.automatic )
+                
+                sender.hideProgressBG()
+            }
+        }, onFailed: { error in
+            MPopup.display( message: error, bgColor: MCOLOR_RED, onComplete: sender.hideProgressBG )
+        } )
+    }
     
     override func fillUserInfo( sender: HomeBaseViewController, name: String, uid: String )
     {

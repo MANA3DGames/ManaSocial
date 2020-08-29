@@ -15,7 +15,8 @@ class FirebaseFiles
         
     }
     
-    func uploadAvaImage( uid: String, image: UIImage )
+    
+    func uploadImage( path: String, image: UIImage, onComplete: ( (_ imgRef: StorageReference )-> Void )?, onFailed: ( (_ error: String )-> Void )? )
     {
         let imageData = image.jpegData( compressionQuality: 0.5 )
         if imageData == nil
@@ -27,7 +28,7 @@ class FirebaseFiles
         let storageRef = Storage.storage().reference()
 
         // Create a reference to the file you want to upload
-        let imgRef = storageRef.child( "avaImages/\(uid).jpg" )
+        let imgRef = storageRef.child( path )
 
         // Upload the file to the target path
         //let uploadTask =
@@ -36,33 +37,49 @@ class FirebaseFiles
             // Check if there is any error.
             if error != nil
             {
-                print( error.debugDescription )
+                onFailed?( error.debugDescription )
             }
             else
             {
-//                // You can also access to download URL after upload.
-//                imgRef.downloadURL { ( url, error ) in
-//                    guard let downloadURL = url else {
-//                      // Uh-oh, an error occurred!
-//                      return
-//                    }
-//
-//                    // Update user information with a new photo url.
-//                    self.updateAvaURL( url: downloadURL, onComplete: nil, onFailed: nil )
-//                }
-                
-                print( "Avatar image has been uploaded successfully" )
+                print( "Image has been uploaded successfully" )
+                onComplete?( imgRef )
             }
         }
     }
     
-    static func downloadAvaImg( userID: String, onComplete: ((_ image: UIImage? )-> Void)?, onFailed: ( (_ error: String )-> Void )? )
+    func uploadPostImage( userUid: String, imgUid: String, image: UIImage, onComplete: @escaping (_ url : String )-> Void, onFailed: @escaping (_ error: String )-> Void )
+    {
+        uploadImage(
+            path: "posts/\(userUid)/\(imgUid).jpg",
+            image: image,
+            onComplete: { ( imgRef )  in
+                // You can also access to download URL after upload.
+                imgRef.downloadURL { ( url, error ) in
+                    guard let downloadURL = url else {
+                      // Uh-oh, an error occurred!
+                      return
+                    }
+                    
+                    // Update user information with a new photo url.
+                    onComplete( downloadURL.absoluteString )
+                }
+            },
+            onFailed: { ( error ) in onFailed( error ) } )
+    }
+    
+    func uploadAvaImage( uid: String, image: UIImage )
+    {
+        uploadImage( path: "avaImages/\(uid).jpg", image: image, onComplete: nil, onFailed: nil )
+    }
+    
+    
+    static func downloadImage( path: String, onComplete: ((_ image: UIImage? )-> Void)?, onFailed: ( (_ error: String )-> Void )? )
     {
         // Create a root reference
         let storageRef = Storage.storage().reference()
 
         // Create a reference to the file you want to download
-        let imgRef = storageRef.child( "avaImages/\(userID).jpg" )
+        let imgRef = storageRef.child( path )
         
         // Download in memory with a maximum allowed size of 1MB (1 * 1024 * 1024 bytes)
         imgRef.getData( maxSize: 1 * 1024 * 1024 ) { data, error in
@@ -78,5 +95,30 @@ class FirebaseFiles
         }
     }
     
+    static func downloadAvaImg( userID: String, onComplete: ((_ image: UIImage? )-> Void)?, onFailed: ( (_ error: String )-> Void )? )
+    {
+        downloadImage(
+            path: "avaImages/\(userID).jpg",
+            onComplete: { ( image ) in onComplete!( image ) },
+            onFailed: { ( error ) in onFailed!( "Failed to download user profile image: \(error)" ) } )
+    }
     
+    
+    func deletePostImage( userUid: String, imgUid: String, onComplete: @escaping ()-> Void, onFailed: @escaping (_ error: String )-> Void )
+    {
+        // Create a root reference
+        let storageRef = Storage.storage().reference()
+        
+        // Create a reference to the file to delete
+        let imgRef = storageRef.child( "posts/\(userUid)/\(imgUid).jpg" );
+
+        // Delete the file
+        imgRef.delete { error in
+          if let error = error {
+            onFailed( error.localizedDescription )
+          } else {
+            onComplete()
+          }
+        }
+    }
 }

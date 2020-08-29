@@ -23,8 +23,30 @@ class LoginVC: MyBaseViewController {
         
         // Prevent autofill
         passwordTxt.textContentType = .oneTimeCode// .init( rawValue: "" )
+        
+        
+        
+        justForQuickTesting()
     }
 
+    func justForQuickTesting()
+    {
+        let hostName = ProcessInfo.processInfo.hostName
+        if hostName == "mahmouds-mini"
+        {
+            let btn = UIButton( frame: CGRect( x: 10, y: 10, width: 100, height: 100 ) )
+            btn.setTitle( "Quick Login", for: UIControl.State.normal )
+            btn.addTarget( self, action: #selector( quickLoginInfo ), for: UIControl.Event.touchDown )
+            self.view.addSubview( btn )
+        }
+    }
+    @objc func quickLoginInfo()
+    {
+        emailTxt.text = ""
+        passwordTxt.text = ""
+    }
+    
+    
     @IBAction func onLoginBtnClicked(_ sender: Any)
     {
         // Check if email textfield is empty?

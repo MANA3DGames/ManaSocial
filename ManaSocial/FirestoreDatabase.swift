@@ -86,6 +86,53 @@ class FirestoreDatabase
         } )
     }
     
+    func addPostDoc( userId: String, postId: String, text: String, imgUrl: String, onComplete: @escaping ()-> Void, onFailed: @escaping (_ error : String )-> Void )
+    {
+        usersCollectionRef?.document( userId ).collection( "Posts" ).document( postId ).setData( [
+            "text" : text,
+            "imgUrl" : imgUrl,
+            "poster" : FirebaseUser.Instance.displayName
+        ], completion: { ( error ) in
+            if error != nil
+            {
+                onFailed( "Failed to add user doc due to \(error.debugDescription)" )
+            }
+            else
+            {
+                onComplete()
+            }
+        } )
+    }
+    
+    func deletePostDoc( userId: String, docId: String, onComplete: @escaping ()-> Void, onFailed: @escaping (_ error: String )-> Void  )
+    {
+        usersCollectionRef?.document( userId ).collection( "Posts" ).document( docId ).delete() { error in
+            if error != nil
+            {
+                onFailed( error!.localizedDescription )
+                print( "Failed to delete post." )
+            }
+            else
+            {
+                onComplete()
+                print( "Post was deleted." )
+            }
+        }
+    }
+    
+    func downloadPosts( userId: String, onComplete: @escaping ( [DocumentSnapshot]  )-> Void, onFailed: @escaping (_ error : String )-> Void )
+    {
+        usersCollectionRef?.document( userId ).collection( "Posts" ).getDocuments( completion: { ( querySnapshot, error ) in
+            if error != nil
+            {
+                onFailed( error!.localizedDescription )
+            }
+            else if querySnapshot != nil
+            {
+                onComplete( querySnapshot!.documents )
+            }
+        } )
+    }
     
     func searchForUsers( keyword: String, id: String, onComplete: ( ( [AnyObject] ) -> Void )?, onFailed: ( (_ error: String )-> Void )? )
     {
@@ -106,4 +153,5 @@ class FirestoreDatabase
             } )
         }
     }
+    
 }

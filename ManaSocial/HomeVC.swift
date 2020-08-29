@@ -16,7 +16,10 @@ class HomeVC: HomeBaseViewController, UINavigationControllerDelegate, UIImagePic
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        
+        createProgressBG()
     }
+    
     // Pre-load func.
     override func viewWillAppear(_ animated: Bool)
     {
@@ -25,7 +28,7 @@ class HomeVC: HomeBaseViewController, UINavigationControllerDelegate, UIImagePic
         // Fill in user information in the corresponding ui elements.
         homeModel.fillUserInfo( sender: self, name: FirebaseUser.Instance.displayName, uid: FirebaseUser.Instance.uid )
         
-        //downloadPosts()
+        downloadPosts( userID: FirebaseUser.Instance.uid, model: homeModel )
     }
     
     
@@ -81,8 +84,6 @@ class HomeVC: HomeBaseViewController, UINavigationControllerDelegate, UIImagePic
         self.dismiss( animated: true, completion: nil )
         
         // Upload selected image to our database server.
-        //homeModel.uploadAvaImagePHP( id: userData!["id"] as! String, image: avaImg.image! )
-        //homeModel.uploadAvaImage( avaImg.image! )
         FirebaseUser.Instance.uploadAvaImage( avaImg.image! )
     }
     
@@ -91,6 +92,8 @@ class HomeVC: HomeBaseViewController, UINavigationControllerDelegate, UIImagePic
     {
         // Clear user saved data.
         UserLocalData.clear()
+        
+        FirebaseUser.Instance.signout()
         
         // Go back to login menu.
         moveToViewController( from: self, toID: ID_LOGIN_VC )
@@ -111,17 +114,7 @@ class HomeVC: HomeBaseViewController, UINavigationControllerDelegate, UIImagePic
         // Check if we pressed on delete button of swiped cell?
         if editingStyle == .delete
         {
-            let post = postsArray[indexPath.row]
-            
-            // Send php delete request.
-            homeModel.deletePost( uuid: post["uuid"] as! String, path: post["path"] as! String, onComplete: {
-                
-                DispatchQueue.main.async {
-                    self.postsArray.remove( at: indexPath.row )
-                    self.postImagesArray.remove( at: indexPath.row )
-                    self.tableView.deleteRows( at: [indexPath], with: UITableView.RowAnimation.automatic )
-                }
-            } )
+            homeModel.deletePost( sender: self, forRowAt: indexPath )
         }
     }
 }
