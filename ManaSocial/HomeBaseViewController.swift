@@ -1,11 +1,3 @@
-//
-//  HomeBaseViewController.swift
-//  ManaSocial
-//
-//  Created by Mahmoud Abu Obaid on 8/28/20.
-//  Copyright © 2020 Mahmoud Abu Obaid. All rights reserved.
-//
-
 import Foundation
 import UIKit
 import FirebaseFirestore
@@ -20,7 +12,6 @@ class HomeBaseViewController : MyBaseViewController, UITableViewDelegate, UITabl
     @IBOutlet weak var tableView: UITableView!
     var postsArray = [DocumentSnapshot]()
     var postImagesArray = [UIImage]()
-    
     
     override func viewDidLoad()
     {
@@ -48,9 +39,9 @@ class HomeBaseViewController : MyBaseViewController, UITableViewDelegate, UITabl
         let post = self.postsArray[indexPath.row]
         
         // Create a new cell.
-        let cell = tableView.dequeueReusableCell( withIdentifier: "cell", for: indexPath ) as! PostCell
-        cell.postFullnameLabel.text = post.get( "poster" ) as? String
-            cell.postTextLabel.text = post.get( "text" ) as? String
+        let cell = tableView.dequeueReusableCell( withIdentifier: VCIDInfo.ID_CELL, for: indexPath ) as! PostCell
+        cell.postFullnameLabel.text = post.get( FirestoreFields.User.Post.poster ) as? String
+            cell.postTextLabel.text = post.get( FirestoreFields.User.Post.text ) as? String
         
         // Set post image.
         let image = postImagesArray[indexPath.row]
@@ -67,7 +58,6 @@ class HomeBaseViewController : MyBaseViewController, UITableViewDelegate, UITabl
         let now = Date()
         let components = Set<Calendar.Component>( [.second, .minute, .hour, .day, .weekOfMonth] )
         let difference = Calendar.current.dateComponents( components, from: newDate!, to: now )
-        
         
         // Calculate date:
         if difference.weekOfMonth ?? 0 > 0
@@ -100,8 +90,6 @@ class HomeBaseViewController : MyBaseViewController, UITableViewDelegate, UITabl
             if image.size.width == 0 && image.size.height == 0
             {
                 cell.postTextLabel.frame.origin.x = 20
-                //cell.postTextLabel.frame.size.width = cell.postTextLabel.frame.size.width + cell.postImgView.frame.width
-                //cell.postTextLabel.sizeToFit()
             }
         }
         
@@ -122,7 +110,7 @@ class HomeBaseViewController : MyBaseViewController, UITableViewDelegate, UITabl
                 //for i in stride( from: self.postsArray.count-1, to: 0, by: -1 )
                 {
                     // Get current post image.
-                    let imgPath = self.postsArray[i].get( "imgUrl" ) as? String
+                    let imgPath = self.postsArray[i].get( FirestoreFields.User.Post.imgUrl ) as? String
 
                     var image = UIImage()
 

@@ -1,15 +1,5 @@
-//
-//  AppDelegate.swift
-//  ManaSocial
-//
-//  Created by Mahmoud Abu Obaid on 7/9/20.
-//  Copyright © 2020 Mahmoud Abu Obaid. All rights reserved.
-//
-
 import UIKit
 import FirebaseCore
-
-//let appDelegate : AppDelegate = UIApplication.shared.delegate as? AppDelegate
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate

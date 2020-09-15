@@ -1,18 +1,9 @@
-//
-//  MVC.swift
-//  ManaSocial
-//
-//  Created by Mahmoud Abu Obaid on 7/19/20.
-//  Copyright © 2020 Mahmoud Abu Obaid. All rights reserved.
-//
-
 import UIKit
 
 class MyBaseViewController: UIViewController
 {
     var progressBGImg: UIImageView?
     var progressIndicator: UIActivityIndicatorView?
-    
     
     override func viewDidLoad()
     {
@@ -77,7 +68,6 @@ class MyBaseViewController: UIViewController
         } )
     }
     
-    
     func createProgressBG()
     {
         let wind = sceneDelegate.window!
@@ -102,7 +92,6 @@ class MyBaseViewController: UIViewController
         progressBGImg!.isHidden = true
     }
     
-    
     func showProgressBG()
     {
         if progressBGImg != nil
@@ -111,6 +100,7 @@ class MyBaseViewController: UIViewController
             progressIndicator!.startAnimating()
         }
     }
+    
     func hideProgressBG()
     {
         if progressBGImg != nil
@@ -119,5 +109,4 @@ class MyBaseViewController: UIViewController
             progressIndicator!.stopAnimating()
         }
     }
-    
 }

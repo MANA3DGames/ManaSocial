@@ -1,11 +1,3 @@
-//
-//  AnimatedBG.swift
-//  ManaSocial
-//
-//  Created by Mahmoud Abu Obaid on 8/24/20.
-//  Copyright © 2020 Mahmoud Abu Obaid. All rights reserved.
-//
-
 import Foundation
 import UIKit
 
@@ -17,12 +9,11 @@ class AnimatedBG
     // Initial target x position which will be used to animate background image.
     var initTargetXBGAnimation : CGFloat = 0.0
     
-    
     init( window: UIWindow ) {
         
         // Creating imageView to store background image
         bgImg.frame = CGRect( x: 0, y: 0, width: window.bounds.width * 1.688, height: window.bounds.height )
-        bgImg.image = UIImage( named: "bgImg.jpg" )
+        bgImg.image = UIImage( named: UIInfo.BG_IMAGE )
         window.addSubview( bgImg )
         window.makeKeyAndVisible()
         
@@ -33,9 +24,7 @@ class AnimatedBG
         animate( targetX: initTargetXBGAnimation )
     }
     
-    deinit {
-        
-    }
+    deinit {}
     
     func animate( targetX: CGFloat )
     {

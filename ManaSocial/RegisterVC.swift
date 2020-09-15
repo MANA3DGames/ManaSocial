@@ -1,11 +1,3 @@
-//
-//  ViewController.swift
-//  ManaSocial
-//
-//  Created by Mahmoud Abu Obaid on 7/9/20.
-//  Copyright © 2020 Mahmoud Abu Obaid. All rights reserved.
-//
-
 import UIKit
 import FirebaseAuth
 
@@ -18,18 +10,14 @@ class RegisterVC: MyBaseViewController
     @IBOutlet weak var registerBtn: UIButton!
     @IBOutlet weak var loginBtn: UIButton!
     
-    
     // Verification UI.
     @IBOutlet weak var verificationView: UIView!
     @IBOutlet weak var waitingForVerifiationIndicator: UIActivityIndicatorView!
     @IBOutlet weak var resendEmailBtn: UIButton!
     
-    
     let registerModel = RegisterModel()
     
     var firebaseHandle : AuthStateDidChangeListenerHandle?
-    
-    
     
     // Startup function.
     override func viewDidLoad()
@@ -58,8 +46,7 @@ class RegisterVC: MyBaseViewController
             showVerificationUI( false )
         }
     }
-    
-    
+
     func showRegistrationUI(_ show: Bool )
     {
         passwordTxt.isHidden = !show
@@ -68,6 +55,7 @@ class RegisterVC: MyBaseViewController
         registerBtn.isHidden = !show
         loginBtn.isHidden = !show
     }
+    
     func showVerificationUI(_ show: Bool )
     {
         verificationView.isHidden = !show
@@ -82,9 +70,7 @@ class RegisterVC: MyBaseViewController
             waitingForVerifiationIndicator.stopAnimating()
         }
     }
-    
-    
-    
+
     // To be called when register btn is clicked.
     @IBAction func onClickRegisterBtn(_ sender: Any)
     {
@@ -119,12 +105,10 @@ class RegisterVC: MyBaseViewController
         registerModel.register( email: emailTxt.text!.lowercased(), password: passwordTxt.text!, sender: self )
     }
     
-    
     @IBAction func onAlreadyHaveAccountBtnClicked(_ sender: Any)
     {
-        moveToViewController( from: self, toID: ID_LOGIN_VC )
+        moveToViewController( from: self, toID: VCIDInfo.ID_LOGIN_VC )
     }
-    
     
     @IBAction func onResendEmailVerificationBtnClicked(_ sender: Any)
     {

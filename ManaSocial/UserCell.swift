@@ -1,11 +1,3 @@
-//
-//  UserCell.swift
-//  ManaSocial
-//
-//  Created by Mahmoud Abu Obaid on 7/27/20.
-//  Copyright © 2020 Mahmoud Abu Obaid. All rights reserved.
-//
-
 import UIKit
 
 class UserCell: UITableViewCell
@@ -22,8 +14,6 @@ class UserCell: UITableViewCell
         avaImg.clipsToBounds = true
         
         // Set color.
-        userName.textColor = MCOLOR_BLACK
+        userName.textColor = UIInfo.MCOLOR_BLACK
     }
-    
-    
 }

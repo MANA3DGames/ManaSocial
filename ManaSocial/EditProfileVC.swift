@@ -1,11 +1,3 @@
-//
-//  EditProfileVC.swift
-//  ManaSocial
-//
-//  Created by Mahmoud Abu Obaid on 7/30/20.
-//  Copyright © 2020 Mahmoud Abu Obaid. All rights reserved.
-//
-
 import UIKit
 
 class EditProfileVC: MyBaseViewController, UITextFieldDelegate
@@ -20,8 +12,7 @@ class EditProfileVC: MyBaseViewController, UITextFieldDelegate
     
     var currentDisplayName = ""
     var currentEmail = ""
-    
-    
+
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -42,7 +33,7 @@ class EditProfileVC: MyBaseViewController, UITextFieldDelegate
 
         // Customize saveBtn
         saveBtn.layer.cornerRadius = saveBtn.bounds.width / 12
-        saveBtn.backgroundColor = MCOLOR_BLACK
+        saveBtn.backgroundColor = UIInfo.MCOLOR_BLACK
 
         // Disable save btn at the beginning.
         disableSaveBtn()
@@ -83,29 +74,12 @@ class EditProfileVC: MyBaseViewController, UITextFieldDelegate
         }
     }
     
-//    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String ) -> Bool
-//    {
-//        // Check if there are empty input fields.
-//        if emailTxt.text!.isEmpty || displayNameTxt.text!.isEmpty || ( displayNameTxt.text! == currentDisplayName && emailTxt.text! == currentEmail )
-//        {
-//            // Disable save btn.
-//            disableSaveBtn()
-//        }
-//        else
-//        {
-//            // There is no empty field. so we can enable save btn.
-//            enableSaveBtn()
-//        }
-//
-//        return true
-//    }
-    
-    
     func enableSaveBtn()
     {
         saveBtn.isEnabled = true
         saveBtn.alpha = 1
     }
+    
     func disableSaveBtn()
     {
         saveBtn.isEnabled = false
@@ -118,8 +92,6 @@ class EditProfileVC: MyBaseViewController, UITextFieldDelegate
         currentDisplayName = displayNameTxt.text!
         currentEmail = emailTxt.text!
     }
-    
-    
     
     @IBAction func onSaveBtnClicked(_ sender: Any)
     {

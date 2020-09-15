@@ -1,25 +1,13 @@
-//
-//  SceneDelegate.swift
-//  ManaSocial
-//
-//  Created by Mahmoud Abu Obaid on 7/9/20.
-//  Copyright © 2020 Mahmoud Abu Obaid. All rights reserved.
-//
-
 import UIKit
 
 // Global delegate.
 let sceneDelegate: SceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as! SceneDelegate
 
-
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-
     var animatedBG : AnimatedBG?
-    
-    
-    
+
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions)
     {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
@@ -28,20 +16,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let _ = (scene as? UIWindowScene) else { return }
         
         animatedBG = AnimatedBG( window: window! )
-        
-        // Check if we have a logged in user already.
-        UserLocalData.tryToLoadUserLoginData()
     }
-    
-    
-    
+
     func goToTabBarController()
     {
-        let storyboard = UIStoryboard( name: ID_TAB_BAR, bundle: nil )
-        let tabBarC = storyboard.instantiateViewController( identifier: ID_TAB_BAR )
+        let storyboard = UIStoryboard( name: VCIDInfo.ID_TAB_BAR, bundle: nil )
+        let tabBarC = storyboard.instantiateViewController( identifier: VCIDInfo.ID_TAB_BAR )
         window?.rootViewController = tabBarC
     }
-    
 
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.
@@ -70,7 +52,5 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
     }
-
-
 }
 

@@ -16,7 +16,6 @@
 		381F0FCF24F19144008674BC /* Users.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 381F0FCE24F19144008674BC /* Users.storyboard */; };
 		382C6E4924F1747200E5C101 /* Register.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 382C6E4824F1747200E5C101 /* Register.storyboard */; };
 		382C6E4B24F1838C00E5C101 /* ResetPassword.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 382C6E4A24F1838C00E5C101 /* ResetPassword.storyboard */; };
-		383AB09C24B842EB00E4AEE6 /* ServerAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383AB09B24B842EB00E4AEE6 /* ServerAccess.swift */; };
 		3847D3A124BD843E00A45C4A /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3847D3A024BD843E00A45C4A /* LoginVC.swift */; };
 		384DA3D324B7029600B07B2F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 384DA3D224B7029600B07B2F /* AppDelegate.swift */; };
 		384DA3D524B7029600B07B2F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 384DA3D424B7029600B07B2F /* SceneDelegate.swift */; };
@@ -24,6 +23,7 @@
 		384DA3DA24B7029600B07B2F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 384DA3D824B7029600B07B2F /* Main.storyboard */; };
 		384DA3DC24B7029700B07B2F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 384DA3DB24B7029700B07B2F /* Assets.xcassets */; };
 		384DA3DF24B7029700B07B2F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 384DA3DD24B7029700B07B2F /* LaunchScreen.storyboard */; };
+		384E1B2C251073D100FFC68B /* FirebaseFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = 384E1B2B251073D100FFC68B /* FirebaseFields.swift */; };
 		38574A7F24F25A6600A7813E /* Guest.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 38574A7E24F25A6600A7813E /* Guest.storyboard */; };
 		38574A8124F2C70C00A7813E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 38574A8024F2C70C00A7813E /* GoogleService-Info.plist */; };
 		3875D3C024F61FD80067ABCF /* FirestoreDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3875D3BF24F61FD80067ABCF /* FirestoreDatabase.swift */; };
@@ -32,7 +32,6 @@
 		3875E13F24F3656700482847 /* UIInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3875E13E24F3656700482847 /* UIInfo.swift */; };
 		3875E14224F3661C00482847 /* VCIDInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3875E14124F3661C00482847 /* VCIDInfo.swift */; };
 		3875E14524F3674C00482847 /* AnimatedBG.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3875E14424F3674C00482847 /* AnimatedBG.swift */; };
-		3875E14724F36B5100482847 /* UserLocalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3875E14624F36B5100482847 /* UserLocalData.swift */; };
 		3875E14A24F3972200482847 /* FirebaseUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3875E14924F3972200482847 /* FirebaseUser.swift */; };
 		38A2C7D024F8E1DA00EE8AA5 /* HomeBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A2C7CF24F8E1DA00EE8AA5 /* HomeBaseViewController.swift */; };
 		38A3D6DC24C4079C007BC539 /* MyBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A3D6DB24C4079C007BC539 /* MyBaseViewController.swift */; };
@@ -46,8 +45,6 @@
 		38B4AF7024F1424D00ABDAA5 /* ResetPasswordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B4AF6F24F1424D00ABDAA5 /* ResetPasswordModel.swift */; };
 		38B4AF7224F142E000ABDAA5 /* RegisterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B4AF7124F142E000ABDAA5 /* RegisterModel.swift */; };
 		38B4AF7424F1439000ABDAA5 /* UsersModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B4AF7324F1439000ABDAA5 /* UsersModel.swift */; };
-		38B4AF7624F144AB00ABDAA5 /* ServerData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B4AF7524F144AB00ABDAA5 /* ServerData.swift */; };
-		38B4AF7824F147EC00ABDAA5 /* ServerResponseHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B4AF7724F147EC00ABDAA5 /* ServerResponseHandler.swift */; };
 		38C742D924CEAE1100234369 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C742D824CEAE1100234369 /* UserCell.swift */; };
 		38C742DB24CEAE2800234369 /* UsersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C742DA24CEAE2800234369 /* UsersVC.swift */; };
 		38D505EB24CBE44900038C10 /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D505EA24CBE44900038C10 /* PostCell.swift */; };
@@ -70,7 +67,6 @@
 		381F0FCE24F19144008674BC /* Users.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Users.storyboard; sourceTree = "<group>"; };
 		382C6E4824F1747200E5C101 /* Register.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Register.storyboard; sourceTree = "<group>"; };
 		382C6E4A24F1838C00E5C101 /* ResetPassword.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ResetPassword.storyboard; sourceTree = "<group>"; };
-		383AB09B24B842EB00E4AEE6 /* ServerAccess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerAccess.swift; sourceTree = "<group>"; };
 		3847D3A024BD843E00A45C4A /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		384DA3CF24B7029600B07B2F /* ManaSocial.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ManaSocial.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		384DA3D224B7029600B07B2F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -80,6 +76,7 @@
 		384DA3DB24B7029700B07B2F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		384DA3DE24B7029700B07B2F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		384DA3E024B7029700B07B2F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		384E1B2B251073D100FFC68B /* FirebaseFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseFields.swift; sourceTree = "<group>"; };
 		38574A7E24F25A6600A7813E /* Guest.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Guest.storyboard; sourceTree = "<group>"; };
 		38574A8024F2C70C00A7813E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3875D3BF24F61FD80067ABCF /* FirestoreDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreDatabase.swift; sourceTree = "<group>"; };
@@ -88,7 +85,6 @@
 		3875E13E24F3656700482847 /* UIInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIInfo.swift; sourceTree = "<group>"; };
 		3875E14124F3661C00482847 /* VCIDInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCIDInfo.swift; sourceTree = "<group>"; };
 		3875E14424F3674C00482847 /* AnimatedBG.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedBG.swift; sourceTree = "<group>"; };
-		3875E14624F36B5100482847 /* UserLocalData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLocalData.swift; sourceTree = "<group>"; };
 		3875E14924F3972200482847 /* FirebaseUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseUser.swift; sourceTree = "<group>"; };
 		38A2C7CF24F8E1DA00EE8AA5 /* HomeBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeBaseViewController.swift; sourceTree = "<group>"; };
 		38A3D6DB24C4079C007BC539 /* MyBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyBaseViewController.swift; sourceTree = "<group>"; };
@@ -102,8 +98,6 @@
 		38B4AF6F24F1424D00ABDAA5 /* ResetPasswordModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordModel.swift; sourceTree = "<group>"; };
 		38B4AF7124F142E000ABDAA5 /* RegisterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterModel.swift; sourceTree = "<group>"; };
 		38B4AF7324F1439000ABDAA5 /* UsersModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersModel.swift; sourceTree = "<group>"; };
-		38B4AF7524F144AB00ABDAA5 /* ServerData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerData.swift; sourceTree = "<group>"; };
-		38B4AF7724F147EC00ABDAA5 /* ServerResponseHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerResponseHandler.swift; sourceTree = "<group>"; };
 		38C742D824CEAE1100234369 /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
 		38C742DA24CEAE2800234369 /* UsersVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersVC.swift; sourceTree = "<group>"; };
 		38D505EA24CBE44900038C10 /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
@@ -147,17 +141,6 @@
 			name = Users;
 			sourceTree = "<group>";
 		};
-		3842A30324BEE4D8001A3088 /* Utilities */ = {
-			isa = PBXGroup;
-			children = (
-				3875E14824F38D6A00482847 /* Firebase */,
-				3875E14324F366BD00482847 /* ServerPHP (Deprecated) */,
-				3875D3C124F654FF0067ABCF /* LocalData (Deprecated) */,
-				3875D3C424F698840067ABCF /* UI */,
-			);
-			name = Utilities;
-			sourceTree = "<group>";
-		};
 		384DA3C624B7029600B07B2F = {
 			isa = PBXGroup;
 			children = (
@@ -190,7 +173,8 @@
 				38B4AF6124F0FF3700ABDAA5 /* Post */,
 				3842A30124BEE498001A3088 /* Users */,
 				38B4AF6024F0FF2C00ABDAA5 /* Guest */,
-				3842A30324BEE4D8001A3088 /* Utilities */,
+				3875E14824F38D6A00482847 /* Firebase */,
+				3875D3C424F698840067ABCF /* UIUtilities */,
 				384DA3D224B7029600B07B2F /* AppDelegate.swift */,
 				384DA3D424B7029600B07B2F /* SceneDelegate.swift */,
 				384DA3DB24B7029700B07B2F /* Assets.xcassets */,
@@ -201,21 +185,13 @@
 			path = ManaSocial;
 			sourceTree = "<group>";
 		};
-		3875D3C124F654FF0067ABCF /* LocalData (Deprecated) */ = {
-			isa = PBXGroup;
-			children = (
-				3875E14624F36B5100482847 /* UserLocalData.swift */,
-			);
-			name = "LocalData (Deprecated)";
-			sourceTree = "<group>";
-		};
-		3875D3C424F698840067ABCF /* UI */ = {
+		3875D3C424F698840067ABCF /* UIUtilities */ = {
 			isa = PBXGroup;
 			children = (
 				3875E13C24F3630B00482847 /* MPopup.swift */,
 				3875E14424F3674C00482847 /* AnimatedBG.swift */,
 			);
-			name = UI;
+			name = UIUtilities;
 			sourceTree = "<group>";
 		};
 		3875E14024F365E900482847 /* Info */ = {
@@ -227,19 +203,10 @@
 			name = Info;
 			sourceTree = "<group>";
 		};
-		3875E14324F366BD00482847 /* ServerPHP (Deprecated) */ = {
-			isa = PBXGroup;
-			children = (
-				383AB09B24B842EB00E4AEE6 /* ServerAccess.swift */,
-				38B4AF7524F144AB00ABDAA5 /* ServerData.swift */,
-				38B4AF7724F147EC00ABDAA5 /* ServerResponseHandler.swift */,
-			);
-			name = "ServerPHP (Deprecated)";
-			sourceTree = "<group>";
-		};
 		3875E14824F38D6A00482847 /* Firebase */ = {
 			isa = PBXGroup;
 			children = (
+				384E1B2B251073D100FFC68B /* FirebaseFields.swift */,
 				3875E14924F3972200482847 /* FirebaseUser.swift */,
 				3875D3BF24F61FD80067ABCF /* FirestoreDatabase.swift */,
 				3875D3C224F655C40067ABCF /* FirebaseFiles.swift */,
@@ -471,7 +438,6 @@
 			files = (
 				38B4AF6C24F13EF000ABDAA5 /* HomeBaseModel.swift in Sources */,
 				38A3D6DE24C409A9007BC539 /* NavVC.swift in Sources */,
-				3875E14724F36B5100482847 /* UserLocalData.swift in Sources */,
 				38B4AF6E24F13FDE00ABDAA5 /* HomeModel.swift in Sources */,
 				3875D3C024F61FD80067ABCF /* FirestoreDatabase.swift in Sources */,
 				38C742D924CEAE1100234369 /* UserCell.swift in Sources */,
@@ -484,15 +450,13 @@
 				384DA3D324B7029600B07B2F /* AppDelegate.swift in Sources */,
 				38A3D6DC24C4079C007BC539 /* MyBaseViewController.swift in Sources */,
 				38B4AF6A24F136E400ABDAA5 /* GuestModel.swift in Sources */,
-				38B4AF7824F147EC00ABDAA5 /* ServerResponseHandler.swift in Sources */,
 				38B4AF6424F1004700ABDAA5 /* LoginModel.swift in Sources */,
 				38DBED9924C49D7F007014E7 /* TabBarVC.swift in Sources */,
-				38B4AF7624F144AB00ABDAA5 /* ServerData.swift in Sources */,
 				38B4AF7424F1439000ABDAA5 /* UsersModel.swift in Sources */,
-				383AB09C24B842EB00E4AEE6 /* ServerAccess.swift in Sources */,
 				384DA3D524B7029600B07B2F /* SceneDelegate.swift in Sources */,
 				381C861B24C0390E00828712 /* ResetPasswordVC.swift in Sources */,
 				38B4AF6624F12A3100ABDAA5 /* EditProfileModel.swift in Sources */,
+				384E1B2C251073D100FFC68B /* FirebaseFields.swift in Sources */,
 				3875E13F24F3656700482847 /* UIInfo.swift in Sources */,
 				3875E13D24F3630B00482847 /* MPopup.swift in Sources */,
 				38B4AF6824F133C800ABDAA5 /* PostModel.swift in Sources */,

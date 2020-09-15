@@ -1,12 +1,4 @@
-//
-//  FirebaseUser.swift
-//  ManaSocial
-//
-//  Created by Mahmoud Abu Obaid on 8/24/20.
-//  Copyright © 2020 Mahmoud Abu Obaid. All rights reserved.
-//
-
-import Foundation
+import UIKit
 import FirebaseAuth
 import FirebaseFirestore
 
@@ -69,18 +61,16 @@ class FirebaseUser
             return fbDatabase.displayName
         }
     }
+
+    var profileImage : UIImage?
     
-    
-    private init() {
-        
-    }
+    private init() {}
     
     func initilaize(_ user: User )
     {
         fbUser = user
         fbDatabase.loadUserDoc( userId: fbUser!.uid, onComplete: nil )
     }
-    
     
     func signout()
     {
@@ -93,7 +83,6 @@ class FirebaseUser
 
     }
     
-   
     func addUserDoc()
     {
         fbDatabase.addUserDoc( userId: uid, displayName: generateDefaultDisplayName() )
@@ -108,14 +97,13 @@ class FirebaseUser
                 // Check if there is any error?
                 if error != nil
                 {
-                    print( error.debugDescription )
                     onComplete?()
                 }
                 // Verification email has been sent successfully.
                 else
                 {
                   // Notify the user about the verification email.
-                  MPopup.display( message: "A verification email has been sent to your email address", bgColor: MCOLOR_GREEN ) {
+                  MPopup.display( message: "A verification email has been sent to your email address", bgColor: UIInfo.MCOLOR_GREEN ) {
                      onComplete?()
                   }
                 }
@@ -170,6 +158,11 @@ class FirebaseUser
     func uploadAvaImage(_ image: UIImage )
     {
         fbFiles.uploadAvaImage( uid: uid, image: image )
+    }
+    
+    func getRandomUsers( onComplete: ( ( [AnyObject] ) -> Void )?, onFailed: ( (_ error: String )-> Void )? )
+    {
+        fbDatabase.getRandomUsers( onComplete: onComplete, onFailed: onFailed )
     }
     
     func searchForUsers( keyword: String, onComplete: ( ( [AnyObject] ) -> Void )?, onFailed: ( (_ error: String )-> Void )? )

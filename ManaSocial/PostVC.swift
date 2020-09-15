@@ -1,11 +1,3 @@
-//
-//  PostVC.swift
-//  ManaSocial
-//
-//  Created by Mahmoud Abu Obaid on 7/23/20.
-//  Copyright © 2020 Mahmoud Abu Obaid. All rights reserved.
-//
-
 import UIKit
 
 class PostVC: MyBaseViewController, UITextViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate
@@ -23,7 +15,6 @@ class PostVC: MyBaseViewController, UITextViewDelegate, UINavigationControllerDe
     
     let postModel = PostModel()
     
-    
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -35,12 +26,11 @@ class PostVC: MyBaseViewController, UITextViewDelegate, UINavigationControllerDe
         postBtn.layer.cornerRadius = postBtn.bounds.width / 20
         
         // Set Colors.
-        uploadImgBtn.setTitleColor( MCOLOR_BLACK, for: .normal )
-        postBtn.backgroundColor = MCOLOR_BLACK
-        countLabel.textColor = MCOLOR_LIGHT_GRAY
+        uploadImgBtn.setTitleColor( UIInfo.MCOLOR_BLACK, for: .normal )
+        postBtn.backgroundColor = UIInfo.MCOLOR_BLACK
+        countLabel.textColor = UIInfo.MCOLOR_LIGHT_GRAY
         
         // Disable auto scroll layout.
-        //self.automaticallyAdjustsScrollViewInsets = false
         textTxt.contentInsetAdjustmentBehavior = .never
         
         // Disable post btn at the beginning
@@ -52,6 +42,7 @@ class PostVC: MyBaseViewController, UITextViewDelegate, UINavigationControllerDe
         postBtn.isEnabled = false
         postBtn.alpha = 0.4
     }
+    
     func enablePostBtn()
     {
         postBtn.isEnabled = true
@@ -78,7 +69,7 @@ class PostVC: MyBaseViewController, UITextViewDelegate, UINavigationControllerDe
             
             if charsCount > MAX_CHARS
             {
-                countLabel.textColor = MCOLOR_RED;
+                countLabel.textColor = UIInfo.MCOLOR_RED;
             }
         }
         else
@@ -87,7 +78,7 @@ class PostVC: MyBaseViewController, UITextViewDelegate, UINavigationControllerDe
             enablePostBtn()
             
             // Reset count label text color.
-            countLabel.textColor = MCOLOR_LIGHT_GRAY;
+            countLabel.textColor = UIInfo.MCOLOR_LIGHT_GRAY;
         }
     }
     
@@ -103,20 +94,6 @@ class PostVC: MyBaseViewController, UITextViewDelegate, UINavigationControllerDe
     // To be triggered after post request completed successfully.
     func onPostUploaded()
     {
-//        // Get back to main queue.
-//        DispatchQueue.main.sync {
-//            // Reset everything to start brand new post.
-//            self.didPickupImage = false
-//            self.textTxt.text = ""
-//            self.countLabel.text = String( MAX_CHARS )
-//            self.uploadedImgView.image = nil
-//
-//            disablePostBtn()
-//
-//            // Switch to another scene.
-//            self.tabBarController?.selectedIndex = 0
-//        }
-        
         // Reset everything to start brand new post.
         self.didPickupImage = false
         self.textTxt.text = ""
@@ -134,8 +111,7 @@ class PostVC: MyBaseViewController, UITextViewDelegate, UINavigationControllerDe
     {
         hideProgressBG()
     }
-    
-    
+
     // Triggered when user clicks UploadImageBtn.
     @IBAction func onUploadImgBtnClicked(_ sender: Any)
     {

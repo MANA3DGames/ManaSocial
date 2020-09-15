@@ -1,15 +1,7 @@
-//
-//  LoginVC.swift
-//  ManaSocial
-//
-//  Created by Mahmoud Abu Obaid on 7/14/20.
-//  Copyright © 2020 Mahmoud Abu Obaid. All rights reserved.
-//
-
 import UIKit
 
-class LoginVC: MyBaseViewController {
-
+class LoginVC: MyBaseViewController
+{
     @IBOutlet weak var emailTxt: UITextField!
     @IBOutlet weak var passwordTxt: UITextField!
     
@@ -22,9 +14,7 @@ class LoginVC: MyBaseViewController {
         createProgressBG()
         
         // Prevent autofill
-        passwordTxt.textContentType = .oneTimeCode// .init( rawValue: "" )
-        
-        
+        passwordTxt.textContentType = .oneTimeCode
         
         justForQuickTesting()
     }
@@ -40,10 +30,12 @@ class LoginVC: MyBaseViewController {
             self.view.addSubview( btn )
         }
     }
+    
     @objc func quickLoginInfo()
     {
-        emailTxt.text = ""
-        passwordTxt.text = ""
+        emailTxt.text = "kingodesu@gmail.com"
+        passwordTxt.text = "123456"
+        onLoginBtnClicked( self )
     }
     
     
@@ -70,11 +62,11 @@ class LoginVC: MyBaseViewController {
     
     @IBAction func onForgetPasswordBtnClicked(_ sender: Any)
     {
-        moveToViewController( from: self, toID: ID_RESET_PASSWORD_VC )
+        moveToViewController( from: self, toID: VCIDInfo.ID_RESET_PASSWORD_VC )
     }
     
     @IBAction func onRegisterBtnClicked(_ sender: Any)
     {
-        moveToViewController( from: self, toID: ID_REGISTER_VC )
+        moveToViewController( from: self, toID: VCIDInfo.ID_REGISTER_VC )
     }
 }

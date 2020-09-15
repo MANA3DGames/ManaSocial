@@ -1,11 +1,3 @@
-//
-//  NavVC.swift
-//  ManaSocial
-//
-//  Created by Mahmoud Abu Obaid on 7/19/20.
-//  Copyright © 2020 Mahmoud Abu Obaid. All rights reserved.
-//
-
 import UIKit
 
 class NavVC: UINavigationController
@@ -21,7 +13,7 @@ class NavVC: UINavigationController
         self.navigationBar.tintColor = UIColor.white
         
         // Background color of the navigation bar.
-        self.navigationBar.barTintColor = MCOLOR_BLACK
+        self.navigationBar.barTintColor = UIInfo.MCOLOR_BLACK
         
         // Display translucent.
         self.navigationBar.isTranslucent = false

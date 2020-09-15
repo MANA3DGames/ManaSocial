@@ -1,21 +1,10 @@
-//
-//  FirebaseFiles.swift
-//  ManaSocial
-//
-//  Created by Mahmoud Abu Obaid on 8/26/20.
-//  Copyright © 2020 Mahmoud Abu Obaid. All rights reserved.
-//
-
 import Foundation
 import FirebaseStorage
 
 class FirebaseFiles
 {
-    init() {
-        
-    }
-    
-    
+    init() {}
+
     func uploadImage( path: String, image: UIImage, onComplete: ( (_ imgRef: StorageReference )-> Void )?, onFailed: ( (_ error: String )-> Void )? )
     {
         let imageData = image.jpegData( compressionQuality: 0.5 )
@@ -31,7 +20,6 @@ class FirebaseFiles
         let imgRef = storageRef.child( path )
 
         // Upload the file to the target path
-        //let uploadTask =
         imgRef.putData( imageData!, metadata: nil ) { ( metadata, error ) in
             
             // Check if there is any error.
@@ -41,7 +29,7 @@ class FirebaseFiles
             }
             else
             {
-                print( "Image has been uploaded successfully" )
+                // Image has been uploaded successfully.
                 onComplete?( imgRef )
             }
         }
@@ -50,7 +38,7 @@ class FirebaseFiles
     func uploadPostImage( userUid: String, imgUid: String, image: UIImage, onComplete: @escaping (_ url : String )-> Void, onFailed: @escaping (_ error: String )-> Void )
     {
         uploadImage(
-            path: "posts/\(userUid)/\(imgUid).jpg",
+            path: "\(FirebaseFileFields.posts)/\(userUid)/\(imgUid).jpg",
             image: image,
             onComplete: { ( imgRef )  in
                 // You can also access to download URL after upload.
@@ -69,9 +57,10 @@ class FirebaseFiles
     
     func uploadAvaImage( uid: String, image: UIImage )
     {
-        uploadImage( path: "avaImages/\(uid).jpg", image: image, onComplete: nil, onFailed: nil )
+        uploadImage( path: "\(FirebaseFileFields.avaImages)/\(uid).jpg", image: image, onComplete: { imgRef in
+            FirebaseUser.Instance.profileImage = image
+        }, onFailed: nil )
     }
-    
     
     static func downloadImage( path: String, onComplete: ((_ image: UIImage? )-> Void)?, onFailed: ( (_ error: String )-> Void )? )
     {
@@ -98,19 +87,23 @@ class FirebaseFiles
     static func downloadAvaImg( userID: String, onComplete: ((_ image: UIImage? )-> Void)?, onFailed: ( (_ error: String )-> Void )? )
     {
         downloadImage(
-            path: "avaImages/\(userID).jpg",
+            path: "\(FirebaseFileFields.avaImages)/\(userID).jpg",
             onComplete: { ( image ) in onComplete!( image ) },
-            onFailed: { ( error ) in onFailed!( "Failed to download user profile image: \(error)" ) } )
+            onFailed: { ( error ) in
+                if onFailed != nil
+                {
+                    onFailed!( "Failed to download user profile image: \(error)" )
+                }
+        } )
     }
-    
-    
+
     func deletePostImage( userUid: String, imgUid: String, onComplete: @escaping ()-> Void, onFailed: @escaping (_ error: String )-> Void )
     {
         // Create a root reference
         let storageRef = Storage.storage().reference()
         
         // Create a reference to the file to delete
-        let imgRef = storageRef.child( "posts/\(userUid)/\(imgUid).jpg" );
+        let imgRef = storageRef.child( "\(FirebaseFileFields.posts)/\(userUid)/\(imgUid).jpg" );
 
         // Delete the file
         imgRef.delete { error in

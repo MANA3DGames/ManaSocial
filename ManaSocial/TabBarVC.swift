@@ -1,11 +1,3 @@
-//
-//  TabBarVC.swift
-//  ManaSocial
-//
-//  Created by Mahmoud Abu Obaid on 7/19/20.
-//  Copyright © 2020 Mahmoud Abu Obaid. All rights reserved.
-//
-
 import UIKit
 
 class TabBarVC: UITabBarController
@@ -18,13 +10,13 @@ class TabBarVC: UITabBarController
         self.tabBar.tintColor = .white
         
         // Background color.
-        self.tabBar.barTintColor = MCOLOR_BLACK
+        self.tabBar.barTintColor = UIInfo.MCOLOR_BLACK
         
         // Disable translucent.
         self.tabBar.isTranslucent = false
         
         // Color of the text under icon in the tabBar controller.
-        UITabBarItem.appearance().setTitleTextAttributes( [NSAttributedString.Key.foregroundColor: MCOLOR_LIGHT_GRAY], for: .normal )
+        UITabBarItem.appearance().setTitleTextAttributes( [NSAttributedString.Key.foregroundColor: UIInfo.MCOLOR_LIGHT_GRAY], for: .normal )
         UITabBarItem.appearance().setTitleTextAttributes( [NSAttributedString.Key.foregroundColor: UIColor.white], for: .selected )
         
         // New color for all icons of the tabBar controller.
@@ -32,27 +24,25 @@ class TabBarVC: UITabBarController
         {
             if let image = item.image
             {
-                print( image )
-                item.image = image.setImageColor( color: MCOLOR_LIGHT_GRAY ).withRenderingMode( .alwaysOriginal )
+                item.image = image.setImageColor( color: UIInfo.MCOLOR_LIGHT_GRAY ).withRenderingMode( .alwaysOriginal )
             }
         }
         
         // Play MANA Logo animation.
         manaAnimation()
     }
-    
-    
+
     func manaAnimation()
     {
         // Blue layer
         let layer = UIView()
         layer.frame = self.view.frame
-        layer.backgroundColor = MCOLOR_BLACK
+        layer.backgroundColor = UIInfo.MCOLOR_BLACK
         self.view.addSubview( layer )
         
         // Brand icon.
         let icon = UIImageView()
-        icon.image = UIImage( named: "manaIcon.png" )
+        icon.image = UIImage( named: UIInfo.MANA_ICON_NAME )
         icon.frame.size.width = 100
         icon.frame.size.height = 100
         icon.center = view.center

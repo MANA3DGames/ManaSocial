@@ -1,11 +1,3 @@
-//
-//  MPopup.swift
-//  ManaSocial
-//
-//  Created by Mahmoud Abu Obaid on 8/24/20.
-//  Copyright © 2020 Mahmoud Abu Obaid. All rights reserved.
-//
-
 import Foundation
 import UIKit
 
@@ -42,13 +34,12 @@ class MPopup
         popupLabel.frame.size.height = msgLabelHeight
         popupLabel.numberOfLines = 0
         popupLabel.text = message
-        popupLabel.font = UIFont( name: "HelveticaNeue", size: FONT_SIZE_12 )
+        popupLabel.font = UIFont( name: UIInfo.FONT_NAME, size: UIInfo.FONT_SIZE_12 )
         popupLabel.textColor = UIColor.white
         popupLabel.textAlignment = NSTextAlignment.center
         
         popupView.addSubview( popupLabel )
-        
-        
+
         // Animate Popup view:
         UIView.animate(
             withDuration: 0.2,

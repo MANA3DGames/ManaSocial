@@ -1,11 +1,3 @@
-//
-//  ResetPasswordVC.swift
-//  ManaSocial
-//
-//  Created by Mahmoud Abu Obaid on 7/16/20.
-//  Copyright © 2020 Mahmoud Abu Obaid. All rights reserved.
-//
-
 import UIKit
 
 class ResetPasswordVC: MyBaseViewController
@@ -13,8 +5,7 @@ class ResetPasswordVC: MyBaseViewController
     @IBOutlet weak var emailTxt: UITextField!
     
     let resetpasswordModel = ResetPasswordModel()
-    
-    
+
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -38,6 +29,6 @@ class ResetPasswordVC: MyBaseViewController
     
     @IBAction func onGoBackBtnClicked(_ sender: Any)
     {
-        moveToViewController( from: self, toID: ID_LOGIN_VC )
+        moveToViewController( from: self, toID: VCIDInfo.ID_LOGIN_VC )
     }
 }

@@ -1,18 +1,9 @@
-//
-//  HomeVC.swift
-//  ManaSocial
-//
-//  Created by Mahmoud Abu Obaid on 7/19/20.
-//  Copyright © 2020 Mahmoud Abu Obaid. All rights reserved.
-//
-
 import UIKit
 
 class HomeVC: HomeBaseViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate
 {
     let homeModel = HomeModel()
-    
-    
+
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -30,8 +21,7 @@ class HomeVC: HomeBaseViewController, UINavigationControllerDelegate, UIImagePic
         
         downloadPosts( userID: FirebaseUser.Instance.uid, model: homeModel )
     }
-    
-    
+
     @IBAction func onEditProfileBtnClicked(_ sender: Any)
     {
         // Create a new action sheet.
@@ -49,8 +39,8 @@ class HomeVC: HomeBaseViewController, UINavigationControllerDelegate, UIImagePic
         let updateBtn = UIAlertAction( title: "Update Profile", style: .default, handler: { ( action: UIAlertAction ) in
             
             // Go to EditProfileVC
-            let storyboard = UIStoryboard( name: ID_EDIT_PROFILE_VC, bundle: nil )
-            let editVC = storyboard.instantiateViewController( identifier: ID_EDIT_PROFILE_VC ) as! EditProfileVC
+            let storyboard = UIStoryboard( name: VCIDInfo.ID_EDIT_PROFILE_VC, bundle: nil )
+            let editVC = storyboard.instantiateViewController( identifier: VCIDInfo.ID_EDIT_PROFILE_VC ) as! EditProfileVC
             self.navigationController?.pushViewController( editVC, animated: true )
             
             // Remove title from back button.
@@ -86,28 +76,21 @@ class HomeVC: HomeBaseViewController, UINavigationControllerDelegate, UIImagePic
         // Upload selected image to our database server.
         FirebaseUser.Instance.uploadAvaImage( avaImg.image! )
     }
-    
-    
+
     @IBAction func onSignoutBtnClicked(_ sender: Any)
     {
-        // Clear user saved data.
-        UserLocalData.clear()
-        
         FirebaseUser.Instance.signout()
         
         // Go back to login menu.
-        moveToViewController( from: self, toID: ID_LOGIN_VC )
+        moveToViewController( from: self, toID: VCIDInfo.ID_LOGIN_VC )
     }
-    
-    
-    
-    
-    
+
     // Allows cells in table view to be edited.
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool
     {
         return true
     }
+    
     // When cell swiped.
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath)
     {

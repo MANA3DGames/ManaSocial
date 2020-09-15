@@ -1,32 +1,8 @@
-//
-//  RegisterModel.swift
-//  ManaSocial
-//
-//  Created by Mahmoud Abu Obaid on 8/22/20.
-//  Copyright © 2020 Mahmoud Abu Obaid. All rights reserved.
-//
-
 import Foundation
 import FirebaseAuth
 
 class RegisterModel
 {
-    /// Deprecated: use Firebase func --> register( email, password )
-    public func registerPHP( email : String, password : String, firstName : String, lastName : String )
-    {
-        let request = ServerAccess.createURLRequest(
-            url: URL( string: ServerData.baseURL + "register.php" )!,
-            method: ServerAccess.HttpMethod.POST,
-            body: "email=\(email)&password=\(password)&firstname=\(firstName)&lastname=\(lastName)" )
-        
-        ServerAccess.executeDataTask(
-            request: request,
-            onCompleteAction: ServerResponseHandler.onCompleteAction,
-            onFailedAction: ServerResponseHandler.onFailedAction,
-            operation: ServerAccess.Operation.REGISTER
-        )
-    }
-    
     public func register( email: String, password: String, sender: RegisterVC )
     {
         sender.showProgressBG()
@@ -56,7 +32,7 @@ class RegisterModel
             else if ( error != nil )
             {
                 let msg = error?.localizedDescription ?? ""
-                MPopup.display( message: msg, bgColor: MCOLOR_RED, onComplete: nil )
+                MPopup.display( message: msg, bgColor: UIInfo.MCOLOR_RED, onComplete: nil )
 
                 onFailed()
             }
@@ -94,7 +70,6 @@ class RegisterModel
                         timer.invalidate()
                         
                         sceneDelegate.goToTabBarController()
-                        //sender.moveToViewController( from: sender, toID: ID_TAB_BAR )
                         sender.showRegistrationUI( true )
                         sender.showVerificationUI( false )
                     }
